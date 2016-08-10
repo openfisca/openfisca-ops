@@ -7,6 +7,6 @@
 As root:
 
 ```
-cp cron /etc/cron.d
+cp cron /etc/cron.d/openfisca-auto-update
 service cron reload
 ```
