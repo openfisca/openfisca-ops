@@ -25,5 +25,5 @@ if [ "$restart" == "1" ]; then
     sudo systemctl restart openfisca-web-api.service
     sudo systemctl restart legislation-explorer.service
     # Trigger an HTTP request to pre-load OpenFisca-Web-API, so the first user will not have to wait.
-    curl --retry 5 https://api.openfisca.fr/
+    curl --silent --retry 5 https://api.openfisca.fr/
 fi
