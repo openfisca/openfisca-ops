@@ -1,4 +1,4 @@
-# openfisca-ops
+# OpenFisca Operations
 
 This repository contains scripts and config files for deploying OpenFisca on a server.
 
