@@ -25,8 +25,10 @@ do
 done
 
 if [ "$restart" == "1" ]; then
+    echo "========="
     echo "New version(s) of PyPI package(s) were found and installed."
     echo "Restarting openfisca-web-api.service and legislation-explorer.service as a consequence."
+    echo "========="
     sudo systemctl restart openfisca-web-api.service
     sudo systemctl restart legislation-explorer.service
     # Trigger an HTTP request to pre-load OpenFisca-Web-API, so the first user will not have to wait.
