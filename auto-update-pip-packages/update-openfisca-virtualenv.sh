@@ -18,16 +18,15 @@ function check_and_update {
     fi
 }
 
-echo "# Checking for new versions of Python packages on PyPI."
 
 for package in OpenFisca-France OpenFisca-Core OpenFisca-Web-API
 do
-    echo "## Checking for new version of $package on PyPI..."
     check_and_update "$package"
 done
 
-if [ "$restart" == "1" ]; the
-    echo "# New version(s) found, restarting openfisca-web-api.service and legislation-explorer.service."
+if [ "$restart" == "1" ]; then
+    echo "New version(s) of PyPI package(s) were found and installed."
+    echo "Restarting openfisca-web-api.service and legislation-explorer.service as a consequence."
     sudo systemctl restart openfisca-web-api.service
     sudo systemctl restart legislation-explorer.service
     # Trigger an HTTP request to pre-load OpenFisca-Web-API, so the first user will not have to wait.
