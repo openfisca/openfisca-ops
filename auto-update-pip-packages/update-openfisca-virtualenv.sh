@@ -10,7 +10,6 @@ function check_and_update {
     PACKAGE_NAME="$1"
     PACKAGE_JSON_URL="https://pypi.python.org/pypi/$PACKAGE_NAME/json"
     PACKAGE_PYPI_VERSION=`$CURL "$PACKAGE_JSON_URL" | jq --raw-output ".info.version"`
-    source ~/virtualenvs/openfisca/bin/activate
     PACKAGE_PIP_VERSION=`python -c "import pkg_resources; print(pkg_resources.get_distribution('$PACKAGE_NAME').version)"`
     if [ "$PACKAGE_PYPI_VERSION" != "$PACKAGE_PIP_VERSION" ]; then
         pip install --upgrade $PACKAGE_NAME
@@ -18,6 +17,7 @@ function check_and_update {
     fi
 }
 
+source ~/virtualenvs/openfisca/bin/activate
 
 for package in OpenFisca-France OpenFisca-Core OpenFisca-Web-API
 do
