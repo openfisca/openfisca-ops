@@ -30,7 +30,8 @@ if [ "$restart_services" == "1" ]; then
     echo "- New version(s) of PyPI package(s) were found and installed. Restarting openfisca-web-api.service and legislation-explorer.service as a consequence."
     sudo systemctl restart openfisca-web-api.service
     sudo systemctl restart legislation-explorer.service
-    # Trigger an HTTP request to pre-load OpenFisca-Web-API, so the first user will not have to wait.
+    TEST_URL="https://api.openfisca.fr/"
+    echo "- Triggering an HTTP request on $TEST_URL to pre-load OpenFisca-Web-API simulation results, so the first user will not have to wait. Response body:"
     sleep 10
-    $CURL https://api.openfisca.fr/
+    $CURL $TEST_URL
 fi
