@@ -23,7 +23,7 @@ function check_and_update {
         # Check for X.Y.Z version number, exclude alpha, rc, dev versions.
         echo "$PACKAGE_PYPI_VERSION" | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$" > /dev/null
         if [ $? == 0 ]; then
-            pip install --upgrade $PACKAGE_NAME
+            pip install --no-cache-dir --upgrade $PACKAGE_NAME
             restart="1"
         fi
     fi
