@@ -2,6 +2,14 @@
 
 set -e
 
+
+# Customizable variables
+
+VENV_ACTIVATE="~/virtualenvs/openfisca/bin/activate"
+
+# End of customizable variables
+
+
 CURL="curl --silent --retry 5"
 
 restart="0"
@@ -17,7 +25,7 @@ function check_and_update {
     fi
 }
 
-source ~/virtualenvs/openfisca/bin/activate
+source $VENV_ACTIVATE
 
 for package in OpenFisca-France OpenFisca-Core OpenFisca-Web-API
 do

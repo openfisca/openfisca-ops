@@ -6,9 +6,11 @@
 
 Install the cron job. As root:
 ```
-cp cron /etc/cron.d/openfisca-auto-update
-service cron reload
+cp cron /etc/cron.d/openfisca-auto-update-pip-packages
+systemctl restart cron
 ```
+
+> The cron file and the `update-openfisca-virtualenv.sh` script may be customized to adapt the file path.
 
 Allow some commands for `openfisca` user to be used with `sudo` without typing any password. As root:
 ```
