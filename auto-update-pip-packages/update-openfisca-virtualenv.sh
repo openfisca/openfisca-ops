@@ -19,9 +19,13 @@ function check_and_update {
     PACKAGE_JSON_URL="https://pypi.python.org/pypi/$PACKAGE_NAME/json"
     PACKAGE_PYPI_VERSION=`$CURL "$PACKAGE_JSON_URL" | jq --raw-output ".info.version"`
     PACKAGE_PIP_VERSION=`python -c "import pkg_resources; print(pkg_resources.get_distribution('$PACKAGE_NAME').version)"`
-    if [ "$PACKAGE_PYPI_VERSION" != "$PACKAGE_PIP_VERSION" ]; then
-        pip install --upgrade $PACKAGE_NAME
-        restart="1"
+    if [[ "$PACKAGE_PYPI_VERSION" != "$PACKAGE_PIP_VERSION" ]]; then
+        # Check for X.Y.Z version number, exclude alpha, rc, dev versions.
+        echo "$PACKAGE_PYPI_VERSION" | grep "^[0-9]\+\.[0-9]\+\.[0-9]\+$" > /dev/null
+        if [ $? == 0 ]; then
+            pip install --upgrade $PACKAGE_NAME
+            restart="1"
+        fi
     fi
 }
 
