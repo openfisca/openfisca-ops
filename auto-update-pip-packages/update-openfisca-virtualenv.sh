@@ -5,7 +5,7 @@ set -e
 
 # Customizable variables
 
-VENV_ACTIVATE="~/virtualenvs/openfisca/bin/activate"
+VENV_ACTIVATE="$HOME/virtualenvs/openfisca/bin/activate"
 
 # End of customizable variables
 
