@@ -29,3 +29,19 @@ openfisca ALL=(ALL) NOPASSWD: /bin/systemctl restart legislation-explorer.servic
 ```
 
 This will allow the `update-openfisca-virtualenv.sh` script, which runs as the `openfisca` user, to restart the services.
+
+### Configure emails sending
+
+Cron sends emails containing the output of the script. The recipient is `openfisca`.
+You can configure the email target by editing `/etc/aliases`.
+
+A common value is: `openfisca: webmaster@openfisca.fr`.
+
+### Update packages manually
+
+To update pip packages in `openfisca` virtualenv, run:
+
+```bash
+$ cd openfisca-ops/auto-update-pip-packages
+$ ./update-openfisca-virtualenv.sh
+```
