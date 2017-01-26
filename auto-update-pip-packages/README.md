@@ -11,7 +11,9 @@ Install the cron job. As root:
 # systemctl restart cron
 ```
 
-> The cron file and the `update-openfisca-virtualenv.sh` script may be customized to adapt the file path.
+You may customize these values to adapt them to your server:
+- the full path to the `update-openfisca-virtualenv.sh` script in the cron file
+- the Bash variables in `update-openfisca-virtualenv.sh` header (`PIP_PACKAGES` and `VENV_ACTIVATE`)
 
 ### Configure user permissions
 

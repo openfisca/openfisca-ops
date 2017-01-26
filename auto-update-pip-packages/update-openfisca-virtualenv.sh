@@ -2,8 +2,10 @@
 
 
 # Customizable variables
+PIP_PACKAGES="OpenFisca-France OpenFisca-Core OpenFisca-Web-API"
 VENV_ACTIVATE="$HOME/virtualenvs/openfisca/bin/activate"
 # End of customizable variables
+
 
 CURL="curl --silent --retry 5"
 restart_services="0"
@@ -21,7 +23,7 @@ function upgrade_package {
 
 source $VENV_ACTIVATE
 
-for package in OpenFisca-France OpenFisca-Core OpenFisca-Web-API
+for package in $PIP_PACKAGES
 do
     upgrade_package "$package"
 done
