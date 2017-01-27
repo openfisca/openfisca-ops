@@ -6,9 +6,9 @@
 
 Install the cron job. As root:
 
-```bash
-# cp cron /etc/cron.d/openfisca-auto-update-pip-packages
-# systemctl restart cron
+```sh
+cp cron /etc/cron.d/openfisca-auto-update-pip-packages
+systemctl restart cron
 ```
 
 You may customize these values to adapt them to your server:
@@ -19,8 +19,8 @@ You may customize these values to adapt them to your server:
 
 Allow some commands for `openfisca` user to be used with `sudo` without typing any password. As root:
 
-```bash
-# visudo
+```sh
+visudo
 ```
 
 Then add these lines to the file under the `User privilege specification` section:
@@ -53,7 +53,7 @@ The emails sent contain this kind of content:
 
 To update pip packages in `openfisca` virtualenv, run:
 
-```bash
-$ cd openfisca-ops/auto-update-pip-packages
-$ ./update-openfisca-virtualenv.sh
+```sh
+cd openfisca-ops/auto-update-pip-packages
+./update-openfisca-virtualenv.sh
 ```
