@@ -18,7 +18,7 @@ We obtain the certificate with the command
 certbot --certonly
 ```
 
-To renew automatically your certificate without stopping nginx server you must edit the certificate renewal file to specify the webroot renewal method and his path.
+To renew automatically your certificate without stopping nginx server you must edit the certificate renewal file to specify the webroot renewal method and its path.
 For example, we edit the renewal file for `www.openfisca.fr` domain in `/etc/letsencrypt/renewal/www.openfisca.fr`
 
 ```diff
