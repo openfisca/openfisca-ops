@@ -3,6 +3,7 @@
 # Adapt this variable to your server.
 VENV_ACTIVATE="/home/openfisca/virtualenvs/openfisca/bin/activate"
 
+set -x
 source "$VENV_ACTIVATE"
 pip install --upgrade OpenFisca-France[api]
 if ! (pip check); then
