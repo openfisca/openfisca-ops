@@ -5,7 +5,7 @@ VENV_ACTIVATE="/home/openfisca/virtualenvs/openfisca/bin/activate"
 
 set -x
 source "$VENV_ACTIVATE"
-pip install --requirement requirements.txt
+pip install --requirement /home/openfisca/openfisca-ops/auto-update-pip-packages/requirements.txt --upgrade
 if ! (pip check); then
     exit -1
 fi
