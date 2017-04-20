@@ -1,3 +1,0 @@
-# Update OpenFisca pip packages in virtualenv every 5 minutes
-
-*/5 * * * * openfisca /home/openfisca/openfisca-ops/auto-update-pip-packages/update-openfisca-virtualenv.sh
