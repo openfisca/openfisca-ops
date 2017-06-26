@@ -25,3 +25,11 @@ When you edit one of these files, run this command afterwards so that your chang
 ```sh
 systemctl daemon-reload
 ```
+
+## Renew SSL certificates
+
+To renew the SSL certificate of an OpenFisca related application, run in `root` the following command, replacing `api-test.openfisca.fr` by the domain that needs a certificate update:
+```sh
+certbot certonly --webroot -w /tmp/renew-webroot/ -d api-test.openfisca.fr
+service nginx reload
+```
