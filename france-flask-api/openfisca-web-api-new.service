@@ -4,6 +4,8 @@ Description=OpenFisca Web API - New
 [Service]
 Environment=COUNTRY_PACKAGE=openfisca_france
 Environment=SERVER_NAME=api-test.openfisca.fr
+Environment=TRACKER_URL="https://stats.data.gouv.fr/piwik.php"
+Environment=TRACKER_IDSITE=4
 ExecStart=/home/openfisca/virtualenvs/new-api/bin/gunicorn "openfisca_web_api_preview.app:create_app()" --workers 3 --bind localhost:6000
 User=openfisca
 Restart=always
