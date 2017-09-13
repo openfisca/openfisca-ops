@@ -13,7 +13,13 @@ cd /home/openfisca
 git clone git@github.com:openfisca/openfisca-ops.git
 ```
 
-Each sub-directory has its own README.md file.
+For more information on `auto-update` sub-directories, please see their own README.md files.
+
+## Server configuration
+
+The nginx modules are controlled by directives specified in configuration files.
+In our case, these configuration files are stored in a directory named after the configured domain name.  
+For example: `www.openfisca.fr`'s configuration file is `openfisca-ops/www.openfisca.fr/www.openfisca.fr.conf`
 
 ## Services
 
