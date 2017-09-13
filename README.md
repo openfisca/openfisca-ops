@@ -17,8 +17,8 @@ For more information on `auto-update` sub-directories, please see their own READ
 
 ## Server configuration
 
-Main nginx services' configuration files are stored in a directory named after a server name.  
-For example: `www.openfisca.fr` configuration file is `openfisca-ops/www.openfisca.fr/www.openfisca.fr.conf`
+The main nginx services' configuration files are stored in a directory named after a server name.  
+For example: `www.openfisca.fr`'s configuration file is `openfisca-ops/www.openfisca.fr/www.openfisca.fr.conf`
 
 ## Services
 
