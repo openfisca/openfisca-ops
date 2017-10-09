@@ -2,6 +2,7 @@
 Description=OpenFisca Web API - New
 
 [Service]
+EnvironmentFile=/home/openfisca/secret/piwik_token
 Environment=COUNTRY_PACKAGE=openfisca_france
 Environment=SERVER_NAME=fr.openfisca.org/api/v18
 Environment=TRACKER_URL=https://stats.data.gouv.fr/piwik.php
