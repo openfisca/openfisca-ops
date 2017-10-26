@@ -1,0 +1,2 @@
+OpenFisca-France >= 18.10.2, < 19.0
+OpenFisca-Tracker == 0.2.0
