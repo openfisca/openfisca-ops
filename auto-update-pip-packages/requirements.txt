@@ -1,2 +1,2 @@
-OpenFisca-France[api] >= 18.0.0, < 19.0
+OpenFisca-France[api] >= 19.0.0rc0, < 20.0
 OpenFisca-Tracker == 0.1.0
