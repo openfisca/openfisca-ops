@@ -17,7 +17,7 @@ For more information on `auto-update` sub-directories, please see their own READ
 
 ## Server configuration
 
-The nginx configuration files are loaded from the `/etc/nginx/sites-available` directory.
+The nginx configuration files are loaded from the `/etc/nginx/sites-available` directory.  
 In order to keep these files versionned, we use symlinks from this directory towards the server local clone of this repository.
 
 When you edit one of these files, run this command afterwards so that your changes are taken into account:
@@ -29,7 +29,7 @@ service nginx reload
 
 We use [systemd](https://wiki.debian.org/systemd) services to ensure the continued operation of the OpenFisca related applications (OpenFisca-France [web API](https://fr.openfisca.org/api/v18), [legislation explorer](https://legislation.openfisca.fr/)). `systemd` is available on most recent (> 2015) linux distributions.
 
-The service configuration files are loaded from the `/etc/systemd/system` directory.
+The service configuration files are loaded from the `/etc/systemd/system` directory.  
 In order to keep these files versionned, we use symlinks from this directory towards the server local clone of this repository.
 
 
