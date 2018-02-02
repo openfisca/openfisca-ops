@@ -60,7 +60,7 @@ service nginx reload
 
 
 ### To serve a new version :
-- on `openfisca-ops`, create a new repo with the config files
+- on `openfisca-ops`, in a new branch, create a new repo with the config files
 - connect to the server
 - pull the new `openfisca-ops`
 - got to the virtualenv (`cd /home/openfisca/virtualenvs`)
@@ -68,6 +68,6 @@ service nginx reload
 - enter the virtualenv (`cd api-frxx`)
 - activate the virtualenv (`source bin/activate`)
 - run the instructions in the `deploy.sh` file
-- go to `etc/systemd/systems`
+- go to `/etc/systemd/system`
 - create a new service with a symlink 
-- restart the server
+- reload the daemon 
