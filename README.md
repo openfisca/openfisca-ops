@@ -38,7 +38,6 @@ When you edit one of these files, run this command afterwards so that your chang
 systemctl daemon-reload
 ```
 
-
 ## Set up a SSL certificate
 
 See the [dedicated page](guides/Set-up-SSL.md).
@@ -50,3 +49,25 @@ To renew the SSL certificate of an OpenFisca related application, run in `root` 
 certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
 service nginx reload
 ```
+## Serve a new version of the public api
+
+### To update the current major version being served
+- connect to the server
+- got to the virtualenv (`cd /home/openfisca/virtualenvs/api-frxx`)
+- activate the virtualenv (`source bin/activate`)
+- update the openfisca version 
+- run the instructions in the `deploy.sh` file
+
+
+### To serve a new version :
+- on `openfisca-ops`, in a new branch, create a new repo with the config files
+- connect to the server
+- pull the new `openfisca-ops`
+- got to the virtualenv (`cd /home/openfisca/virtualenvs`)
+- create the new virtualenv (`virtualenv api-frxx`)
+- enter the virtualenv (`cd api-frxx`)
+- activate the virtualenv (`source bin/activate`)
+- run the instructions in the `deploy.sh` file
+- go to `/etc/systemd/system`
+- create a new service with a symlink 
+- reload the daemon 
