@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenFisca-France website
+
+[Service]
+EnvironmentFile=/home/openfisca/secret/piwik_token
+Environment=SERVER_NAME=fr.openfisca.org/beta
+ExecStart=/usr/bin/yarn --cwd /home/openfisca/fr.openfisca.org/ start -p 2011
+User=openfisca
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
