@@ -2,8 +2,8 @@
 
 set -ex
 
-yarn install
-yarn build
+npm install
+npm run build
 
 # The current user must have been specifically allowed to run the next command
 # Use the visudo command to do so
