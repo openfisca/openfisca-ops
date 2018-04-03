@@ -1,6 +1,6 @@
 # Changelog
 
-### 0.6.0 [#33](https://github.com/openfisca/openfisca-ops/pull/33)
+### 0.6.0 [#40](https://github.com/openfisca/openfisca-ops/pull/40)
 
 - Host the legislation explorer on fr.openfisca.org/legislation
 
