@@ -1,5 +1,16 @@
 # Changelog
 
+### 0.6.0 [#33](https://github.com/openfisca/openfisca-ops/pull/33)
+
+- Host the legislation explorer on fr.openfisca.org/legislation
+
+On repo :
+- In order to redirect traffic : modified openfisca-ops/fr.openfisca.org/fr.openfisca.org.conf
+- In order to have the service for the legislation explorer on openfisca-ops : created openfisca-ops/fr.openfisca.org/legislation-explorer/legislation-explorer.service
+
+On server :
+- created symlink legislation-explorer.service to home/openfisca/openfisca-ops/fr.openfisca.org/legislation-explorer/legislation-explorer.service
+
 ### 0.5.0 [#33](https://github.com/openfisca/openfisca-ops/pull/33)
 
 - Redirect traffic from openfisca.fr to fr.openfisca.org's new website
