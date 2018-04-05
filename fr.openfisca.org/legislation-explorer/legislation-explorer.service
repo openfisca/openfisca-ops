@@ -1,0 +1,12 @@
+[Unit]
+Description=OpenFisca Legislation Explorer
+
+[Service]
+Environment=NODE_ENV=production
+Environment=BASENAME=/legislation
+ExecStart=/usr/bin/node /home/openfisca/legislation-explorer/index.js
+User=openfisca
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
