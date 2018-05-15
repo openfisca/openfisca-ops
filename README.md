@@ -41,9 +41,25 @@ When you edit one of these files, run this command afterwards so that your chang
 systemctl daemon-reload
 ```
 
+To make sure the user `openfisca` is allowed to restart a service in order to redeploy it, log in as root and run
+
+```sh
+visudo
+```
+
+Add a line like the following to the file under the `User privilege specification` section:
+
+```
+openfisca ALL=(ALL) NOPASSWD: /bin/systemctl restart legislation-explorer.service
+```
+
 ## Set up a SSL certificate
 
 See the [dedicated page](guides/Set-up-SSL.md).
+
+## Create a deploy user
+
+See the [dedicated page](guides/Create-a-deploy-user.md).
 
 ## Renew SSL certificates
 
