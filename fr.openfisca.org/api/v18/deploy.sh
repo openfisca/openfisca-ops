@@ -2,7 +2,7 @@
 
 set -ex
 
-REQUIREMENTS="/home/openfisca/openfisca-ops/fr.openfisca.org/api/requirements.txt"
+REQUIREMENTS="/home/openfisca/openfisca-ops/fr.openfisca.org/api/v18/requirements.txt"
 
 source /home/openfisca/virtualenvs/new-api/bin/activate
 pip install --requirement "$REQUIREMENTS" --upgrade
