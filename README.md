@@ -72,25 +72,25 @@ service nginx reload
 
 ## Serve a new version of the public api
 
-### To update the current major version being served
-- connect to the server
-- got to the virtualenv (`cd /home/openfisca/virtualenvs/api-frxx`)
-- activate the virtualenv (`source bin/activate`)
-- update the openfisca version
-- run the instructions in the `deploy.sh` file
+### To update the latest major version being served
+
+Run `ssh deploy-api@fr.openfisca.org`
+
+This automatically runs the `fr.openfisca.org/api/deploy-latest.sh` script.
 
 ### To serve a new version :
 - on `openfisca-ops`, in a new branch, create a new repo with the config files
-- connect to the server
-- pull the new `openfisca-ops`
-- got to the virtualenv (`cd /home/openfisca/virtualenvs`)
-- create the new virtualenv (`virtualenv api-frxx`)
-- enter the virtualenv (`cd api-frxx`)
-- activate the virtualenv (`source bin/activate`)
-- run the instructions in the `deploy.sh` file
-- go to `/etc/systemd/system`
-- create a new service with a symlink
-- reload the daemon
+- update the `fr.openfisca.org/api/deploy-latest.sh` symlink to point to the latest deploy script:
+  - `cd fr.openfisca.org/api && rm deploy-latest.sh && ln -s ./vxx/deploy.sh deploy-latest.sh`
+- connect to the server **as `openfisca`**
+  - pull the new `openfisca-ops`
+  - get to the virtualenvs folder (`cd /home/openfisca/virtualenvs`)
+  - create the new virtualenv (`virtualenv api-frxx`)
+- connect to the server as `root`
+  - go to `/etc/systemd/system`
+  - create a new service with a symlink
+  - reload the daemon
+- run `ssh deploy-api@fr.openfisca.org`
 
 ## Passwords
 
