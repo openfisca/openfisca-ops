@@ -94,4 +94,4 @@ The underlying intention is to reduce the risk of loss of control over password-
 
 Do not transmit key and password through the same channel. Password must be communicated orally, and key should be transmitted either by physical transfer (USB key, etc.) or electronically, in which case you’ll have to encrypt it before sending.
 
-Currently, access to both key and password are granted to [@Anna-Livia](https://github.com/Anna-Livia), [@maukoquiroga](https://github.com/maukoquiroga) and [@sandcha](https://github.com/sandcha). This is expected to change as the community sees the need.
+Currently, access to both key and password are granted to [@Anna-Livia](https://github.com/Anna-Livia), [@MattiSG](https://github.com/MattiSG), [@maukoquiroga](https://github.com/maukoquiroga) and [@sandcha](https://github.com/sandcha). This is expected to change as the community sees the need.
