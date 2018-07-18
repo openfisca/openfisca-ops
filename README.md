@@ -41,10 +41,10 @@ When you edit one of these files, run this command afterwards so that your chang
 systemctl daemon-reload
 ```
 
-To make sure the user `openfisca` is allowed to restart a service in order to redeploy it, log in as root and run
+To make sure the user `openfisca` is allowed to restart a service in order to redeploy it, log in and run:
 
 ```sh
-visudo
+sudo visudo
 ```
 
 Add a line like the following to the file under the `User privilege specification` section:
@@ -63,11 +63,18 @@ See the [dedicated page](guides/Create-a-deploy-user.md).
 
 ## Renew SSL certificates
 
-To renew the SSL certificate of an OpenFisca related application, run in `root` the following command, replacing `fr.openfisca.org` by the domain that needs a certificate update:
+To renew the SSL certificate of an OpenFisca related application, run the following commands, replacing `fr.openfisca.org` by the domain that needs a certificate update:
 
 ```sh
-certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
-service nginx reload
+sudo certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
+sudo service nginx reload
+```
+
+To renew all SSL certificates at once, run the following commands:
+
+```sh
+sudo certbot renew
+sudo service nginx reload
 ```
 
 ## Serve a new version of the public api
@@ -78,18 +85,23 @@ Run `ssh deploy-api@fr.openfisca.org`
 
 This automatically runs the `fr.openfisca.org/api/deploy-latest.sh` script.
 
-### To serve a new version :
+### To serve a new version
+
 - on `openfisca-ops`, in a new branch, create a new repo with the config files
 - update the `fr.openfisca.org/api/deploy-latest.sh` symlink to point to the latest deploy script:
   - `cd fr.openfisca.org/api && rm deploy-latest.sh && ln -s ./vxx/deploy.sh deploy-latest.sh`
-- connect to the server **as `openfisca`**
+- connect to the server
+  - run `sudo su - openfisca`
   - pull the new `openfisca-ops`
   - get to the virtualenvs folder (`cd /home/openfisca/virtualenvs`)
   - create the new virtualenv (`virtualenv api-frxx`)
-- connect to the server as `root`
+  - run `exit` twice
+- connect to the server
+  - run `sudo su - root`
   - go to `/etc/systemd/system`
   - create a new service with a symlink
   - reload the daemon
+  - run `exit` twice
 - run `ssh deploy-api@fr.openfisca.org`
 
 ## Passwords
