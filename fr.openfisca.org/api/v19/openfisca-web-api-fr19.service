@@ -4,7 +4,7 @@ Description=OpenFisca Web API - New
 [Service]
 EnvironmentFile=/home/openfisca/secret/piwik_token
 Environment=SERVER_NAME=fr.openfisca.org/api/v19
-ExecStart=/home/openfisca/virtualenvs/api-fr19/bin/openfisca serve --port 8019 --tracker-idsite 4 --tracker-url https://stats.data.gouv.fr/piwik.php --country-package openfisca_france --tracker-token $TRACKER_TOKEN
+ExecStart=/home/openfisca/virtualenvs/api-fr19/bin/openfisca serve --port 8019 --workers 1 --tracker-idsite 4 --tracker-url https://stats.data.gouv.fr/piwik.php --country-package openfisca_france --tracker-token $TRACKER_TOKEN
 User=openfisca
 Restart=always
 

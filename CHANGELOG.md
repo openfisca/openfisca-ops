@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.8.3 [#52](https://github.com/openfisca/openfisca-ops/pull/52)
+
+* Reduce the number of workers on the API instances so the server won't overload.
+
 ### 0.8.2 [#44](https://github.com/openfisca/openfisca-ops/pull/44)
 
 * Remove deployment script for `fr.openfisca.org`
