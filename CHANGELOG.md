@@ -1,5 +1,9 @@
 # Changelog
 
+### 0.8.4 [#51](https://github.com/openfisca/openfisca-ops/pull/51)
+
+* Add pathname to `proxy_set_header Host` have good tracking on piwik.
+
 ### 0.8.3 [#52](https://github.com/openfisca/openfisca-ops/pull/52)
 
 * Reduce the number of workers on the API instances so the server won't overload.
