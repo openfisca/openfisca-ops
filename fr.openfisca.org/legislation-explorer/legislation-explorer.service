@@ -2,11 +2,23 @@
 Description=OpenFisca Legislation Explorer
 
 [Service]
+Environment=HOST=0.0.0.0
+Environment=PORT=2030
+
 Environment=NODE_ENV=production
-Environment=BASENAME=/legislation
+Environment=API_URL=https://fr.openfisca.org/api/v22
+Environment=PATHNAME=/legislation
+Environment=CHANGELOG_URL=https://github.com/openfisca/openfisca-france/blob/master/CHANGELOG.md
+
+Environment=UI_STRINGS={"en":{"countryName":"France"},"fr":{"countryName":"France"}}
+
+Environment=MATOMO_URL=https://stats.data.gouv.fr
+Environment=MATOMO_SITE_ID=4
+
 ExecStart=/usr/bin/node /home/openfisca/legislation-explorer/index.js
 User=openfisca
 Restart=always
 
 [Install]
 WantedBy=multi-user.target
+
