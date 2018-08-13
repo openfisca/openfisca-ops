@@ -1,8 +1,10 @@
 # Changelog
 
-### 0.8.4 [#51](https://github.com/openfisca/openfisca-ops/pull/51)
+## Use a `.env` to configure the Legislation explorer
+  - Created a symlink `/home/openfisca/legislation-explorer/.env` -> `/home/openfisca/openfisca-ops/fr.openfisca.org/legislation-explorer/.env`
 
-* Add pathname to `proxy_set_header Host` have good tracking on piwik.
+## Serve `fr.openfisca.org/api/v22`
+  - Created a new virtualenv in `/home/openfisca/virtualenvs/api-fr22`
 
 ### 0.8.3 [#52](https://github.com/openfisca/openfisca-ops/pull/52)
 
