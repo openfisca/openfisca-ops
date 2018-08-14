@@ -2,7 +2,7 @@
 Description=OpenFisca Legislation Explorer
 
 [Service]
-ExecStart=/usr/bin/node  --require dotenv/config /home/openfisca/legislation-explorer/index.js
+ExecStart=/usr/bin/node  --require dotenv/config /home/openfisca/legislation-explorer/index.js dotenv_config_path=/home/openfisca/openfisca-ops/fr.openfisca.org/legislation-explorer/.env
 User=openfisca
 Restart=always
 
