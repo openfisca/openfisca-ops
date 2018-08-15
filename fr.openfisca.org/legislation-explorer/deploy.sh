@@ -1,3 +1,8 @@
+#!/bin/bash
+
+set -ex
+
+cd /home/openfisca/legislation-explorer
 git pull
 npm install
 
