@@ -37,5 +37,5 @@ visudo
 And add this line to the file under the `User privilege specification` section:
 
 ```
-deploy-api ALL=(ALL) NOPASSWD: /home/openfisca/path/to/actual/deploy.sh
-``
+deploy-api ALL=(openfisca) NOPASSWD: /home/openfisca/path/to/actual/deploy.sh
+```
