@@ -15,12 +15,13 @@ This is a good security practice when using Continuous Integration, as it avoids
 As root:
 
 ```sh
-adduser --disabled-password --gecos '' --shell /home/deploy-api/deploy-shell.sh deploy-api
+USER=deploy-api
+adduser --disabled-password --gecos '' --shell /home/$USER/deploy-shell.sh $USER
 ```
 
 You can later change the user sheel by editing `/etc/passwd`.
 
-Create an executable file `/home/deploy-api/deploy-shell.sh` containing the following:
+Create an executable file `/home/$USER/deploy-shell.sh` containing the following:
 
 ```sh
 #!/usr/bin/env bash
