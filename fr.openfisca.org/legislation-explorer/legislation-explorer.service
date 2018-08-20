@@ -2,9 +2,7 @@
 Description=OpenFisca Legislation Explorer
 
 [Service]
-Environment=NODE_ENV=production
-Environment=BASENAME=/legislation
-ExecStart=/usr/bin/node /home/openfisca/legislation-explorer/index.js
+ExecStart=/usr/local/bin/npm start --prefix /home/openfisca/legislation-explorer
 User=openfisca
 Restart=always
 
