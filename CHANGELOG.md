@@ -1,5 +1,24 @@
 # Changelog
 
+## Update and clean up debian packages
+  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, 
+
+  - stopped & removed calculette-impots-web-api.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed calculette-impots-web-explorer.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed openfisca-web-site.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed dotenv.service
+
+
+FYI : 
+message when updating extlinux
+│                                                                                                                             │ 
+      │ No bootloader integration code anymore                                                                                      │ 
+      │                                                                                                                             │ 
+      │ The extlinux package does not ship bootloader integration anymore.                                                          │ 
+      │                                                                                                                             │ 
+      │ If you are upgrading to this version of EXTLINUX your system will not boot any longer if EXTLINUX was the only configured   │ 
+      │ bootloader. Please install GRUB.       
+    
 ## Use a `.env` to configure the Legislation explorer
   - Created a symlink `/home/openfisca/legislation-explorer/.env` -> `/home/openfisca/openfisca-ops/fr.openfisca.org/legislation-explorer/.env`
 
