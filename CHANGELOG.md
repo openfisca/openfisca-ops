@@ -3,7 +3,7 @@
 ## Update and clean up debian packages
   - Update all Debian packages
   
-  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, 
+  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, `python-mako`, `python-zope`, `python-six`, `python-numpy` 
 
   - stopped & removed calculette-impots-web-api.service (kept service in `old` directory on openfisca-ops)
   - stopped & removed calculette-impots-web-explorer.service (kept service in `old` directory on openfisca-ops)
