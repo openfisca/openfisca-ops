@@ -10,6 +10,23 @@
   - stopped & removed openfisca-web-site.service (kept service in `old` directory on openfisca-ops)
   - stopped & removed dotenv.service
 
+  - moved the following directories to openfisca/old :
+    - openfisca-web-ui
+    - calculette-impots-m-language-parser
+    - calculette-impots-m-source-code 
+    - calculette-impots-python 
+    - calculette-impots-web-api
+    - calculette-impots-web-explorer
+    - demonstrator
+    - mbox
+    - new-api
+    - openfisca-web-site
+    - production-configs
+    - README.md
+    
+  - removed:
+    - test-legex
+    - tracker
 
     
 ## Use a `.env` to configure the Legislation explorer
