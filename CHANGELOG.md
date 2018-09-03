@@ -3,7 +3,7 @@
 ## Update and clean up debian packages
   - Update all Debian packages
   
-  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, `python-mako`, `python-zope`, `python-six`, `python-numpy`, `libblas-common`, `libblas3`, `libgfortran3`, `liblapack3`, `python-cffi-backend`, `python-colorama`, `python-configargparse`, `python-distlib`, `python-dnspython`, `python-enum34`, `python-funcsigs`, `python-idna`, `python-ipaddress`, `python-markupsafe`, `python-parsedatetime`, `python-psutil`, `python-pyasn1`, `python-pyicu`, `python-rfc3339`, `python-tz`, `python-wheel`, `python-distlib-whl`, `python-six-whl`. 
+  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, `python-mako`, `python-numpy`, `libblas-common`, `libblas3`, `libgfortran3`, `liblapack3`, `python-distlib`, `python-markupsafe`, `python-tz`,`python-distlib-whl`, `python-six-whl`. 
   - stopped & removed calculette-impots-web-api.service (kept service in `old` directory on openfisca-ops)
   - stopped & removed calculette-impots-web-explorer.service (kept service in `old` directory on openfisca-ops)
   - stopped & removed openfisca-web-site.service (kept service in `old` directory on openfisca-ops)
