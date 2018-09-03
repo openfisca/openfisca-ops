@@ -23,7 +23,17 @@
     - production-configs
     - README.md
     
-  - removed:
+  removed the following nginx configurations :
+    - jupyter.openfisca.fr.conf 
+    - ui.openfisca.fr.conf
+    - forum.openfisca.fr.conf 
+    - doc.openfisca.fr.conf.save
+    - doc.openfisca.fr.conf
+    - api.ir.openfisca.fr.conf
+    - api.openfisca.fr.conf
+    - calc.ir.openfisca.fr.conf
+    
+  - removed the following directories:
     - test-legex
     - tracker
 
