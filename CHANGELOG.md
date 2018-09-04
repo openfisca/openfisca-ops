@@ -1,5 +1,43 @@
 # Changelog
 
+## Update and clean up debian packages
+  - Update all Debian packages
+  
+  - Remove `yarn`, `python-magic`, `mongodb`,`mongodb-dev`, `mongodb-clients`, `docker-engine`, `python-mako`, `python-numpy`, `libblas-common`, `libblas3`, `libgfortran3`, `liblapack3`, `python-distlib`, `python-markupsafe`, `python-tz`,`python-distlib-whl`, `python-six-whl`. 
+  - stopped & removed calculette-impots-web-api.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed calculette-impots-web-explorer.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed openfisca-web-site.service (kept service in `old` directory on openfisca-ops)
+  - stopped & removed dotenv.service
+
+  - moved the following directories to openfisca/old :
+    - openfisca-web-ui
+    - calculette-impots-m-language-parser
+    - calculette-impots-m-source-code 
+    - calculette-impots-python 
+    - calculette-impots-web-api
+    - calculette-impots-web-explorer
+    - demonstrator
+    - mbox
+    - new-api
+    - openfisca-web-site
+    - production-configs
+    - README.md
+    
+  removed the following nginx configurations :
+    - jupyter.openfisca.fr.conf 
+    - ui.openfisca.fr.conf
+    - forum.openfisca.fr.conf 
+    - doc.openfisca.fr.conf.save
+    - doc.openfisca.fr.conf
+    - api.ir.openfisca.fr.conf
+    - api.openfisca.fr.conf
+    - calc.ir.openfisca.fr.conf
+    
+  - removed the following directories:
+    - test-legex
+    - tracker
+
+    
 ## Use a `.env` to configure the Legislation explorer
   - Created a symlink `/home/openfisca/legislation-explorer/.env` -> `/home/openfisca/openfisca-ops/fr.openfisca.org/legislation-explorer/.env`
 
