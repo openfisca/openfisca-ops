@@ -1,1 +1,1 @@
-./v22/deploy.sh
+./v24/deploy.sh
