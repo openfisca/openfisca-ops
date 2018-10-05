@@ -1,0 +1,10 @@
+[Unit]
+Description=OpenFisca Legislation Explorer - Demo
+
+[Service]
+ExecStart=/usr/local/bin/npm start --prefix /home/openfisca/legislation-explorer-demo
+User=openfisca
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
