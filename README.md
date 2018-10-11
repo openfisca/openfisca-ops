@@ -102,6 +102,7 @@ This automatically runs the `fr.openfisca.org/api/deploy-latest.sh` script.
   - create a new service with a symlink
   - run `sudo visudo` and authorize openfisca to reload the new service.
   - reload the daemon
+  - run `sudo systemctl enable openfisca-web-api-frxx.service` so that the service automatically starts when the OS reboots
   - run `exit` twice
 - run `ssh deploy-api@fr.openfisca.org`
 
