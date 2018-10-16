@@ -94,7 +94,7 @@ This automatically runs the `fr.openfisca.org/api/deploy-latest.sh` script.
   - run `sudo su - openfisca`
   - pull the new `openfisca-ops`
   - get to the virtualenvs folder (`cd /home/openfisca/virtualenvs`)
-  - create the new virtualenv (`virtualenv api-frxx`)
+  - create the new virtualenv (`virtualenv --python /home/openfisca/.pyenv/versions/3.7.0/bin/python api-frxx`)
   - run `exit` twice
 - connect to the server
   - run `sudo su - root`
@@ -102,6 +102,7 @@ This automatically runs the `fr.openfisca.org/api/deploy-latest.sh` script.
   - create a new service with a symlink
   - run `sudo visudo` and authorize openfisca to reload the new service.
   - reload the daemon
+  - run `sudo systemctl enable openfisca-web-api-frxx.service` so that the service automatically starts when the OS reboots
   - run `exit` twice
 - run `ssh deploy-api@fr.openfisca.org`
 
