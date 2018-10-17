@@ -7,15 +7,15 @@
 Make sure you have the cerbot cron file in `/etc/cron.d/certbot` with this inside
 
 ```
-0 */12 * * * root test -x /usr/bin/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(3600))' && certbot -q renew
+0 */12 * * * root test -x /home/openfisca/.pyenv/shims/certbot -a \! -d /run/systemd/system && perl -e 'sleep int(rand(3600))' && /home/openfisca/.pyenv/shims/certbot -q renew
 ```
 
 ### Certificates renewal file configuration
 
-We obtain the certificate with the command 
+We obtain the certificate with the command
 
 ```bash
-certbot --certonly
+/home/openfisca/.pyenv/shims/certbot --certonly
 ```
 
 To renew automatically your certificate without stopping nginx server you must edit the certificate renewal file to specify the webroot renewal method and its path.
