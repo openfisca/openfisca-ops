@@ -23,7 +23,9 @@ location /.well-known {
 To get the certificate, run :
 
 ```sh
-certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
+/home/openfisca/.pyenv/shims/python3.7 -m pip install certbot
+mkdir -p /tmp/renew-webroot
+sudo /home/openfisca/.pyenv/shims/certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
 ```
 
 If this suceeds, certificates are generated in the `/etc/letsencrypt/live/fr.openfisca.org/` directory.
@@ -44,7 +46,7 @@ server {
         ...
     }
 
-} 
+}
 ```
 
 Then run `service nginx reload` to take your changes into account.
