@@ -1,6 +1,22 @@
-# OpenFisca Operations
+# Renew SSL certificates
 
-## Auto-update SSL certificates
+## Manual renewal
+
+To renew the SSL certificate of an OpenFisca related application, run the following commands, replacing `fr.openfisca.org` by the domain that needs a certificate update:
+
+```sh
+sudo /home/openfisca/.pyenv/shims/certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
+sudo systemctl restart nginx.service
+```
+
+To renew all SSL certificates at once, run the following commands:
+
+```sh
+sudo /home/openfisca/.pyenv/shims/certbot -q renew
+sudo systemctl restart nginx.service
+```
+
+## Automatic renewal
 
 Make sure you have the cerbot cron file in `/etc/cron.d/certbot` with this inside, so to renew certificates every twelve hours:
 
@@ -10,7 +26,7 @@ Make sure you have the cerbot cron file in `/etc/cron.d/certbot` with this insid
 
 ### Certificates renewal file configuration
 
-To renew automatically your certificate without stopping nginx server you must edit the certificate renewal file to specify the webroot renewal method and its path.
+To renew automatically your certificate without stopping the Nginx server, you must edit the certificate renewal file to specify the webroot renewal method and its path.
 
 For example, we edit the renewal file for `www.openfisca.fr` domain in `/etc/letsencrypt/renewal/www.openfisca.fr`
 
