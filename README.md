@@ -8,7 +8,7 @@ Nothing secret must be commited to this repository.
 
 On your server:
 
-```
+```sh
 cd /home/openfisca
 git clone git@github.com:openfisca/openfisca-ops.git
 ```
@@ -24,7 +24,7 @@ In order to keep these files versionned, we use symlinks from this directory tow
 When you edit one of these files, run this command afterwards so that your changes are taken into account:
 
 ```sh
-service nginx reload
+sudo systemctl restart nginx.service
 ```
 
 ## Services
@@ -66,15 +66,15 @@ See the [dedicated page](guides/Create-a-deploy-user.md).
 To renew the SSL certificate of an OpenFisca related application, run the following commands, replacing `fr.openfisca.org` by the domain that needs a certificate update:
 
 ```sh
-sudo certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
-sudo service nginx reload
+sudo /home/openfisca/.pyenv/shims/certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
+sudo systemctl restart nginx.service
 ```
 
 To renew all SSL certificates at once, run the following commands:
 
 ```sh
-sudo certbot renew
-sudo service nginx reload
+sudo /home/openfisca/.pyenv/shims/certbot -q renew
+sudo systemctl restart nginx.service
 ```
 
 ## Serve a new version of the public api
