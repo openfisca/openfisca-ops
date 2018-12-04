@@ -6,14 +6,14 @@ To renew the SSL certificate of an OpenFisca related application, run the follow
 
 ```sh
 sudo /home/openfisca/.pyenv/shims/certbot certonly --webroot -w /tmp/renew-webroot/ -d fr.openfisca.org
-sudo systemctl restart nginx.service
+sudo service nginx reload
 ```
 
 To renew all SSL certificates at once, run the following commands:
 
 ```sh
 sudo /home/openfisca/.pyenv/shims/certbot -q renew
-sudo systemctl restart nginx.service
+sudo service nginx reload
 ```
 
 ## Automatic renewal

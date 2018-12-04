@@ -50,7 +50,7 @@ server {
 }
 ```
 
-Then run `sudo systemctl restart nginx.service` to take your changes into account.
+Then run `sudo service nginx reload` to take your changes into account.
 
 At this point, `https://fr.openfisca.org` should work! Make sure it does before going further.
 

@@ -24,7 +24,7 @@ In order to keep these files versionned, we use symlinks from this directory tow
 When you edit one of these files, run this command afterwards so that your changes are taken into account:
 
 ```sh
-sudo systemctl restart nginx.service
+sudo service nginx reload
 ```
 
 ## Services
