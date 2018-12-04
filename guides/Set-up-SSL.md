@@ -1,8 +1,9 @@
 # Set up HTTPS on a domain name
 
-To handle `HTTPS` on a website, we need an up-to-date SSL **certificate**. For `openfisca.fr` and `openfisca.org`, we use [Let’s Encrypt](https://letsencrypt.org/) as a certificate provider.
+To handle `HTTPS` on a website, we need an up-to-date SSL **certificate**. We use [Let’s Encrypt](https://letsencrypt.org/) as a certificate provider.
 
 Note that we need one certificate per subdomain:
+
 - `openfisca.org` and `fr.openfisca.org` use **two different** certificates.
 - `fr.openfisca.org` and `fr.openfisca.org/api/` use **the same** certificate, even if they are different applications.
 
@@ -10,7 +11,7 @@ The following instructions will help you set up a SSL certificate, taking `fr.op
 
 ## 1. Expose `./well-known` in HTTP
 
-To get our certificate from Let's Encrypt, we need to prove that we are indeed the owner of `fr.openfisca.org`. To do so, we need to expose the content of a static directory in **HTTP**. This is done by [adding these lines](https://github.com/openfisca/openfisca-ops/blob/4524f707ab1123258621d2e16dc0df20a9140e73/fr.openfisca.org/fr.openfisca.org.conf#L5-L7) in the NGINX configuration :
+To get our certificate from Let's Encrypt, we need to prove that we are indeed the owner of `fr.openfisca.org`. To do so, we need to expose the content of a static directory in **HTTP**. This is done by [adding these lines](https://github.com/openfisca/openfisca-ops/blob/4524f707ab1123258621d2e16dc0df20a9140e73/fr.openfisca.org/fr.openfisca.org.conf#L5-L7) in the Nginx configuration :
 
 ```
 location /.well-known {
@@ -32,7 +33,7 @@ If this suceeds, certificates are generated in the `/etc/letsencrypt/live/fr.ope
 
 ## 3. Set SSL in NGINX
 
-To allow HTTPS for a domain name, [edit the NGINX configuration](https://github.com/openfisca/openfisca-ops/blob/4524f707ab1123258621d2e16dc0df20a9140e73/fr.openfisca.org/fr.openfisca.org.conf#L14-L19) file to reference the generated certificate:
+To allow HTTPS for a domain name, [edit the Nginx configuration](https://github.com/openfisca/openfisca-ops/blob/4524f707ab1123258621d2e16dc0df20a9140e73/fr.openfisca.org/fr.openfisca.org.conf#L14-L19) file to reference the generated certificate:
 
 ```
 server {
@@ -49,7 +50,7 @@ server {
 }
 ```
 
-Then run `service nginx reload` to take your changes into account.
+Then run `sudo service nginx reload` to take your changes into account.
 
 At this point, `https://fr.openfisca.org` should work! Make sure it does before going further.
 
