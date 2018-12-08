@@ -1,5 +1,5 @@
 [Unit]
-Description=OpenFisca Web API - New
+Description=OpenFisca Web API - France's v24
 
 [Service]
 EnvironmentFile=/home/openfisca/secret/piwik_token

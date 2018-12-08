@@ -1,1 +1,1 @@
-fr.openfisca.org/api/latest/deploy.sh
+./latest/deploy.sh
