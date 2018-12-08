@@ -70,7 +70,7 @@
   - On repo:
       - Created configuration files in `openfisca-ops/fr.openfisca.org/api/v21`
   - On server:
-      - Created a new virtualenv in `/home/openfisca/virtualenvs/api-fr21` following [these steps](https://github.com/openfisca/openfisca-ops/tree/af6b38d21ccda7bbe7162ee8563e4a8d5649baf1#to-serve-a-new-version-)
+      - Created a new virtualenv in `/home/openfisca/virtualenvs/api-fr-21` following [these steps](https://github.com/openfisca/openfisca-ops/tree/af6b38d21ccda7bbe7162ee8563e4a8d5649baf1#to-serve-a-new-version-)
 
 ## 0.7.0 [#41](https://github.com/openfisca/openfisca-ops/pull/41)
 
