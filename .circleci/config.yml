@@ -1,0 +1,27 @@
+version: 2
+jobs:
+  deploy:
+    machine: true
+
+    steps:
+      - add_ssh_keys:
+          fingerprints:
+            89:08:08:57:f3:60:47:7b:a5:89:12:1f:a6:61:9e:5f
+
+      - run:
+          name: Deploy /latest
+          command: ssh deploy-api@fr.openfisca.org -p $PORT
+
+workflows:
+  version: 2
+  deploy:
+    triggers:
+      - schedule:
+          # Deploy once a day at midnight (UTC)
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - master
+    jobs:
+      - deploy
