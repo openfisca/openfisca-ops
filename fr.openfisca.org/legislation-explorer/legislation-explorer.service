@@ -2,6 +2,8 @@
 Description=OpenFisca Legislation Explorer
 
 [Service]
+Environment=MATOMO_URL=https://stats.data.gouv.fr
+Environment=MATOMO_SITE_ID=4
 ExecStart=/usr/local/bin/npm start --prefix /home/openfisca/legislation-explorer
 User=openfisca
 Restart=always
