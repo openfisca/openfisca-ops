@@ -1,0 +1,11 @@
+[Unit]
+Description=OpenFisca Web API - France
+
+[Service]
+ExecStart={{ venv_dir }}/bin/openfisca serve --port {{ http_port }} --workers {{ nb_workers }} --country-package openfisca_france --welcome-message {{ welcome_message | quote }}
+User={{ unix_user_name }}
+Group={{ unix_group_name }}
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

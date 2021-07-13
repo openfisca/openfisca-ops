@@ -1,0 +1,70 @@
+- name: Install OS packages
+  ansible.builtin.apt:
+    install_recommends: no
+    name:
+      - acl # Provides "setfacl" command, used by Ansible to become another Unix user
+      - nginx
+      - python3.9
+      - python3-pip
+      - python3-virtualenv
+    state: present
+    update_cache: yes
+
+- name: Create Unix group for OpenFisca
+  ansible.builtin.group:
+    name: "{{ unix_group_name }}"
+    state: present
+
+- name: Create Unix user for OpenFisca Web API
+  ansible.builtin.user:
+    name: "{{ unix_user_name }}"
+    group: "{{ unix_group_name }}"
+  register: unix_user
+
+- name: Define virtualenv directory from Unix user home directory
+  ansible.builtin.set_fact:
+    venv_dir: "{{ unix_user.home }}/venv"
+
+- name: Install latest version of OpenFisca Web API in virtualenv with OpenFisca-France
+  ansible.builtin.pip:
+    # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
+    chdir: "{{ venv_dir }}"
+    name:
+      - OpenFisca-Core[web-api]
+      - OpenFisca-France
+    state: latest
+    virtualenv: "{{ venv_dir }}"
+    virtualenv_site_packages: no
+  become_user: "{{ unix_user_name }}"
+
+- name: Copy systemd service file
+  ansible.builtin.template:
+    src: systemd/openfisca-web-api-fr.service.j2
+    dest: /etc/systemd/system/openfisca-web-api-fr.service
+
+- name: Enable and start systemd service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    name: openfisca-web-api-fr
+
+- name: Check that OpenFisca Web API is actually started
+  ansible.builtin.uri:
+    return_content: yes
+    status_code: 300
+    url: "http://localhost:{{ http_port }}"
+  register: this
+  failed_when: this.json.welcome != welcome_message
+
+- name: Copy nginx vhost file to available sites directory
+  ansible.builtin.template:
+    src: nginx/openfisca-web-api.conf.j2
+    dest: "/etc/nginx/sites-available/{{ host_name }}.conf"
+
+- name: Link nginx vhost file to enabled sites directory
+  ansible.builtin.file:
+    src: "/etc/nginx/sites-available/{{ host_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ host_name }}.conf"
+    state: link
+  notify: Reload nginx

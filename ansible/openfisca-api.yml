@@ -1,0 +1,6 @@
+---
+- name: Install OpenFisca Web API
+  become: yes
+  hosts: openfisca_api
+  roles:
+    - openfisca-api

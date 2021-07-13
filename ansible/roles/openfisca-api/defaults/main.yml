@@ -1,0 +1,7 @@
+base_url_path: /api/latest
+host_name: fr.openfisca.org
+http_port: 8000
+nb_workers: 2
+unix_group_name: openfisca
+unix_user_name: openfisca-api
+welcome_message: Welcome to OpenFisca Web API. This instance runs OpenFisca-France country package.
