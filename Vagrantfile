@@ -8,5 +8,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "ansible/openfisca-api.yml"
+    ansible.host_vars = {
+      "openfisca_api" => {"host_name" => "openfisca-api.local"}
+    }
   end
 end

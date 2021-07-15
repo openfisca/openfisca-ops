@@ -41,7 +41,7 @@ To try the API, you must first associate the host name serving the API in your `
 127.0.0.1 openfisca-api.local
 ```
 
-Note: this host name serving the API is defined in [`host_vars/openfisca_api.yml`](../ansible/host_vars/openfisca_api.yml) that is taken into account by Ansible only when the VM host name is `openfisca_api`. The `Vagrantfile` defines that VM host name.
+Note: the `Vagrantfile` defines that host name.
 
 Then you can do:
 
