@@ -68,3 +68,36 @@
     dest: "/etc/nginx/sites-enabled/{{ host_name }}.conf"
     state: link
   notify: Reload nginx
+
+- name: Setup SSL
+  when: enable_ssl and letsencrypt_email
+  block:
+    - name: Install OS packages to setup SSL
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - certbot
+          - python3-certbot-nginx
+        state: present
+        update_cache: yes
+
+    - name: Handle staging environment specificities
+      when: letsencrypt_environment == "staging"
+      block:
+        - name: Display message when staging environment is used
+          ansible.builtin.debug:
+            msg: Let's Encrypt staging environment will be used
+
+        - name: Define certbot --staging option
+          ansible.builtin.set_fact:
+            certbot_staging_option: "--staging"
+
+    - name: Reinstall or renew an SSL certificate from Let's Encrypt using the certbot client
+      ansible.builtin.command: >
+        certbot
+        --non-interactive --email {{ letsencrypt_email }} --agree-tos
+        --nginx --redirect
+        --domains {{ host_name }} --keep-until-expiring
+        {{ certbot_staging_option | default() }}
+      become_user: root
+      register: certbot_result
