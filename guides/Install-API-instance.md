@@ -26,7 +26,7 @@ There are 2 prerequisites:
 - a domain name must exist and target the public IP address of this server
 
 The Ansible playbook refers to the server that will host OpenFisca Web API as `openfisca_api`, a symbolic host name (cf `hosts` property in [`openfisca-api.yml`](../ansible/openfisca-api.yml)).
-To associate a concrete IP address or DNS name to that symbolic host name, we use Ansible inventories that can define host groups with a symbolic name (e.g. `openfisca_api`) targeting one or many concrete host names.
+To associate a concrete IP address or domain name to that symbolic host name, we use Ansible inventories that can define host groups with a symbolic name (e.g. `openfisca_api`) targeting one or many concrete host names.
 
 Inventories are stored as sub-directories of the [`inventories`](../ansible/inventories/) directory. Each inventory provides at least a `hosts` file, and can also overload playbook default variables by providing a `group_vars/openfisca_api.yml` file.
 
