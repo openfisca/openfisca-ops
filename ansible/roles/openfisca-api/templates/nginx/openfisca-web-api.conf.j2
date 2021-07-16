@@ -7,6 +7,10 @@ server {
 
     location {{ base_url_path }} {
         include proxy_params;
+
+        # Allow OpenFisca Web API to generate URLs taking the base URL path into account
+        proxy_set_header Host $http_host{{ base_url_path }};
+
         proxy_pass http://localhost:{{ http_port }}/;
     }
 }
