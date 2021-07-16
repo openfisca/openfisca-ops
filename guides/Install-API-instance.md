@@ -18,7 +18,12 @@ The default values of the variables used by the Ansible playbook are defined in 
 
 ## Install on a remote server
 
-This scenario describes how to install OpenFisca Web API on a remote server. The only requirement is that this server must expose an SSH connection.
+This scenario describes how to install OpenFisca Web API on a remote server.
+
+There are 2 prerequisites:
+
+- a server must exist and expose an SSH connection
+- a domain name must exist and target the public IP address of this server
 
 The Ansible playbook refers to the server that will host OpenFisca Web API as `openfisca_api`, a symbolic host name (cf `hosts` property in [`openfisca-api.yml`](../ansible/openfisca-api.yml)).
 To associate a concrete IP address or DNS name to that symbolic host name, we use Ansible inventories that can define host groups with a symbolic name (e.g. `openfisca_api`) targeting one or many concrete host names.
