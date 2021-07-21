@@ -7,6 +7,7 @@ Vagrant.configure("2") do |config|
   config.vm.network "forwarded_port", guest: 80, host: 8000
 
   config.vm.provision :ansible do |ansible|
+    ansible.compatibility_mode = "2.0"
     ansible.playbook = "ansible/openfisca-api.yml"
     ansible.host_vars = {
       "openfisca_api" => {"host_name" => "openfisca-api.local"}
