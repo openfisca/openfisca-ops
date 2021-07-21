@@ -4,7 +4,7 @@
     name:
       - acl # Provides "setfacl" command, used by Ansible to become another Unix user
       - nginx
-      - python3.9
+      - python3.7 # cf https://github.com/openfisca/openfisca-core#environment
       - python3-pip
       - python3-virtualenv
     state: present
