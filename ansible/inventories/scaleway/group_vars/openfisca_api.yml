@@ -1,0 +1,11 @@
+# Inventory variables overloading playbook default variables (cf roles/openfisca-api/defaults/main.yml)
+
+# Use `root` Unix user to connect to server via SSH
+ansible_user: root
+
+host_name: openfisca.jailbreak.paris
+
+# SSL certificate
+enable_ssl: yes
+letsencrypt_email: christophe.benz@jailbreak.paris
+letsencrypt_environment: "production"
