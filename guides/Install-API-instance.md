@@ -2,19 +2,19 @@
 
 By following this guide, you will be able to serve the latest version of the OpenFisca France Web API on any server, simply over SSH, thanks to the configuration management system [Ansible](https://www.ansible.com/).
 
+> If you want to install on a local virtual machine, follow the [dedicated guide](./Serve-local-API.md).
+
 > For information, this guide was written with Ansible version 2.11.2 running on Python 3.9.4.
 
 ## 1. Provision a target machine
 
-Rent a server in any commercial provider, choosing a machine that:
+Rent a server from any commercial provider, choosing a machine that:
 
-- Has Ubuntu 20 (Focal Fossa) as operating system.
+- Has Ubuntu 20 (Focal Fossa) as operating system. Other operating systems might be supported but are not guaranteed.
 - Allows logging in as superuser (administrator) over SSH.
 - Can download packages over the internet.
 
-> If you want to install on a local virtual machine, follow the [dedicated guide](./Serve-local-API.md).
-
-> More generally, in Ansible parlance, Ansible must be installed on a “[control node](https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#control-node)” that will install OpenFisca Web API on a “[managed node](https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#managed-nodes)”. For simplicity, throughout this guide, we will focus on the most common use cases and call the control node “local machine” and the managed node “target machine”.
+> In Ansible parlance, Ansible must be installed on a “[control node](https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#control-node)” that will install OpenFisca Web API on a “[managed node](https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#managed-nodes)”. For simplicity, throughout this guide, we will focus on the most common use cases and call the control node “local machine” and the managed node “target machine”.
 
 ## 2. Install Ansible
 
@@ -32,7 +32,7 @@ ansible [core 2.11.2]
 
 ## 3. Define access to the target machine
 
-Ansible defines configuration of target machines in files called an _inventory_. In order to install the Web API on the correct target machine, you will need to write such an inventory.
+Ansible defines configuration of target machines in files constituting an _inventory_. In order to install the Web API on the correct target machine, you will need to write such an inventory.
 
 Inventories are stored as sub-directories of the [`inventories`](../ansible/inventories/) directory. Each inventory provides at least a `hosts` file.
 
@@ -48,7 +48,7 @@ openfisca_api:
 
 ### Configuration
 
-You can adjust all variables defined in `ansible/roles/openfisca-api/defaults/main.yml` by creating a `ansible/inventories/YOUR_INVENTORY/group_vars/openfisca_api.yml` file.
+You can adjust all variables defined in `ansible/roles/openfisca-api/defaults/main.yml` by creating a file in `ansible/inventories/YOUR_INVENTORY/group_vars/openfisca_api.yml`.
 
 ## 4. Install and start the API
 
@@ -60,4 +60,4 @@ Once the command is done, your target machine should run the OpenFisca France We
 
 ## Updates
 
-Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca France Web API on the target machine defined in your inventory.
+Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca France Web API on the target machine defined in your inventory.

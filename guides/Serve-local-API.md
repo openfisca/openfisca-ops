@@ -14,7 +14,7 @@ If you don’t already have a [provider](https://www.vagrantup.com/docs/provider
 
 VirtualBox is not compatible with Apple Silicon (M1…) processors. You will thus need to use the Docker provider.
 
-To that end, [install Docker Desktop]() through a manual install or with `brew install homebrew/cask/docker`.
+To that end, install Docker Desktop through a [manual install](https://docs.docker.com/docker-for-mac/install/) or with `brew install homebrew/cask/docker`.
 
 ## 2. Set up Vagrant
 
