@@ -1,8 +1,0 @@
-# Inventory variables overloading playbook default variables (cf roles/openfisca-api/defaults/main.yml)
-
-host_name: openfisca.jailbreak.paris
-
-# SSL certificate
-enable_ssl: yes
-letsencrypt_email: contact@openfisca.org
-letsencrypt_environment: "production"

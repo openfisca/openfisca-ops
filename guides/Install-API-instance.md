@@ -34,27 +34,25 @@ ansible [core 2.11.2]
 
 Ansible defines configuration of target machines in files constituting an _inventory_. In order to install the Web API on the correct target machine, you will need to write such an inventory.
 
-Inventories are stored as sub-directories of the [`inventories`](../ansible/inventories/) directory. Each inventory provides at least a `hosts` file.
-
-### Host setup
+Inventories are stored as YAML files in the [`inventories`](../ansible/inventories/) directory.
 
 ```yaml
-# in ansible/inventories/YOUR_INVENTORY/hosts.yml
-openfisca_api:
+# in ansible/inventories/YOUR_INVENTORY.yml
+all:
   hosts:
     target.ip.or.domain.com:  # define here the target machine’s IP or domain name
-      ansible_user: root  ## define here the username to use when connecting over SSH
+      ansible_user: root  # define here the username to use when connecting over SSH
+      # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
+      host_name: my-openfisca-api-instance.com
 ```
 
 ### Configuration
-
-You can adjust all variables defined in `ansible/roles/openfisca-api/defaults/main.yml` by creating a file in `ansible/inventories/YOUR_INVENTORY/group_vars/openfisca_api.yml`.
 
 ## 4. Install and start the API
 
 1. Clone (or download) the `openfisca-ops` repository: `git clone git@github.com:openfisca/openfisca-ops.git`.
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
-3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY ansible/site.yml`.
+3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
 Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file.
 
