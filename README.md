@@ -12,6 +12,10 @@ If you want to make use of the OpenFisca Web API without handling its installati
 
 See the [dedicated page](guides/Install-API-instance.md).
 
+## Operate the production instance of OpenFisca France Web API
+
+See the [dedicated page](guides/Operate-production-France-API.md).
+
 ## Passwords
 
 Access to shared services (`OVH`, `Twitter`, etc.) must be done through individual accounts, to which the management is delegated.
