@@ -1,5 +1,5 @@
 base_url_path: /api/latest
-host_name: fr.openfisca.org
+host_name: openfisca-api-fr.local
 http_port: 8000
 nb_workers: 2
 unix_group_name: openfisca
