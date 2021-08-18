@@ -26,7 +26,6 @@ To check that Ansible is properly installed, run `ansible --version`. You should
 
 ```
 ansible [core 2.11.2]
-   config file = /etc/ansible/ansible.cfg
    …
 ```
 
