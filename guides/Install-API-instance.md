@@ -54,7 +54,7 @@ You can adjust all variables defined in `ansible/roles/openfisca-api/defaults/ma
 
 1. Clone (or download) the `openfisca-ops` repository: `git clone git@github.com:openfisca/openfisca-ops.git`.
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
-3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY ansible/openfisca-api.yml`.
+3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY ansible/site.yml`.
 
 Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file.
 

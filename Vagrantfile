@@ -21,6 +21,6 @@ Vagrant.configure("2") do |config|
     ansible.host_vars = {
       "openfisca_api" => {"host_name" => "openfisca-api.local"}
     }
-    ansible.playbook = "ansible/openfisca-api.yml"
+    ansible.playbook = "ansible/site.yml"
   end
 end
