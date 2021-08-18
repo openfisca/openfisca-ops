@@ -43,7 +43,7 @@ all:
     target.ip.or.domain.com:  # define here the target machine’s IP or domain name
       ansible_user: root  # define here the username to use when connecting over SSH
       # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
-      host_name: my-openfisca-api-instance.com
+      openfisca_api_fr_host_name: my-openfisca-api-instance.com
 ```
 
 ### Configuration

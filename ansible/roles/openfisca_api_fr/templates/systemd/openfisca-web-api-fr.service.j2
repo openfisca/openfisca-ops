@@ -2,9 +2,9 @@
 Description=OpenFisca Web API - France
 
 [Service]
-ExecStart={{ venv_dir }}/bin/openfisca serve --port {{ http_port }} --workers {{ nb_workers }} --country-package openfisca_france --welcome-message {{ welcome_message | quote }}
-User={{ unix_user_name }}
-Group={{ unix_group_name }}
+ExecStart={{ venv_dir }}/bin/openfisca serve --port {{ openfisca_api_fr_http_port }} --workers {{ openfisca_api_fr_nb_workers }} --country-package openfisca_france --welcome-message {{ openfisca_api_fr_welcome_message | quote }}
+User={{ openfisca_api_fr_unix_user_name }}
+Group={{ openfisca_api_fr_unix_group_name }}
 Restart=always
 
 [Install]

@@ -1,13 +1,13 @@
-base_url_path: /api/latest
-host_name: openfisca-api-fr.local
-http_port: 8000
-nb_workers: 2
-unix_group_name: openfisca
-unix_user_name: openfisca-api
-welcome_message: Welcome to OpenFisca Web API. This instance runs OpenFisca-France country package.
+openfisca_api_fr_base_url_path: /api/latest
+openfisca_api_fr_host_name: openfisca-api-fr.local
+openfisca_api_fr_http_port: 8000
+openfisca_api_fr_nb_workers: 2
+openfisca_api_fr_unix_group_name: openfisca
+openfisca_api_fr_unix_user_name: openfisca-api
+openfisca_api_fr_welcome_message: Welcome to OpenFisca Web API. This instance runs OpenFisca-France country package.
 
-# An SSL certificate is issued from Let's Encrypt if `enable_ssl` and `letsencrypt_email` are both defined.
-enable_ssl: no
-letsencrypt_email: null
+# An SSL certificate is issued from Let's Encrypt if `openfisca_api_fr_enable_ssl` and `openfisca_api_fr_letsencrypt_email` are both defined.
+openfisca_api_fr_enable_ssl: no
+openfisca_api_fr_letsencrypt_email: null
 # Start by testing with staging environment, then switch to production once it works, to avoid reaching Let's Encrypt limits.
-letsencrypt_environment: "staging"
+openfisca_api_fr_letsencrypt_environment: "staging"

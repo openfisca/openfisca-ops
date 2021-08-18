@@ -12,13 +12,13 @@
 
 - name: Create Unix group for OpenFisca
   ansible.builtin.group:
-    name: "{{ unix_group_name }}"
+    name: "{{ openfisca_api_fr_unix_group_name }}"
     state: present
 
 - name: Create Unix user for OpenFisca Web API
   ansible.builtin.user:
-    name: "{{ unix_user_name }}"
-    group: "{{ unix_group_name }}"
+    name: "{{ openfisca_api_fr_unix_user_name }}"
+    group: "{{ openfisca_api_fr_unix_group_name }}"
   register: unix_user
 
 - name: Define virtualenv directory from Unix user home directory
@@ -35,7 +35,7 @@
     state: latest
     virtualenv: "{{ venv_dir }}"
     virtualenv_site_packages: no
-  become_user: "{{ unix_user_name }}"
+  become_user: "{{ openfisca_api_fr_unix_user_name }}"
 
 - name: Copy systemd service file
   ansible.builtin.template:
@@ -52,22 +52,22 @@
 - name: Check that OpenFisca Web API is actually started
   ansible.builtin.uri:
     status_code: 300
-    url: "http://localhost:{{ http_port }}"
+    url: "http://localhost:{{ openfisca_api_fr_http_port }}"
 
 - name: Copy nginx vhost file to available sites directory
   ansible.builtin.template:
     src: nginx/openfisca-web-api.conf.j2
-    dest: "/etc/nginx/sites-available/{{ host_name }}.conf"
+    dest: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
 
 - name: Link nginx vhost file to enabled sites directory
   ansible.builtin.file:
-    src: "/etc/nginx/sites-available/{{ host_name }}.conf"
-    dest: "/etc/nginx/sites-enabled/{{ host_name }}.conf"
+    src: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ openfisca_api_fr_host_name }}.conf"
     state: link
   notify: Reload nginx
 
 - name: Setup SSL
-  when: enable_ssl and letsencrypt_email
+  when: openfisca_api_fr_enable_ssl and openfisca_api_fr_letsencrypt_email
   block:
     - name: Install OS packages to setup SSL
       ansible.builtin.apt:
@@ -79,7 +79,7 @@
         update_cache: yes
 
     - name: Handle staging environment specificities
-      when: letsencrypt_environment == "staging"
+      when: openfisca_api_fr_letsencrypt_environment == "staging"
       block:
         - name: Display message when staging environment is used
           ansible.builtin.debug:
@@ -92,9 +92,9 @@
     - name: Reinstall or renew an SSL certificate from Let's Encrypt using the certbot client
       ansible.builtin.command: >
         certbot
-        --non-interactive --email {{ letsencrypt_email }} --agree-tos
+        --non-interactive --email {{ openfisca_api_fr_letsencrypt_email }} --agree-tos
         --nginx --redirect
-        --domains {{ host_name }} --keep-until-expiring
+        --domains {{ openfisca_api_fr_host_name }} --keep-until-expiring
         {{ certbot_staging_option | default() }}
       become_user: root
       register: certbot_result
