@@ -8,7 +8,7 @@ Vagrant.configure("2") do |config|
 
   config.vm.network "forwarded_port", guest: 80, host: port
 
- # Provider for Docker, necessary for M1 chips
+  # Provider for Docker, necessary for M1 chips
   config.vm.provider :docker do |docker, override|
     override.vm.box = nil
     docker.image = "rofrano/vagrant-provider:ubuntu"
