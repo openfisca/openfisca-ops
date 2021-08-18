@@ -1,5 +1,5 @@
 ---
-- name: Install OpenFisca Web API
+- name: Install OpenFisca France Web API
   become: yes
   hosts: all
   roles:
