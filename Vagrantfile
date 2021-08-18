@@ -18,9 +18,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible do |ansible|
     ansible.compatibility_mode = "2.0"
-    ansible.host_vars = {
-      "openfisca_api" => {"openfisca_api_fr_host_name" => "openfisca-api.local"}
-    }
     ansible.playbook = "ansible/site.yml"
   end
 end
