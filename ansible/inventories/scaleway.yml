@@ -1,4 +1,4 @@
-openfisca_api:
+all:
   hosts:
     openfisca.jailbreak.paris:
       ansible_user: root
