@@ -1,3 +1,8 @@
+- name: Install "deadsnakes" PPA
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes/ppa
+    state: present
+
 - name: Install OS packages
   ansible.builtin.apt:
     install_recommends: no
@@ -5,8 +10,6 @@
       - acl # Provides "setfacl" command, used by Ansible to become another Unix user
       - nginx
       - python3.7 # cf https://github.com/openfisca/openfisca-core#environment
-      - python3-pip
-      - python3-virtualenv
     state: present
     update_cache: yes
 
@@ -34,6 +37,7 @@
       - OpenFisca-France
     state: latest
     virtualenv: "{{ venv_dir }}"
+    virtualenv_python: python3.7
     virtualenv_site_packages: no
   become_user: "{{ openfisca_api_fr_unix_user_name }}"
 
