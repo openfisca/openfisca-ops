@@ -4,7 +4,7 @@ openfisca_api_fr_http_port: 8000
 openfisca_api_fr_nb_workers: 2
 openfisca_api_fr_unix_group_name: openfisca
 openfisca_api_fr_unix_user_name: openfisca-api
-openfisca_api_fr_welcome_message: Welcome to OpenFisca Web API. This instance runs OpenFisca-France country package.
+openfisca_api_fr_welcome_message: Welcome to the OpenFisca Web API. This instance runs the OpenFisca-France country package.
 
 # An SSL certificate is issued from Let's Encrypt if `openfisca_api_fr_enable_ssl` and `openfisca_api_fr_letsencrypt_email` are both defined.
 openfisca_api_fr_enable_ssl: no
