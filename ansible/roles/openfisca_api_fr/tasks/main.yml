@@ -1,17 +1,27 @@
-- name: Install "deadsnakes" PPA
-  ansible.builtin.apt_repository:
-    repo: ppa:deadsnakes/ppa
-    state: present
-
 - name: Install OS packages
-  ansible.builtin.apt:
-    install_recommends: no
-    name:
-      - acl # Provides "setfacl" command, used by Ansible to become another Unix user
-      - nginx
-      - python3.7 # cf https://github.com/openfisca/openfisca-core#environment
-    state: present
-    update_cache: yes
+  block:
+    - name: Install packages required to add a PPA
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - gnupg
+        state: present
+        update_cache: yes
+
+    - name: Add "deadsnakes" PPA
+      ansible.builtin.apt_repository:
+        repo: ppa:deadsnakes/ppa
+        state: present
+
+    - name: Install Python from "deadsnakes" PPA
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - acl # Provides "setfacl" command, used by Ansible to become another Unix user
+          - nginx
+          - python3.7 # cf https://github.com/openfisca/openfisca-core#environment
+        state: present
+        update_cache: no
 
 - name: Create Unix group for OpenFisca
   ansible.builtin.group:
