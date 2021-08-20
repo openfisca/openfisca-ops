@@ -56,6 +56,7 @@
 - name: Check that OpenFisca Web API is actually started
   ansible.builtin.uri:
     status_code: 300
+    timeout: 120
     url: "http://localhost:{{ openfisca_api_fr_http_port }}"
 
 - name: Copy nginx vhost file to available sites directory
