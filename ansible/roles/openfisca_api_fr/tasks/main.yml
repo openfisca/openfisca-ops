@@ -52,17 +52,30 @@
     virtualenv_site_packages: no
   become_user: "{{ openfisca_api_fr_unix_user_name }}"
 
-- name: Copy systemd service file
-  ansible.builtin.template:
-    src: systemd/openfisca-web-api-fr.service.j2
-    dest: /etc/systemd/system/openfisca-web-api-fr.service
+- name: Setup systemd service
+  block:
+    - name: Ensure that the directory receiving the environment file exists
+      ansible.builtin.file:
+        path: "{{ openfisca_api_fr_env_file | dirname }}"
+        state: directory
+        mode: "0755"
 
-- name: Enable and start systemd service
-  ansible.builtin.systemd:
-    daemon_reload: yes
-    enabled: yes
-    state: restarted
-    name: openfisca-web-api-fr
+    - name: Copy environment file for systemd service
+      ansible.builtin.template:
+        src: systemd/openfisca-web-api-fr.env.j2
+        dest: "{{ openfisca_api_fr_env_file }}"
+
+    - name: Copy systemd service file
+      ansible.builtin.template:
+        src: systemd/openfisca-web-api-fr.service.j2
+        dest: "{{ openfisca_api_fr_systemd_service_file }}"
+
+    - name: Enable and start systemd service
+      ansible.builtin.systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: restarted
+        name: openfisca-web-api-fr
 
 - name: Check that OpenFisca Web API is actually started
   ansible.builtin.uri:

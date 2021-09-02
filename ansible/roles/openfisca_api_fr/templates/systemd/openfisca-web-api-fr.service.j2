@@ -2,7 +2,17 @@
 Description=OpenFisca Web API - France
 
 [Service]
-ExecStart={{ venv_dir }}/bin/openfisca serve --port {{ openfisca_api_fr_http_port }} --workers {{ openfisca_api_fr_nb_workers }} --country-package openfisca_france --welcome-message {{ openfisca_api_fr_welcome_message | quote }}
+EnvironmentFile={{ openfisca_api_fr_env_file }}
+ExecStart={{ venv_dir }}/bin/openfisca serve \
+    --country-package openfisca_france \
+    --port {{ openfisca_api_fr_http_port }} \
+{% if openfisca_api_fr_matomo_enabled %}
+    --tracker-idsite {{ openfisca_api_fr_matomo_idsite }} \
+    --tracker-token $TRACKER_TOKEN \
+    --tracker-url {{ openfisca_api_fr_matomo_url }} \
+{% endif %}
+    --welcome-message {{ openfisca_api_fr_welcome_message | quote }} \
+    --workers {{ openfisca_api_fr_nb_workers }}
 User={{ openfisca_api_fr_unix_user_name }}
 Group={{ openfisca_api_fr_unix_group_name }}
 Restart=always

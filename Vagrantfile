@@ -22,6 +22,15 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible do |ansible|
     ansible.compatibility_mode = "2.0"
+    ansible.extra_vars = "ansible/vault/variables.yml.enc"
+    # Uncomment to define Ansible variables specific to this VM.
+    # ansible.host_vars = {
+    #   "openfisca_api_fr" => {
+    #     "openfisca_api_fr_matomo_url" => ,
+    #     "openfisca_api_fr_matomo_idsite" => ,
+    #   }
+    # }
     ansible.playbook = "ansible/site.yml"
+    ansible.vault_password_file = "ansible/vault/password"
   end
 end

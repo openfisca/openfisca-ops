@@ -1,7 +1,9 @@
 openfisca_api_fr_base_url_path: /api/latest
+openfisca_api_fr_env_file: /etc/openfisca/openfisca-web-api-fr.env
 openfisca_api_fr_host_name: openfisca-api-fr.local
 openfisca_api_fr_http_port: 8000
 openfisca_api_fr_nb_workers: 2
+openfisca_api_fr_systemd_service_file: /etc/systemd/system/openfisca-web-api-fr.service
 openfisca_api_fr_unix_group_name: openfisca
 openfisca_api_fr_unix_user_name: openfisca-api
 openfisca_api_fr_welcome_message: Welcome to the OpenFisca Web API. This instance runs the OpenFisca-France country package.
@@ -12,3 +14,10 @@ openfisca_api_fr_enable_ssl: no
 openfisca_api_fr_letsencrypt_email: null
 # Start by testing with staging environment, then switch to production once it works, to avoid reaching Let's Encrypt limits.
 openfisca_api_fr_letsencrypt_environment: "staging"
+
+# Optional: Matomo tracker
+# Matomo tracker is enabled if both variables `openfisca_api_fr_matomo_idsite` and `openfisca_api_fr_matomo_url` are defined.
+openfisca_api_fr_matomo_idsite: null
+openfisca_api_fr_matomo_url: null
+openfisca_api_fr_matomo_token: null # secret value: override in vault
+openfisca_api_fr_matomo_enabled: "{{ openfisca_api_fr_matomo_idsite and openfisca_api_fr_matomo_token and openfisca_api_fr_matomo_url }}"
