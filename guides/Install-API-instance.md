@@ -45,8 +45,6 @@ all:
       openfisca_api_fr_host_name: my-openfisca-api-instance.com
 ```
 
-### Configuration
-
 ## 4. Install and start the API
 
 1. Clone (or download) the `openfisca-ops` repository: `git clone git@github.com:openfisca/openfisca-ops.git`.
