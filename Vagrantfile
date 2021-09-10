@@ -20,7 +20,7 @@ Vagrant.configure("2") do |config|
     docker.volumes = ["/sys/fs/cgroup:/sys/fs/cgroup:ro"]
   end
 
-  config.vm.provision :ansible do |ansible|
+  config.vm.provision :ansible, run: "always" do |ansible|
     ansible.compatibility_mode = "2.0"
     ansible.extra_vars = "ansible/vault/variables.yml.enc"
     # Uncomment to define Ansible variables specific to this VM.
