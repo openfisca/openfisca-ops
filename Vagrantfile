@@ -22,7 +22,8 @@ Vagrant.configure("2") do |config|
 
   config.vm.provision :ansible, run: "always" do |ansible|
     ansible.compatibility_mode = "2.0"
-    ansible.extra_vars = "ansible/vault/variables.yml.enc"
+    ansible.playbook = "ansible/site.yml"
+
     # Uncomment to define Ansible variables specific to this VM.
     # ansible.host_vars = {
     #   "openfisca_api_fr" => {
@@ -30,7 +31,9 @@ Vagrant.configure("2") do |config|
     #     "openfisca_api_fr_matomo_idsite" => ,
     #   }
     # }
-    ansible.playbook = "ansible/site.yml"
-    ansible.vault_password_file = "ansible/vault/password"
+
+    # Uncomment to use secret Ansible variables, like `openfisca_api_fr_matomo_token`.
+    # ansible.extra_vars = "ansible/vault/variables.yml.enc"
+    # ansible.vault_password_file = "ansible/vault/password"
   end
 end
