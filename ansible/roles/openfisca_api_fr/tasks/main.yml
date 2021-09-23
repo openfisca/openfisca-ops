@@ -33,21 +33,21 @@
   ansible.builtin.user:
     name: "{{ openfisca_api_fr_unix_user_name }}"
     group: "{{ openfisca_api_fr_unix_group_name }}"
-  register: unix_user
+  register: openfisca_api_fr_unix_user
 
 - name: Define virtualenv directory from Unix user home directory
   ansible.builtin.set_fact:
-    venv_dir: "{{ unix_user.home }}/venv"
+    openfisca_api_fr_venv_dir: "{{ openfisca_api_fr_unix_user.home }}/venv"
 
 - name: Install latest version of OpenFisca Web API in virtualenv with OpenFisca-France
   ansible.builtin.pip:
     # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
-    chdir: "{{ venv_dir }}"
+    chdir: "{{ openfisca_api_fr_venv_dir }}"
     name:
       - OpenFisca-Core[web-api]
       - OpenFisca-France
     state: latest
-    virtualenv: "{{ venv_dir }}"
+    virtualenv: "{{ openfisca_api_fr_venv_dir }}"
     virtualenv_python: python3.7
     virtualenv_site_packages: no
   become_user: "{{ openfisca_api_fr_unix_user_name }}"

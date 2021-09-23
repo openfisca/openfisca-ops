@@ -3,7 +3,7 @@ Description=OpenFisca Web API - France
 
 [Service]
 EnvironmentFile={{ openfisca_api_fr_env_file }}
-ExecStart={{ venv_dir }}/bin/openfisca serve \
+ExecStart={{ openfisca_api_fr_venv_dir }}/bin/openfisca serve \
     --country-package openfisca_france \
     --port {{ openfisca_api_fr_http_port }} \
 {% if openfisca_api_fr_matomo_enabled %}
