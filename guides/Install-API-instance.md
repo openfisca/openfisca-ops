@@ -51,7 +51,7 @@ all:
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
-Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file.
+Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file, by changing the variables `openfisca_api_fr_base_url_path` or `openfisca_api_fr_http_port`.
 
 ## Updates
 
