@@ -132,3 +132,13 @@
         {{ certbot_staging_option | default() }}
       become_user: root
       register: certbot_result
+
+    - name: Enable HTTP/2
+      ansible.builtin.lineinfile:
+        backrefs: yes
+        line: '\1\2 http2;\3'
+        path: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
+        regexp: "^(.*)(listen 443 ssl);(.+)$"
+      notify: Reload nginx
+      tags:
+        - http2
