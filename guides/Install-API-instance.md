@@ -39,8 +39,8 @@ Inventories are stored as YAML files in the [`inventories`](../ansible/inventori
 # in ansible/inventories/YOUR_INVENTORY.yml
 all:
   hosts:
-    target.ip.or.domain.com:  # define here the target machine’s IP or domain name
-      ansible_user: root  # define here the username to use when connecting over SSH
+    target.ip.or.domain.com: # define here the target machine’s IP or domain name
+      ansible_user: root # define here the username to use when connecting over SSH
       # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
       openfisca_api_fr_host_name: my-openfisca-api-instance.com
 ```
