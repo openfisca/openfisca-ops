@@ -1,5 +1,3 @@
 /.project
 .vagrant
 .DS_Store
-ansible/vault/password
-ansible/vault/variables.yml

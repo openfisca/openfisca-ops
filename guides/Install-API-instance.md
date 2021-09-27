@@ -53,6 +53,10 @@ all:
 
 Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file, by changing the variables `openfisca_api_fr_base_url_path` or `openfisca_api_fr_http_port`.
 
+### Optional: enable Matomo
+
+To track the Web API usage with Matomo, define the Ansible variables `openfisca_api_fr_matomo_idsite` and `openfisca_api_fr_matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `OPENFISCA_API_FR_MATOMO_TOKEN` before running the `ansible-playbook` command.
+
 ## Updates
 
 Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca France Web API on the target machine defined in your inventory.

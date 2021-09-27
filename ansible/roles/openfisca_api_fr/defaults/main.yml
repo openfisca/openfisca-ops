@@ -19,5 +19,5 @@ openfisca_api_fr_letsencrypt_environment: "staging"
 # Matomo tracker is enabled if both variables `openfisca_api_fr_matomo_idsite` and `openfisca_api_fr_matomo_url` are defined.
 openfisca_api_fr_matomo_idsite: null
 openfisca_api_fr_matomo_url: null
-openfisca_api_fr_matomo_token: null # secret value: override in vault
+openfisca_api_fr_matomo_token: "{{ lookup('env','OPENFISCA_API_FR_MATOMO_TOKEN') }}"
 openfisca_api_fr_matomo_enabled: "{{ openfisca_api_fr_matomo_idsite and openfisca_api_fr_matomo_token and openfisca_api_fr_matomo_url }}"

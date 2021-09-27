@@ -27,13 +27,7 @@ Vagrant.configure("2") do |config|
     # Uncomment to define Ansible variables specific to this VM.
     # ansible.host_vars = {
     #   "openfisca_api_fr" => {
-    #     "openfisca_api_fr_matomo_url" => ,
-    #     "openfisca_api_fr_matomo_idsite" => ,
     #   }
     # }
-
-    # Uncomment to use secret Ansible variables, like `openfisca_api_fr_matomo_token`.
-    # ansible.extra_vars = "ansible/vault/variables.yml.enc"
-    # ansible.vault_password_file = "ansible/vault/password"
   end
 end
