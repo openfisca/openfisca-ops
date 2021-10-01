@@ -59,6 +59,7 @@
     virtualenv_python: python3.7
     virtualenv_site_packages: no
   become_user: "{{ openfisca_api_fr_unix_user_name }}"
+  notify: Reload nginx
 
 - name: Setup the systemd service
   block:
