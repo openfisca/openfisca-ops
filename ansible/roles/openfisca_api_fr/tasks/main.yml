@@ -150,3 +150,45 @@
       notify: Reload nginx
       tags:
         - http2
+
+- name: Setup auto-update
+  tags:
+    - auto-update
+  when: openfisca_api_fr_auto_update_enable
+  block:
+    - name: Add the "ansible" PPA
+      ansible.builtin.apt_repository:
+        repo: ppa:ansible/ansible
+        state: present
+
+    - name: Install the Debian package of Ansible
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - ansible
+        state: present
+        update_cache: no
+
+    - name: Create the Unix group for auto-update
+      ansible.builtin.group:
+        name: "{{ openfisca_api_fr_auto_update_unix_group_name }}"
+        state: present
+
+    - name: Create the Unix user for auto-update
+      ansible.builtin.user:
+        name: "{{ openfisca_api_fr_auto_update_unix_user_name }}"
+        group: "{{ openfisca_api_fr_auto_update_unix_group_name }}"
+        shell: /bin/bash
+      register: openfisca_api_fr_auto_update_unix_user
+
+    - name: Clone or update the "openfisca-ops" Git repository
+      ansible.builtin.git:
+        repo: "{{ openfisca_api_fr_auto_update_openfisca_ops_repo_url }}"
+        dest: "{{ openfisca_api_fr_auto_update_unix_user.home }}/openfisca-ops"
+        version: "{{ openfisca_api_fr_auto_update_openfisca_ops_branch_name }}"
+      become_user: "{{ openfisca_api_fr_auto_update_unix_user_name }}"
+
+    - name: Copy the cron job definition
+      ansible.builtin.template:
+        src: cron.d/openfisca-api-fr.j2
+        dest: /etc/cron.d/openfisca-api-fr
