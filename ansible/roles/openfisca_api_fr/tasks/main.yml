@@ -101,7 +101,7 @@
     src: nginx/openfisca-web-api.conf.j2
     dest: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
 
-- name: Link the nginx vhost file the sites-enabled directory of Nginx
+- name: Link the nginx vhost file to the sites-enabled directory of Nginx
   ansible.builtin.file:
     src: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
     dest: "/etc/nginx/sites-enabled/{{ openfisca_api_fr_host_name }}.conf"
