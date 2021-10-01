@@ -1,4 +1,10 @@
-- name: Install OS packages
+- name: Update the cache of Debian packages
+  ansible.builtin.apt:
+    update_cache: yes
+  tags:
+    - apt-update-cache
+
+- name: Install Debian packages
   block:
     - name: Install packages required to add a PPA
       ansible.builtin.apt:
@@ -6,7 +12,7 @@
         name:
           - gnupg
         state: present
-        update_cache: yes
+        update_cache: no
 
     - name: Add "deadsnakes" PPA
       ansible.builtin.apt_repository:
@@ -110,7 +116,7 @@
           - certbot
           - python3-certbot-nginx
         state: present
-        update_cache: yes
+        update_cache: no
 
     - name: Handle staging environment specificities
       when: openfisca_api_fr_letsencrypt_environment == "staging"
