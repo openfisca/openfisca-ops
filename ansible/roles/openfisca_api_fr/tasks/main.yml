@@ -14,38 +14,39 @@
         state: present
         update_cache: no
 
-    - name: Add "deadsnakes" PPA
+    - name: Add the "deadsnakes" PPA
       ansible.builtin.apt_repository:
         repo: ppa:deadsnakes/ppa
         state: present
 
-    - name: Install Python from "deadsnakes" PPA
+    # Why Python 3.7? Cf https://github.com/openfisca/openfisca-core#environment
+    - name: Install Python 3.7 from "deadsnakes" PPA
       ansible.builtin.apt:
         install_recommends: no
         name:
           - acl # Provides "setfacl" command, used by Ansible to become another Unix user
           - nginx
-          - python3.7 # cf https://github.com/openfisca/openfisca-core#environment
+          - python3.7
           - python3-virtualenv
         state: present
         update_cache: no
 
-- name: Create Unix group for OpenFisca
+- name: Create a Unix group for the OpenFisca Web API
   ansible.builtin.group:
     name: "{{ openfisca_api_fr_unix_group_name }}"
     state: present
 
-- name: Create Unix user for OpenFisca Web API
+- name: Create a Unix user for the OpenFisca Web API
   ansible.builtin.user:
     name: "{{ openfisca_api_fr_unix_user_name }}"
     group: "{{ openfisca_api_fr_unix_group_name }}"
   register: openfisca_api_fr_unix_user
 
-- name: Define virtualenv directory from Unix user home directory
+- name: Define a directory to store the virtualenv of OpenFisca Web API
   ansible.builtin.set_fact:
     openfisca_api_fr_venv_dir: "{{ openfisca_api_fr_unix_user.home }}/venv"
 
-- name: Install latest version of OpenFisca Web API in virtualenv with OpenFisca-France
+- name: Install the latest version of OpenFisca Web API in the virtualenv with OpenFisca-France
   ansible.builtin.pip:
     # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
     chdir: "{{ openfisca_api_fr_venv_dir }}"
@@ -58,25 +59,25 @@
     virtualenv_site_packages: no
   become_user: "{{ openfisca_api_fr_unix_user_name }}"
 
-- name: Setup systemd service
+- name: Setup the systemd service
   block:
-    - name: Ensure that the directory receiving the environment file exists
+    - name: Create the directory receiving the environment file
       ansible.builtin.file:
         path: "{{ openfisca_api_fr_env_file | dirname }}"
         state: directory
         mode: "0755"
 
-    - name: Copy environment file for systemd service
+    - name: Copy the environment file referenced by the systemd service
       ansible.builtin.template:
         src: systemd/openfisca-web-api-fr.env.j2
         dest: "{{ openfisca_api_fr_env_file }}"
 
-    - name: Copy systemd service file
+    - name: Copy the systemd service file
       ansible.builtin.template:
         src: systemd/openfisca-web-api-fr.service.j2
         dest: "{{ openfisca_api_fr_systemd_service_file }}"
 
-    - name: Enable and start systemd service
+    - name: Enable and start the systemd service
       ansible.builtin.systemd:
         daemon_reload: yes
         enabled: yes
@@ -94,12 +95,12 @@
   retries: 5 # times
   delay: 5 # Every 5 seconds
 
-- name: Copy nginx vhost file to available sites directory
+- name: Copy the nginx vhost file to the sites-available directory of Nginx
   ansible.builtin.template:
     src: nginx/openfisca-web-api.conf.j2
     dest: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
 
-- name: Link nginx vhost file to enabled sites directory
+- name: Link the nginx vhost file the sites-enabled directory of Nginx
   ansible.builtin.file:
     src: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
     dest: "/etc/nginx/sites-enabled/{{ openfisca_api_fr_host_name }}.conf"
@@ -109,7 +110,7 @@
 - name: Setup SSL
   when: openfisca_api_fr_enable_ssl and openfisca_api_fr_letsencrypt_email
   block:
-    - name: Install OS packages to setup SSL
+    - name: Install Certbot and its Nginx plugin
       ansible.builtin.apt:
         install_recommends: no
         name:
@@ -118,7 +119,7 @@
         state: present
         update_cache: no
 
-    - name: Handle staging environment specificities
+    - name: Handle staging environment
       when: openfisca_api_fr_letsencrypt_environment == "staging"
       block:
         - name: Display message when staging environment is used
