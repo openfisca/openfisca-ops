@@ -1,10 +1,10 @@
-- name: Update the cache of Debian packages
+- name: Update the cache of Ubuntu packages
   ansible.builtin.apt:
     update_cache: yes
   tags:
     - apt-update-cache
 
-- name: Install Debian packages
+- name: Install Ubuntu packages
   block:
     - name: Install packages required to add a PPA
       ansible.builtin.apt:
@@ -162,7 +162,7 @@
         repo: ppa:ansible/ansible
         state: present
 
-    - name: Install Debian packages required for auto-update
+    - name: Install Ubuntu packages required for auto-update
       ansible.builtin.apt:
         install_recommends: no
         name:
