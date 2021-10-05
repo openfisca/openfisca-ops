@@ -162,11 +162,12 @@
         repo: ppa:ansible/ansible
         state: present
 
-    - name: Install the Debian package of Ansible
+    - name: Install Debian packages required for auto-update
       ansible.builtin.apt:
         install_recommends: no
         name:
           - ansible
+          - git
         state: present
         update_cache: no
 
