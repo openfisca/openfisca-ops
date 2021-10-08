@@ -2,7 +2,7 @@ all:
   hosts:
     141.94.20.107: # vps-60ea1664
       ansible_user: root
-      # adjust the variables defined in `ansible/roles/openfisca_api/defaults/main.yml` below:
+      # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
       openfisca_api_fr_host_name: api.fr.openfisca.org
       openfisca_api_fr_enable_ssl: yes
       openfisca_api_fr_letsencrypt_email: contact@openfisca.org
