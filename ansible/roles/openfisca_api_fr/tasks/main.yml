@@ -73,11 +73,13 @@
 
     - name: Copy the environment file referenced by the systemd service
       ansible.builtin.template:
+        backup: yes
         src: systemd/openfisca-web-api-fr.env.j2
         dest: "{{ openfisca_api_fr_env_file }}"
 
     - name: Copy the systemd service file
       ansible.builtin.template:
+        backup: yes
         src: systemd/openfisca-web-api-fr.service.j2
         dest: "{{ openfisca_api_fr_systemd_service_file }}"
 
@@ -101,6 +103,7 @@
 
 - name: Copy the nginx vhost file to the sites-available directory of Nginx
   ansible.builtin.template:
+    backup: yes
     src: nginx/openfisca-web-api.conf.j2
     dest: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
 
@@ -194,5 +197,6 @@
 
     - name: Copy the cron job definition
       ansible.builtin.template:
+        backup: yes
         src: cron.d/openfisca-api-fr.j2
         dest: /etc/cron.d/openfisca-api-fr
