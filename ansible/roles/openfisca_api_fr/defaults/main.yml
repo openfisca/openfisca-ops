@@ -10,11 +10,11 @@ openfisca_api_fr_welcome_message: Welcome to the OpenFisca Web API. This instanc
 
 # Optional: auto-update
 
-openfisca_api_fr_auto_update_enable: yes
-openfisca_api_fr_auto_update_unix_group_name: "{{ openfisca_api_fr_unix_group_name }}"
-openfisca_api_fr_auto_update_unix_user_name: openfisca-ops
-openfisca_api_fr_auto_update_openfisca_ops_branch_name: install-api-with-ansible
-openfisca_api_fr_auto_update_openfisca_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
+openfisca_api_fr_autoupdate_enable: yes
+openfisca_api_fr_autoupdate_unix_group_name: "{{ openfisca_api_fr_unix_group_name }}"
+openfisca_api_fr_autoupdate_unix_user_name: openfisca-ops
+openfisca_api_fr_autoupdate_ops_branch_name: install-api-with-ansible
+openfisca_api_fr_autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 
 # Optional: SSL certificate
 # An SSL certificate is issued from Let's Encrypt if `openfisca_api_fr_enable_ssl` and `openfisca_api_fr_letsencrypt_email` are both defined.
