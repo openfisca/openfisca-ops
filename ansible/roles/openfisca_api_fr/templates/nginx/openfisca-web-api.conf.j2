@@ -2,19 +2,19 @@
 
 server {
     listen 80;
-    server_name {{ openfisca_api_fr_host_name }};
+    server_name {{ host_name }};
 
-    access_log /var/log/nginx/{{ openfisca_api_fr_host_name }}-access.log;
-    error_log /var/log/nginx/{{ openfisca_api_fr_host_name }}-error.log;
+    access_log /var/log/nginx/{{ host_name }}-access.log;
+    error_log /var/log/nginx/{{ host_name }}-error.log;
 
-    location {{ openfisca_api_fr_base_url_path }} {
+    location {{ base_url_path }} {
         # Allow OpenFisca Web API to generate URLs taking the base URL path into account
-        proxy_set_header Host $http_host{{ openfisca_api_fr_base_url_path }};
+        proxy_set_header Host $http_host{{ base_url_path }};
 
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
         proxy_set_header X-Forwarded-Proto $scheme;
 
-        proxy_pass http://localhost:{{ openfisca_api_fr_http_port }}/;
+        proxy_pass http://localhost:{{ http_port }}/;
     }
 }

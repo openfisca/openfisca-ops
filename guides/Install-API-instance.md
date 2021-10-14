@@ -42,7 +42,7 @@ all:
     target.ip.or.domain.com: # define here the target machine’s IP or domain name
       ansible_user: root # define here the username to use when connecting over SSH
       # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
-      openfisca_api_fr_host_name: my-openfisca-api-instance.com
+      host_name: my-openfisca-api-instance.com
 ```
 
 ## 4. Install and start the API
@@ -51,11 +51,11 @@ all:
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
-Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file, by changing the variables `openfisca_api_fr_base_url_path` or `openfisca_api_fr_http_port`.
+Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://TARGET_MACHINE:8000/api/latest` in your browser. You can change the port and path through the configuration file, by changing the variables `base_url_path` or `http_port`.
 
 ### Optional: enable Matomo
 
-To track the Web API usage with Matomo, define the Ansible variables `openfisca_api_fr_matomo_site_id` and `openfisca_api_fr_matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `OPENFISCA_API_FR_MATOMO_TOKEN` before running the `ansible-playbook` command.
+To track the Web API usage with Matomo, define the Ansible variables `matomo_site_id` and `matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `MATOMO_TOKEN` before running the `ansible-playbook` command.
 
 ## Updates
 

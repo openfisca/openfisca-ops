@@ -35,39 +35,39 @@
 
 - name: Create a Unix group for the OpenFisca Web API
   ansible.builtin.group:
-    name: "{{ openfisca_api_fr_unix_group_name }}"
+    name: "{{ unix_group_name }}"
     state: present
 
 - name: Create a Unix user for the OpenFisca Web API
   ansible.builtin.user:
-    name: "{{ openfisca_api_fr_unix_user_name }}"
-    group: "{{ openfisca_api_fr_unix_group_name }}"
+    name: "{{ unix_user_name }}"
+    group: "{{ unix_group_name }}"
     shell: /bin/bash
-  register: openfisca_api_fr_unix_user
+  register: unix_user
 
 - name: Define a directory to store the virtualenv of OpenFisca Web API
   ansible.builtin.set_fact:
-    openfisca_api_fr_venv_dir: "{{ openfisca_api_fr_unix_user.home }}/venv"
+    venv_dir: "{{ unix_user.home }}/venv"
 
 - name: Install the latest version of OpenFisca Web API in the virtualenv with OpenFisca-France
   ansible.builtin.pip:
     # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
-    chdir: "{{ openfisca_api_fr_venv_dir }}"
+    chdir: "{{ venv_dir }}"
     name:
       - OpenFisca-Core[web-api]
       - OpenFisca-France
     state: latest
-    virtualenv: "{{ openfisca_api_fr_venv_dir }}"
+    virtualenv: "{{ venv_dir }}"
     virtualenv_python: python3.7
     virtualenv_site_packages: no
-  become_user: "{{ openfisca_api_fr_unix_user_name }}"
+  become_user: "{{ unix_user_name }}"
   notify: Reload nginx
 
 - name: Setup the systemd service
   block:
     - name: Create the directory receiving the environment file
       ansible.builtin.file:
-        path: "{{ openfisca_api_fr_env_file | dirname }}"
+        path: "{{ env_file | dirname }}"
         state: directory
         mode: "0755"
 
@@ -75,13 +75,13 @@
       ansible.builtin.template:
         backup: yes
         src: systemd/openfisca-web-api-fr.env.j2
-        dest: "{{ openfisca_api_fr_env_file }}"
+        dest: "{{ env_file }}"
 
     - name: Copy the systemd service file
       ansible.builtin.template:
         backup: yes
         src: systemd/openfisca-web-api-fr.service.j2
-        dest: "{{ openfisca_api_fr_systemd_service_file }}"
+        dest: "{{ systemd_service_file }}"
 
     - name: Enable and start the systemd service
       ansible.builtin.systemd:
@@ -95,7 +95,7 @@
     return_content: yes
     status_code: 300
     timeout: 120
-    url: "http://localhost:{{ openfisca_api_fr_http_port }}"
+    url: "http://localhost:{{ http_port }}"
   register: this
   until: this.status == 300
   retries: 5 # times
@@ -105,17 +105,17 @@
   ansible.builtin.template:
     backup: yes
     src: nginx/openfisca-web-api.conf.j2
-    dest: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
+    dest: "/etc/nginx/sites-available/{{ host_name }}.conf"
 
 - name: Link the nginx vhost file to the sites-enabled directory of Nginx
   ansible.builtin.file:
-    src: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
-    dest: "/etc/nginx/sites-enabled/{{ openfisca_api_fr_host_name }}.conf"
+    src: "/etc/nginx/sites-available/{{ host_name }}.conf"
+    dest: "/etc/nginx/sites-enabled/{{ host_name }}.conf"
     state: link
   notify: Reload nginx
 
 - name: Setup SSL
-  when: openfisca_api_fr_enable_ssl and openfisca_api_fr_letsencrypt_email
+  when: enable_ssl and letsencrypt_email
   block:
     - name: Install Certbot and its Nginx plugin
       ansible.builtin.apt:
@@ -127,7 +127,7 @@
         update_cache: no
 
     - name: Handle staging environment
-      when: openfisca_api_fr_letsencrypt_environment == "staging"
+      when: letsencrypt_environment == "staging"
       block:
         - name: Display message when staging environment is used
           ansible.builtin.debug:
@@ -140,9 +140,9 @@
     - name: Reinstall or renew an SSL certificate from Let's Encrypt using the certbot client
       ansible.builtin.command: >
         certbot
-        --non-interactive --email {{ openfisca_api_fr_letsencrypt_email }} --agree-tos
+        --non-interactive --email {{ letsencrypt_email }} --agree-tos
         --nginx --redirect
-        --domains {{ openfisca_api_fr_host_name }} --keep-until-expiring
+        --domains {{ host_name }} --keep-until-expiring
         {{ certbot_staging_option | default() }}
       become_user: root
       register: certbot_result
@@ -151,7 +151,7 @@
       ansible.builtin.lineinfile:
         backrefs: yes
         line: '\1\2 http2;\3'
-        path: "/etc/nginx/sites-available/{{ openfisca_api_fr_host_name }}.conf"
+        path: "/etc/nginx/sites-available/{{ host_name }}.conf"
         regexp: "^(.*)(listen 443 ssl);(.+)$"
       notify: Reload nginx
       tags:
@@ -160,7 +160,7 @@
 - name: Setup auto-update
   tags:
     - auto-update
-  when: openfisca_api_fr_autoupdate_enable
+  when: autoupdate_enable
   block:
     - name: Add the "ansible" PPA
       ansible.builtin.apt_repository:
@@ -178,22 +178,22 @@
 
     - name: Create the Unix group for auto-update
       ansible.builtin.group:
-        name: "{{ openfisca_api_fr_autoupdate_unix_group_name }}"
+        name: "{{ autoupdate_unix_group_name }}"
         state: present
 
     - name: Create the Unix user for auto-update
       ansible.builtin.user:
-        name: "{{ openfisca_api_fr_autoupdate_unix_user_name }}"
-        group: "{{ openfisca_api_fr_autoupdate_unix_group_name }}"
+        name: "{{ autoupdate_unix_user_name }}"
+        group: "{{ autoupdate_unix_group_name }}"
         shell: /bin/bash
-      register: openfisca_api_fr_autoupdate_unix_user
+      register: autoupdate_unix_user
 
     - name: Clone or update the "openfisca-ops" Git repository
       ansible.builtin.git:
-        repo: "{{ openfisca_api_fr_autoupdate_ops_repo_url }}"
-        dest: "{{ openfisca_api_fr_autoupdate_unix_user.home }}/openfisca-ops"
-        version: "{{ openfisca_api_fr_autoupdate_ops_branch_name }}"
-      become_user: "{{ openfisca_api_fr_autoupdate_unix_user_name }}"
+        repo: "{{ autoupdate_ops_repo_url }}"
+        dest: "{{ autoupdate_unix_user.home }}/openfisca-ops"
+        version: "{{ autoupdate_ops_branch_name }}"
+      become_user: "{{ autoupdate_unix_user_name }}"
 
     - name: Copy the cron job definition
       ansible.builtin.template:
