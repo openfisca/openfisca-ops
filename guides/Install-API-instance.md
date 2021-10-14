@@ -55,7 +55,7 @@ Once the command is done, your target machine should run the OpenFisca France We
 
 ### Optional: enable Matomo
 
-To track the Web API usage with Matomo, define the Ansible variables `openfisca_api_fr_matomo_idsite` and `openfisca_api_fr_matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `OPENFISCA_API_FR_MATOMO_TOKEN` before running the `ansible-playbook` command.
+To track the Web API usage with Matomo, define the Ansible variables `openfisca_api_fr_matomo_site_id` and `openfisca_api_fr_matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `OPENFISCA_API_FR_MATOMO_TOKEN` before running the `ansible-playbook` command.
 
 ## Updates
 
