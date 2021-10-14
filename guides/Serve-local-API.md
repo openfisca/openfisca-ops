@@ -37,7 +37,7 @@ ansible [core 2.11.2]
 
 ## 4. Install and start the API
 
-1. Clone (or download) the `openfisca-ops` repository: `git clone git@github.com:openfisca/openfisca-ops.git`.
+1. Clone (or download) the `openfisca-ops` repository: `https://github.com/openfisca/openfisca-ops.git`.
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `vagrant up`. If you’re on an Apple Silicon machine or want to use Docker instead of VirtualBox, type `vagrant up --provider=docker`.
 

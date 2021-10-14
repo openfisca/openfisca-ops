@@ -47,7 +47,7 @@ all:
 
 ## 4. Install and start the API
 
-1. Clone (or download) the `openfisca-ops` repository: `git clone git@github.com:openfisca/openfisca-ops.git`.
+1. Clone (or download) the `openfisca-ops` repository: `https://github.com/openfisca/openfisca-ops.git`.
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
