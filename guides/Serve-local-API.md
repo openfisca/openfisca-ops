@@ -43,6 +43,6 @@ ansible [core 2.11.2]
 
 Once the command is done, you should have a virtual machine running the OpenFisca France Web API.
 
-Thanks to Vagrant port forwarding, the port 80 inside the virtual machine is forwarded to another port on your development machine. You can thus access that API on your local machine on the `8000` port: just open [`http://0.0.0.0:8000/api/latest`](http://0.0.0.0:8000/api/latest) in your browser. You can change this port by setting the environment variable `HOST_PORT`.
+Thanks to Vagrant port forwarding, the port 80 inside the virtual machine is forwarded to another port on your development machine. You can thus access that API on your local machine on the `8000` port: just open [`http://0.0.0.0:8000/api/latest`](http://0.0.0.0:8000/api/latest) in your browser. You can change this port by setting the environment variable `PORT`.
 
 > On such a local virtual machine, the API is by default served over HTTP instead of HTTPS, as SSL certificates cannot be automatically provisioned by Let’s Encrypt.
