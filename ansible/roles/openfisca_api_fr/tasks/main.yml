@@ -160,7 +160,7 @@
 - name: Setup auto-update
   tags:
     - auto-update
-  when: autoupdate_enable
+  when: enable_autoupdate
   block:
     - name: Add the "ansible" PPA
       ansible.builtin.apt_repository:
