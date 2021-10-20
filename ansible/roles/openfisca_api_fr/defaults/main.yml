@@ -21,12 +21,11 @@ autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 # An SSL certificate is issued from Let's Encrypt if `enable_ssl` and `letsencrypt_email` are both defined.
 enable_ssl: no
 letsencrypt_email: null
-# Start by testing with staging environment, then switch to production once it works, to avoid reaching Let's Encrypt limits.
-letsencrypt_environment: "staging"
+letsencrypt_environment: staging  # switch to `production` after testing to avoid reaching your Let's Encrypt quota
 
 # Optional: Matomo tracker
-# Matomo tracker is enabled if both variables `matomo_site_id` and `matomo_url` are defined.
-matomo_site_id: null
+# See more on https://github.com/openfisca/openfisca-tracker
 matomo_url: null
+matomo_site_id: null
 matomo_token: "{{ lookup('env','MATOMO_TOKEN') }}"
 matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"

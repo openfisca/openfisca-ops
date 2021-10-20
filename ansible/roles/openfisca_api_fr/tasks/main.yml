@@ -14,13 +14,12 @@
         state: present
         update_cache: no
 
-    - name: Add the "deadsnakes" PPA
+    - name: Enable installing arbitrary Python versions
       ansible.builtin.apt_repository:
-        repo: ppa:deadsnakes/ppa
+        repo: ppa:deadsnakes/ppa  # See more on https://tooling.bennuttall.com/deadsnakes/
         state: present
 
-    # Why Python 3.7? Cf https://github.com/openfisca/openfisca-core#environment
-    - name: Install Python 3.7 from "deadsnakes" PPA
+    - name: Install the OpenFisca-supported Python version  # See https://github.com/openfisca/openfisca-core#environment
       ansible.builtin.apt:
         install_recommends: no
         name:
@@ -99,7 +98,7 @@
   register: this
   until: this.status == 300
   retries: 5 # times
-  delay: 5 # Every 5 seconds
+  delay: 5 # seconds
 
 - name: Copy the nginx vhost file to the sites-available directory of Nginx
   ansible.builtin.template:
