@@ -1,9 +1,0 @@
-all:
-  hosts:
-    SERVER_IP_OR_HOST_NAME: # replace that placeholder with the IP address or host name of the server
-      ansible_user: root
-      # adjust the variables defined in `ansible/roles/openfisca_api_fr/defaults/main.yml` below:
-      host_name: fr.openfisca.org
-      enable_ssl: yes
-      letsencrypt_email: contact@openfisca.org
-      letsencrypt_environment: "production"
