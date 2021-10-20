@@ -1,4 +1,4 @@
-base_url_path: /api/latest
+base_url_path: /
 env_file: /etc/openfisca/openfisca-web-api-fr.env
 host_name: localhost
 host: 127.0.0.1
