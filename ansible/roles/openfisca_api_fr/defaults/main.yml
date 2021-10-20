@@ -1,16 +1,11 @@
-base_url_path: /
-env_file: /etc/openfisca/openfisca-web-api-fr.env
+base_path: /
 host_name: localhost
 host: 127.0.0.1
 http_port: 8000
 nb_workers: 2
-systemd_service_file: /etc/systemd/system/openfisca-web-api-fr.service
-unix_group_name: openfisca
-unix_user_name: openfisca-api
 welcome_message: Welcome to the OpenFisca Web API. This instance runs the OpenFisca-France country package.
 
-# Optional: auto-update
-
+# Optional: auto-update this playbook upon execution
 enable_autoupdate: yes
 autoupdate_unix_group_name: "{{ unix_group_name }}"
 autoupdate_unix_user_name: openfisca-ops
@@ -29,3 +24,9 @@ matomo_url: null
 matomo_site_id: null
 matomo_token: "{{ lookup('env','MATOMO_TOKEN') }}"
 matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+
+# Fully managed by Ansible, you should not need to edit this unless you have a naming collision
+env_file: /etc/openfisca/openfisca-web-api-fr.env
+systemd_service_file: /etc/systemd/system/openfisca-web-api-fr.service
+unix_group_name: openfisca
+unix_user_name: openfisca-api
