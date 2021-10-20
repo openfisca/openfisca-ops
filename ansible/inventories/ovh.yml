@@ -1,6 +1,6 @@
 all:
   hosts:
-    141.94.20.107: # vps-60ea1664
+    vps-60ea1664.openfisca.org:
       ansible_user: root
 
       # OpenFisca Web API
