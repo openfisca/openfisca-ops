@@ -29,7 +29,7 @@ Vagrant.configure("2") do |config|
     ansible.host_vars = {
       "openfisca_api_fr" => {
         "host" => "0.0.0.0",
-        "http_port" => guest_port,
+        "port" => guest_port,
       }
     }
   end

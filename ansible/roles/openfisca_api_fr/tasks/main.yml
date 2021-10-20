@@ -94,7 +94,7 @@
     return_content: yes
     status_code: 300
     timeout: 120
-    url: "http://localhost:{{ http_port }}"
+    url: "http://localhost:{{ port }}"
   register: this
   until: this.status == 300
   retries: 5 # times
