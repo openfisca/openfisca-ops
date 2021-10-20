@@ -3,7 +3,6 @@ all:
     vps-60ea1664.openfisca.org:
       ansible_user: root
 
-      # OpenFisca Web API
       base_url_path: /api/latest
       host_name: api.fr.openfisca.org
 
