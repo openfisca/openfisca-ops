@@ -6,7 +6,7 @@
 
 - name: Install Ubuntu packages
   block:
-    - name: Install packages required to add a PPA
+    - name: Enable installing Personal Package Archives (PPA) with apt
       ansible.builtin.apt:
         install_recommends: no
         name:
