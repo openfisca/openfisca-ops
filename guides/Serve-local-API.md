@@ -1,6 +1,6 @@
 # Run a local instance of the OpenFisca France Web API in a virtual machine
 
-By following this guide, you will be able to access the latest version of the OpenFisca France Web API on your local machine at `http://localhost:8000/api/latest`, without worrying about dependency and stack management, thanks to [Vagrant](https://vagrantup.com) and [Ansible](https://www.ansible.com/).
+By following this guide, you will be able to access the latest version of the OpenFisca France Web API on your local machine at `http://localhost:8000/`, without worrying about dependency and stack management, thanks to [Vagrant](https://vagrantup.com) and [Ansible](https://www.ansible.com/).
 
 > For information, this guide was written with Ansible 2.11.2 running on Python 3.9.4, Vagrant 2.2.16 and VirtualBox 6.1.22.
 
@@ -43,7 +43,7 @@ ansible [core 2.11.2]
 
 Once the command is done, you should have a virtual machine running the OpenFisca France Web API.
 
-The port 80 inside the virtual machine is forwarded to another port on your development machine. You can thus access that API on your local machine on [`http://localhost:8000/api/latest`](http://localhost:8000/api/latest).
+The port 80 inside the virtual machine is forwarded to another port on your development machine. You can thus access that API on your local machine on [`http://localhost:8000/`](http://localhost:8000/).
 
 > You can override that port with the `PORT` environment variable: `PORT=8080 vagrant up`.
 
