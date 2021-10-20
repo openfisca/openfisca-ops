@@ -5,7 +5,7 @@ Description=OpenFisca Web API - France
 EnvironmentFile={{ env_file }}
 ExecStart={{ venv_dir }}/bin/openfisca serve \
     --country-package openfisca_france \
-    --port {{ http_port }} \
+    --bind "{{ host }}:{{ http_port }}" \
 {% if matomo_enabled %}
     --tracker-idsite {{ matomo_site_id }} \
     --tracker-token $TRACKER_TOKEN \

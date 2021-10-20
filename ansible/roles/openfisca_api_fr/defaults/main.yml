@@ -1,6 +1,7 @@
 base_url_path: /api/latest
 env_file: /etc/openfisca/openfisca-web-api-fr.env
 host_name: localhost
+host: 127.0.0.1
 http_port: 8000
 nb_workers: 2
 systemd_service_file: /etc/systemd/system/openfisca-web-api-fr.service
