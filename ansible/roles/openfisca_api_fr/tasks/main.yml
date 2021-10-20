@@ -63,7 +63,7 @@
   become_user: "{{ unix_user_name }}"
   notify: Reload nginx
 
-- name: Setup the systemd service
+- name: Set up the systemd service
   block:
     - name: Create the directory receiving the environment file
       ansible.builtin.file:
@@ -114,7 +114,7 @@
     state: link
   notify: Reload nginx
 
-- name: Setup SSL
+- name: Set SSL up
   when: enable_ssl and letsencrypt_email
   block:
     - name: Install Certbot and its Nginx plugin
@@ -137,7 +137,7 @@
           ansible.builtin.set_fact:
             certbot_staging_option: "--staging"
 
-    - name: Reinstall or renew an SSL certificate from Let's Encrypt using the certbot client
+    - name: Issue or renew an SSL certificate with Let's Encrypt
       ansible.builtin.command: >
         certbot
         --non-interactive --email {{ letsencrypt_email }} --agree-tos
@@ -157,7 +157,7 @@
       tags:
         - http2
 
-- name: Setup auto-update
+- name: Set up auto-update
   tags:
     - auto-update
   when: enable_autoupdate
