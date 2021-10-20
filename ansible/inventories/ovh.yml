@@ -9,8 +9,3 @@ all:
       enable_ssl: yes
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: "production"
-
-      # Legislation Explorer
-      legislation_explorer_api_url: https://fr.openfisca.org/api/latest
-      legislation_explorer_host_name: fr.openfisca.org
-      legislation_explorer_http_port: 2030
