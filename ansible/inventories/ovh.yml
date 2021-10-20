@@ -6,6 +6,7 @@ all:
       # OpenFisca Web API
       base_url_path: /api/latest
       host_name: api.fr.openfisca.org
+
       enable_ssl: yes
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
