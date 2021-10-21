@@ -64,6 +64,10 @@
   become_user: "{{ unix_user_name }}"
   notify: Reload nginx
 
+- name: Determine if Matomo is enabled according to role variables
+  ansible.builtin.set_fact:
+    matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+
 - name: Set up the systemd service
   block:
     - name: Create the directory receiving the environment file
