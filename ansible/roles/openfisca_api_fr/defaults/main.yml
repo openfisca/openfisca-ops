@@ -12,8 +12,7 @@ autoupdate_ops_branch_name: master
 autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 
 # Optional: SSL certificate
-# An SSL certificate is issued from Let's Encrypt if `enable_ssl` and `letsencrypt_email` are both defined.
-enable_ssl: no
+# An SSL certificate is issued from Let's Encrypt if `letsencrypt_email` is defined.
 letsencrypt_email: null
 letsencrypt_environment: staging  # switch to `production` after testing to avoid reaching your Let's Encrypt quota
 
