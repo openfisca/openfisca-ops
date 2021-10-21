@@ -177,15 +177,10 @@
         state: present
         update_cache: no
 
-    - name: Create the Unix group for auto-update
-      ansible.builtin.group:
-        name: "{{ autoupdate_unix_group_name }}"
-        state: present
-
     - name: Create the Unix user for auto-update
       ansible.builtin.user:
         name: "{{ autoupdate_unix_user_name }}"
-        group: "{{ autoupdate_unix_group_name }}"
+        group: "{{ unix_group_name }}"
         shell: /bin/bash
       register: autoupdate_unix_user
 
