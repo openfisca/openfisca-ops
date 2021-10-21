@@ -7,7 +7,6 @@ welcome_message: Welcome to the OpenFisca Web API. This instance runs the OpenFi
 
 # Optional: auto-update this playbook upon execution
 enable_autoupdate: yes
-autoupdate_unix_user_name: openfisca-ops
 autoupdate_ops_branch_name: master
 autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 

@@ -181,19 +181,12 @@
         state: present
         update_cache: no
 
-    - name: Create a Unix user for auto-update
-      ansible.builtin.user:
-        name: "{{ autoupdate_unix_user_name }}"
-        group: "{{ unix_group_name }}"
-        shell: /bin/bash
-      register: autoupdate_unix_user
-
     - name: Clone or update the "openfisca-ops" Git repository
       ansible.builtin.git:
         repo: "{{ autoupdate_ops_repo_url }}"
-        dest: "{{ autoupdate_unix_user.home }}/openfisca-ops"
+        dest: "{{ unix_user.home }}/openfisca-ops"
         version: "{{ autoupdate_ops_branch_name }}"
-      become_user: "{{ autoupdate_unix_user_name }}"
+      become_user: "{{ unix_user_name }}"
 
     - name: Copy the cron job definition
       ansible.builtin.template:
