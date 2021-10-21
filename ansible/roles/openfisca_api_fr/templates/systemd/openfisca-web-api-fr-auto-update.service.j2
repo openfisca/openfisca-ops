@@ -1,0 +1,10 @@
+[Unit]
+Description=Run the Ansible playbook that installs the OpenFisca Web API.
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/ansible-playbook --inventory ansible/inventories/local.yml ansible/site.yml
+WorkingDirectory={{ openfisca_ops_clone_dir }}
+
+[Install]
+WantedBy=multi-user.target

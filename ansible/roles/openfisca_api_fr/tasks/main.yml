@@ -181,15 +181,31 @@
         state: present
         update_cache: no
 
+    - name: Define a directory to clone the "openfisca-ops" Git repository
+      ansible.builtin.set_fact:
+        openfisca_ops_clone_dir: "{{ unix_user.home }}/openfisca-ops"
+
     - name: Clone or update the "openfisca-ops" Git repository
       ansible.builtin.git:
         repo: "{{ autoupdate_ops_repo_url }}"
-        dest: "{{ unix_user.home }}/openfisca-ops"
+        dest: "{{ openfisca_ops_clone_dir }}"
         version: "{{ autoupdate_ops_branch_name }}"
       become_user: "{{ unix_user_name }}"
 
-    - name: Copy the cron job definition
+    - name: Copy the Systemd service that runs the Ansible playbook
       ansible.builtin.template:
         backup: yes
-        src: cron.d/openfisca-api-fr.j2
-        dest: /etc/cron.d/openfisca-api-fr
+        src: systemd/openfisca-web-api-fr-auto-update.service.j2
+        dest: /etc/systemd/system/openfisca-web-api-fr-auto-update.service
+
+    - name: Copy the Systemd timer calling the Systemd service
+      ansible.builtin.copy:
+        src: systemd/openfisca-web-api-fr-auto-update.timer
+        dest: /etc/systemd/system/openfisca-web-api-fr-auto-update.timer
+
+    - name: Enable the Systemd timer
+      ansible.builtin.systemd:
+        name: openfisca-web-api-fr-auto-update.timer
+        daemon_reload: yes
+        enabled: yes
+        state: started
