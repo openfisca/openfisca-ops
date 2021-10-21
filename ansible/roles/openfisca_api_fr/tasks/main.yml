@@ -32,17 +32,19 @@
         state: present
         update_cache: no
 
-- name: Create a Unix group for the OpenFisca Web API
-  ansible.builtin.group:
-    name: "{{ unix_group_name }}"
-    state: present
+- name: Create a Unix group and user for the OpenFisca Web API
+  block:
+    - name: Create a Unix group for the OpenFisca Web API
+      ansible.builtin.group:
+        name: "{{ unix_group_name }}"
+        state: present
 
-- name: Create a Unix user for the OpenFisca Web API
-  ansible.builtin.user:
-    name: "{{ unix_user_name }}"
-    group: "{{ unix_group_name }}"
-    shell: /bin/bash
-  register: unix_user
+    - name: Create a Unix user for the OpenFisca Web API
+      ansible.builtin.user:
+        name: "{{ unix_user_name }}"
+        group: "{{ unix_group_name }}"
+        shell: /bin/bash
+      register: unix_user
 
 - name: Define a directory to store the virtualenv of OpenFisca Web API
   ansible.builtin.set_fact:
