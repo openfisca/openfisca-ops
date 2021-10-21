@@ -165,7 +165,7 @@
 - name: Set up auto-update
   tags:
     - auto-update
-  when: enable_autoupdate
+  when: autoupdate_inventory_file
   block:
     - name: Add the "ansible" PPA
       ansible.builtin.apt_repository:

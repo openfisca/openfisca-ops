@@ -6,7 +6,8 @@ nb_workers: 2
 welcome_message: Welcome to the OpenFisca Web API. This instance runs the OpenFisca-France country package.
 
 # Optional: auto-update this playbook upon execution
-enable_autoupdate: yes
+# To enable this feature, set `autoupdate_inventory_file` to a file path, absolute or relative to the clone directory of `autoupdate_ops_repo_url`.
+autoupdate_inventory_file: null
 autoupdate_ops_branch_name: master
 autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 
