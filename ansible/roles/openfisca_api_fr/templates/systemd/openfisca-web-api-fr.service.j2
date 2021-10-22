@@ -8,7 +8,7 @@ ExecStart={{ venv_dir }}/bin/openfisca serve \
     --bind "{{ host }}:{{ port }}" \
 {% if matomo_enabled %}
     --tracker-idsite {{ matomo_site_id }} \
-    --tracker-token $TRACKER_TOKEN \
+    --tracker-token $MATOMO_TOKEN \
     --tracker-url {{ matomo_url }} \
 {% endif %}
     --welcome-message {{ welcome_message | quote }} \
