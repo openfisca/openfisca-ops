@@ -5,7 +5,7 @@ all:
 
       base_path: /api/latest
       host_name: api.fr.openfisca.org
-      autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org-local.yml
+      autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org.yml
 
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
