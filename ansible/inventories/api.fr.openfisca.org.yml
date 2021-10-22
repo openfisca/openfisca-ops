@@ -9,3 +9,6 @@ all:
 
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
+
+      matomo_url: https://stats.data.gouv.fr/piwik.php
+      matomo_site_id: 4
