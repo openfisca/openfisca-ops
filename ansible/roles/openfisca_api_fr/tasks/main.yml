@@ -195,17 +195,17 @@
     - name: Copy the Systemd service that runs the Ansible playbook
       ansible.builtin.template:
         backup: yes
-        src: systemd/openfisca-web-api-fr-auto-update.service.j2
-        dest: /etc/systemd/system/openfisca-web-api-fr-auto-update.service
+        src: systemd/openfisca-web-api-fr-autoupdate.service.j2
+        dest: /etc/systemd/system/openfisca-web-api-fr-autoupdate.service
 
     - name: Copy the Systemd timer calling the Systemd service
       ansible.builtin.copy:
-        src: systemd/openfisca-web-api-fr-auto-update.timer
-        dest: /etc/systemd/system/openfisca-web-api-fr-auto-update.timer
+        src: systemd/openfisca-web-api-fr-autoupdate.timer
+        dest: /etc/systemd/system/openfisca-web-api-fr-autoupdate.timer
 
     - name: Enable the Systemd timer
       ansible.builtin.systemd:
-        name: openfisca-web-api-fr-auto-update.timer
+        name: openfisca-web-api-fr-autoupdate.timer
         daemon_reload: yes
         enabled: yes
         state: started
