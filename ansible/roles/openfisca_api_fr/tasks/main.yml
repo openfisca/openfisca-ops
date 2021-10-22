@@ -50,23 +50,26 @@
   ansible.builtin.set_fact:
     venv_dir: "{{ unix_user.home }}/venv"
 
+- name: Determine if Matomo is enabled according to role variables
+  ansible.builtin.set_fact:
+    matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+
 - name: Install the latest version of OpenFisca Web API in the virtualenv with OpenFisca-France
+  loop:
+    - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
+    - { name: "OpenFisca-Core[web-api]", enabled: yes }
+    - { name: "OpenFisca-France", enabled: yes }
+  when: item.enabled
   ansible.builtin.pip:
     # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
     chdir: "{{ venv_dir }}"
-    name:
-      - OpenFisca-Core[web-api]
-      - OpenFisca-France
+    name: "{{ item.name }}"
     state: latest
     virtualenv: "{{ venv_dir }}"
     virtualenv_python: python3.7
     virtualenv_site_packages: no
   become_user: "{{ unix_user_name }}"
   notify: Reload nginx
-
-- name: Determine if Matomo is enabled according to role variables
-  ansible.builtin.set_fact:
-    matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
 
 - name: Set up the systemd service
   block:
