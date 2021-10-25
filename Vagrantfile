@@ -25,7 +25,7 @@ Vagrant.configure("2") do |config|
     ansible.compatibility_mode = "2.0"
     ansible.playbook = "ansible/site.yml"
 
-    # Uncomment to define Ansible variables specific to this VM.
+    # Define Ansible variables specific to this VM.
     ansible.host_vars = {
       "openfisca_api" => {
         "host" => "0.0.0.0",
