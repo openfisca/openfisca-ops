@@ -3,4 +3,4 @@
   become: yes
   hosts: all
   roles:
-    - openfisca_api_fr
+    - openfisca_api
