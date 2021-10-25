@@ -16,10 +16,10 @@
 
     - name: Enable installing arbitrary Python versions
       ansible.builtin.apt_repository:
-        repo: ppa:deadsnakes/ppa  # See more on https://tooling.bennuttall.com/deadsnakes/
+        repo: ppa:deadsnakes/ppa # See more on https://tooling.bennuttall.com/deadsnakes/
         state: present
 
-    - name: Install the OpenFisca-supported Python version  # See https://github.com/openfisca/openfisca-core#environment
+    - name: Install the OpenFisca-supported Python version # See https://github.com/openfisca/openfisca-core#environment
       ansible.builtin.apt:
         install_recommends: no
         name:
@@ -54,11 +54,11 @@
   ansible.builtin.set_fact:
     matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
 
-- name: Install the latest version of OpenFisca Web API in the virtualenv with OpenFisca-France
+- name: Install the latest version of OpenFisca Web API in the virtualenv with {{ country_package }}
   loop:
     - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
     - { name: "OpenFisca-Core[web-api]", enabled: yes }
-    - { name: "OpenFisca-France", enabled: yes }
+    - { name: "{{ country_package }}", enabled: yes }
   when: item.enabled
   ansible.builtin.pip:
     # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
@@ -81,12 +81,12 @@
 
     - name: Copy the environment file referenced by the systemd service
       ansible.builtin.template:
-        src: systemd/openfisca-web-api-fr.env.j2
+        src: systemd/openfisca-web-api.env.j2
         dest: "{{ env_file }}"
 
     - name: Copy the systemd service file
       ansible.builtin.template:
-        src: systemd/openfisca-web-api-fr.service.j2
+        src: systemd/openfisca-web-api.service.j2
         dest: "{{ systemd_service_file }}"
 
     - name: Enable and start the systemd service
@@ -94,7 +94,7 @@
         daemon_reload: yes
         enabled: yes
         state: restarted
-        name: openfisca-web-api-fr
+        name: "{{ systemd_service_file | basename }}"
 
 - name: Check that OpenFisca Web API is actually started
   ansible.builtin.uri:
@@ -192,17 +192,17 @@
 
     - name: Copy the Systemd service that runs the Ansible playbook
       ansible.builtin.template:
-        src: systemd/openfisca-web-api-fr-autoupdate.service.j2
-        dest: /etc/systemd/system/openfisca-web-api-fr-autoupdate.service
+        src: systemd/openfisca-web-api-autoupdate.service.j2
+        dest: "{{ systemd_autoupdate_service_file }}"
 
     - name: Copy the Systemd timer calling the Systemd service
       ansible.builtin.copy:
-        src: systemd/openfisca-web-api-fr-autoupdate.timer
-        dest: /etc/systemd/system/openfisca-web-api-fr-autoupdate.timer
+        src: systemd/openfisca-web-api-autoupdate.timer
+        dest: "{{ systemd_autoupdate_timer_file }}"
 
     - name: Enable the Systemd timer
       ansible.builtin.systemd:
-        name: openfisca-web-api-fr-autoupdate.timer
+        name: "{{ systemd_autoupdate_timer_file | basename }}"
         daemon_reload: yes
         enabled: yes
         state: started

@@ -1,10 +1,10 @@
 [Unit]
-Description=OpenFisca Web API - France
+Description=OpenFisca Web API - {{ country_package }}
 
 [Service]
 EnvironmentFile={{ env_file }}
 ExecStart={{ venv_dir }}/bin/openfisca serve \
-    --country-package openfisca_france \
+    --country-package {{ country_module }} \
     --bind "{{ host }}:{{ port }}" \
 {% if matomo_enabled %}
     --tracker-idsite {{ matomo_site_id }} \
