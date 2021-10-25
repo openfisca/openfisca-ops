@@ -4,6 +4,9 @@ all:
       ansible_user: root
 
       base_path: /latest
+      country_code: fr
+      country_module: openfisca_france
+      country_package: OpenFisca-France
       host_name: api.fr.openfisca.org
       autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org.yml
 
