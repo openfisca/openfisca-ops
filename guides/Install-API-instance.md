@@ -1,6 +1,8 @@
-# Set up an instance of the OpenFisca France Web API
+# Set up an instance of the OpenFisca Web API
 
-By following this guide, you will be able to serve the latest version of the OpenFisca France Web API on any server, simply over SSH, thanks to the configuration management system [Ansible](https://www.ansible.com/).
+By following this guide, you will be able to serve the latest version of the OpenFisca Web API on any server, simply over SSH, thanks to the configuration management system [Ansible](https://www.ansible.com/).
+
+That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other availble [country package](https://openfisca.org/en/countries/), like for example [OpenFisca-France](https://github.com/openfisca/openfisca-france).
 
 > If you want to install on a local virtual machine, follow the [dedicated guide](./Serve-local-API.md).
 
@@ -51,7 +53,8 @@ all:
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
-Once the command is done, your target machine should run the OpenFisca France Web API. Just open `http://HOST_NAME/` in your browser. You can change the port and path through the configuration file, by changing the variables `base_path` or `port`.
+Once the command is done, your target machine should run the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template). Just open `http://HOST_NAME/` in your browser. You can change the port and path through the configuration file, by changing the variables `base_path` or `port`.
+You can change the country package by customizing the variables starting with `country_`.
 
 ### Optional: enable Matomo
 
@@ -59,4 +62,4 @@ To track the Web API usage with Matomo, define the Ansible variables `matomo_sit
 
 ## Updates
 
-Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca France Web API on the target machine defined in your inventory.
+Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca Web API serving the latest country package on the target machine defined in your inventory.
