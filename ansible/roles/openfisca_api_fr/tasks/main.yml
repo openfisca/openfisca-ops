@@ -183,10 +183,6 @@
         state: present
         update_cache: no
 
-    - name: Define a directory to clone the "openfisca-ops" Git repository
-      ansible.builtin.set_fact:
-        openfisca_ops_clone_dir: "{{ unix_user.home }}/openfisca-ops"
-
     - name: Clone or update the "openfisca-ops" Git repository
       ansible.builtin.git:
         repo: "{{ autoupdate_ops_repo_url }}"

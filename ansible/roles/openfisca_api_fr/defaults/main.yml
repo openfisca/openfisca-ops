@@ -24,6 +24,7 @@ matomo_token: "{{ lookup('env','MATOMO_TOKEN') }}"
 
 # Fully managed by Ansible, you should not need to edit this unless you have a naming collision
 env_file: /etc/openfisca/openfisca-web-api-fr.env
+openfisca_ops_clone_dir: "/home/{{ unix_user_name }}/openfisca-ops"
 systemd_service_file: /etc/systemd/system/openfisca-web-api-fr.service
 unix_group_name: openfisca
 unix_user_name: openfisca-api
