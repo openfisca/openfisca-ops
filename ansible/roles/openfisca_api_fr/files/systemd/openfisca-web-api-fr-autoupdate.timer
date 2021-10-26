@@ -1,5 +1,5 @@
 [Unit]
-Description=Run the service named identically
+Description=Run the Ansible playbook that installs the OpenFisca Web API.
 
 [Timer]
 OnCalendar=daily
