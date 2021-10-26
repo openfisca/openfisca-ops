@@ -1,0 +1,20 @@
+[Unit]
+Description=OpenFisca Web API - France
+
+[Service]
+EnvironmentFile={{ env_file }}
+ExecStart={{ venv_dir }}/bin/openfisca serve \
+    --country-package openfisca_france \
+    --bind "{{ host }}:{{ port }}" \
+{% if matomo_enabled %}
+    --tracker-idsite {{ matomo_site_id }} \
+    --tracker-token $MATOMO_TOKEN \
+    --tracker-url {{ matomo_url }} \
+{% endif %}
+    --welcome-message {{ welcome_message | quote }} \
+    --workers {{ nb_workers }}
+User={{ unix_user_name }}
+Group={{ unix_group_name }}
+
+[Install]
+WantedBy=multi-user.target

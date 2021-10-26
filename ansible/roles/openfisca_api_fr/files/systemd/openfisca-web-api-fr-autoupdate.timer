@@ -1,0 +1,9 @@
+[Unit]
+Description=Run the Ansible playbook that installs the OpenFisca Web API.
+
+[Timer]
+OnCalendar=daily
+Persistent=true
+
+[Install]
+WantedBy=timers.target
