@@ -3,7 +3,7 @@ all:
     vps-60ea1664.openfisca.org:
       ansible_user: root
 
-      base_path: /api/latest
+      base_path: /latest
       host_name: api.fr.openfisca.org
       autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org.yml
 
