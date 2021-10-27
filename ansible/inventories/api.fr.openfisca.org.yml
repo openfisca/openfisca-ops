@@ -8,6 +8,8 @@ all:
       country_module: openfisca_france
       country_package: OpenFisca-France
       host_name: api.fr.openfisca.org
+      port: 8001
+
       autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org.yml
 
       letsencrypt_email: contact@openfisca.org
