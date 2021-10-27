@@ -1,0 +1,19 @@
+all:
+  hosts:
+    vps-60ea1664.openfisca.org:
+      ansible_user: root
+
+      base_path: /latest
+      country_code: demo
+      country_module: openfisca_country_template
+      country_package: OpenFisca-Country-Template
+      host_name: api.demo.openfisca.org
+      port: 8001
+
+      autoupdate_inventory_file: ansible/inventories/api.demo.openfisca.org.yml
+
+      letsencrypt_email: contact@openfisca.org
+      letsencrypt_environment: production
+
+      matomo_url: https://stats.data.gouv.fr/piwik.php
+      matomo_site_id: 4
