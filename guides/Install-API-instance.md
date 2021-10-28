@@ -2,7 +2,7 @@
 
 By following this guide, you will be able to serve the latest version of the OpenFisca Web API on any server, simply over SSH, thanks to the configuration management system [Ansible](https://www.ansible.com/).
 
-That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template). You can configure it to serve any other [country package](https://openfisca.org/en/countries/).
+That instance of the API will serve by default the [Country Template](https://github.com/openfisca/country-template). You can configure it to serve any other [country package](https://openfisca.org/en/countries/).
 
 > If you want to install on a local virtual machine, follow the [dedicated guide](./Serve-local-API.md).
 
@@ -53,7 +53,7 @@ all:
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
-Once the command is done, your target machine should run the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template). Just open `http://HOST_NAME/` in your browser. You can change the port and path through the inventory file, by changing the variables `app_port` or `base_path`.
+Once the command is done, your target machine should run the OpenFisca Web API with the [Country Template](https://github.com/openfisca/country-template). Just open `http://HOST_NAME/` in your browser. You can change the port and path through the inventory file, by changing the variables `app_port` or `base_path`.
 You can change the country package by customizing the variables starting with `country_`.
 
 ### Optional: enable Matomo
