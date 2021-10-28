@@ -30,5 +30,5 @@ all:
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
 
-      autoupdate_systemd_service_file_name: openfisca-web-api-autoupdate-{{ country_code }}.service
-      autoupdate_systemd_timer_file_name: openfisca-web-api-autoupdate-{{ country_code }}.timer
+      autoupdate_systemd_service_file_name: openfisca-web-api-{{ country_code }}-autoupdate.service
+      autoupdate_systemd_timer_file_name: openfisca-web-api-{{ country_code }}-autoupdate.timer
