@@ -108,7 +108,7 @@
     return_content: yes
     status_code: 300
     timeout: 120
-    url: "http://localhost:{{ app_port }}"
+    url: "http://{{ app_host }}:{{ app_port }}"
   register: this
   until: this.status == 300
   retries: 5 # times
