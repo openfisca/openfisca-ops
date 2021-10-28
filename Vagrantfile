@@ -30,7 +30,6 @@ Vagrant.configure("2") do |config|
       "openfisca_api" => {
         "app_host" => "0.0.0.0",
         "app_port" => guest_port,
-        # "country_code" => "fr",
         # "country_module" => "openfisca_france",
         # "country_package" => "OpenFisca-France",
       }

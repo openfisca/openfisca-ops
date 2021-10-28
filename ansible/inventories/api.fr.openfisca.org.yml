@@ -7,7 +7,6 @@ all:
 
       app_port: 8001
 
-      country_code: fr
       country_module: openfisca_france
       country_package: OpenFisca-France
 

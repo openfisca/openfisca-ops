@@ -7,7 +7,6 @@ all:
 
       app_port: 8000
 
-      country_code: demo
       country_module: openfisca_country_template
       country_package: OpenFisca-Country-Template
 
