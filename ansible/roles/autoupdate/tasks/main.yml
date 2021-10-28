@@ -34,8 +34,8 @@
         dest: "/etc/systemd/system/{{ autoupdate_systemd_service_file_name }}"
 
     - name: Set up the systemd timer
-      ansible.builtin.copy:
-        src: openfisca-web-api-autoupdate.timer
+      ansible.builtin.template:
+        src: openfisca-web-api-autoupdate.timer.j2
         dest: "/etc/systemd/system/{{ autoupdate_systemd_timer_file_name }}"
 
     - name: Enable the systemd timer
