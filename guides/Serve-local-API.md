@@ -52,3 +52,5 @@ The port of the application inside the virtual machine is forwarded to the port 
 > You can choose the [country package](https://openfisca.org/en/countries/) served by the API by customizing the variables starting with `country_` in the `Vagrantfile`.
 
 > On such a local virtual machine, the API is by default served over HTTP instead of HTTPS, as SSL certificates cannot be automatically provisioned by Let’s Encrypt.
+
+> The `base_path` variable won't have any effect when using this local virtual machine setup.

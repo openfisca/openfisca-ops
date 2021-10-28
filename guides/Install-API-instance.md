@@ -43,7 +43,7 @@ all:
   hosts:
     target.ip.or.domain.com: # define here the target machine’s IP or domain name
       ansible_user: root # define here the username to use when connecting over SSH
-      # adjust the variables defined in `ansible/roles/openfisca_api/defaults/main.yml` below:
+      # adjust the variables defined in `ansible/roles/*/defaults/main.yml` below:
       host_name: my-openfisca-api-instance.com
 ```
 
@@ -53,7 +53,7 @@ all:
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `ansible-playbook --inventory ansible/inventories/YOUR_INVENTORY.yml ansible/site.yml`.
 
-Once the command is done, your target machine should run the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template). Just open `http://HOST_NAME/` in your browser. You can change the port and path through the configuration file, by changing the variables `app_port` or `base_path`.
+Once the command is done, your target machine should run the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template). Just open `http://HOST_NAME/` in your browser. You can change the port and path through the inventory file, by changing the variables `app_port` or `base_path`.
 You can change the country package by customizing the variables starting with `country_`.
 
 ### Optional: enable Matomo
