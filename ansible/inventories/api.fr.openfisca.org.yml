@@ -5,7 +5,7 @@ all:
 
       # openfisca_api role
 
-      port: 8001
+      app_port: 8001
 
       country_code: fr
       country_module: openfisca_france

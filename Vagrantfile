@@ -28,11 +28,11 @@ Vagrant.configure("2") do |config|
     # Define Ansible variables specific to this VM.
     ansible.host_vars = {
       "openfisca_api" => {
+        "app_port" => guest_port,
         # "country_code" => "fr",
         # "country_module" => "openfisca_france",
         # "country_package" => "OpenFisca-France",
         "host" => "0.0.0.0",
-        "port" => guest_port,
       }
     }
   end

@@ -5,7 +5,7 @@ all:
 
       # openfisca_api role
 
-      port: 8000
+      app_port: 8000
 
       country_code: demo
       country_module: openfisca_country_template
