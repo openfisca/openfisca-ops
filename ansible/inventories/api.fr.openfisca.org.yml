@@ -19,7 +19,7 @@ all:
 
       # reverse_proxy role
 
-      host_name: api.fr.openfisca.org
+      reverse_proxy_host_name: api.fr.openfisca.org
       reverse_proxy_base_path: /latest
 
       # autoupdate role

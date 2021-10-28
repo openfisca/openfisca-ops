@@ -44,7 +44,7 @@ all:
     target.ip.or.domain.com: # define here the target machine’s IP or domain name
       ansible_user: root # define here the username to use when connecting over SSH
       # adjust the variables defined in `ansible/roles/*/defaults/main.yml` below:
-      host_name: my-openfisca-api-instance.com
+      reverse_proxy_host_name: my-openfisca-api-instance.com
 ```
 
 ## 4. Install and start the API

@@ -2,10 +2,10 @@
 
 server {
     listen 80;
-    server_name {{ host_name }};
+    server_name {{ reverse_proxy_host_name }};
 
-    access_log /var/log/nginx/{{ host_name }}-access.log;
-    error_log /var/log/nginx/{{ host_name }}-error.log;
+    access_log /var/log/nginx/{{ reverse_proxy_host_name }}-access.log;
+    error_log /var/log/nginx/{{ reverse_proxy_host_name }}-error.log;
 
     location {{ reverse_proxy_base_path }} {
         # Allow OpenFisca Web API to generate URLs taking the base URL path into account

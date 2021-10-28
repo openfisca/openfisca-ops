@@ -1,5 +1,5 @@
 - name: Install the reverse-proxy
-  when: host_name
+  when: reverse_proxy_host_name
   block:
     - name: Install the Nginx Ubuntu package
       ansible.builtin.apt:
@@ -43,8 +43,8 @@
             certbot
             --non-interactive --email {{ letsencrypt_email }} --agree-tos
             --nginx --redirect
-            --cert-name {{ host_name }}
-            --domain {{ host_name }}
+            --cert-name {{ reverse_proxy_host_name }}
+            --domain {{ reverse_proxy_host_name }}
             --keep-until-expiring
             {{ certbot_staging_option | default() }}
           become_user: root

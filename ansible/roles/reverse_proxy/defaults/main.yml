@@ -1,5 +1,5 @@
-# To install the Nginx reverse-proxy, set `host_name` to the host name it will serve:
-host_name: null
+# To install the Nginx reverse-proxy, set `reverse_proxy_host_name` to the host name it will serve:
+reverse_proxy_host_name: null
 
 reverse_proxy_base_path: /
 
@@ -9,4 +9,4 @@ letsencrypt_email: null
 letsencrypt_environment: staging # switch to `production` after testing to avoid reaching your Let's Encrypt quota
 
 # Fully managed by Ansible, you should not need to edit this unless you have a naming collision
-nginx_conf_file_name: "{{ host_name }}.conf"
+nginx_conf_file_name: "{{ reverse_proxy_host_name }}.conf"
