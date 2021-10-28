@@ -4,11 +4,11 @@ This repository contains scripts and config files for deploying OpenFisca on a s
 
 Nothing secret must be commited to this repository.
 
-## Install the OpenFisca France Web API on a virtual machine for development purposes
+## Install the OpenFisca Web API on a virtual machine for development purposes
 
 If you want to make use of the OpenFisca Web API without handling its installation, for example if you are building a client application, the easiest is to [set up a virtual machine](guides/Serve-local-API.md).
 
-## Install the OpenFisca France Web API on a server
+## Install the OpenFisca Web API on a server
 
 See the [dedicated page](guides/Install-API-instance.md).
 
