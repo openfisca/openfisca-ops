@@ -49,11 +49,11 @@
   block:
     - name: Define a directory to store the virtualenv of OpenFisca Web API
       ansible.builtin.set_fact:
-        venv_dir: "{{ unix_user.home }}/{{ venv_relative_dir }}"
+        venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
 
     - name: Create the directory for the virtualenv
       ansible.builtin.file:
-        path: "{{ venv_dir }}"
+        path: "{{ venv_path }}"
         state: directory
         mode: "0755"
       become_user: "{{ unix_user_name }}"
@@ -70,10 +70,10 @@
       when: item.enabled
       ansible.builtin.pip:
         # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
-        chdir: "{{ venv_dir }}"
+        chdir: "{{ venv_path }}"
         name: "{{ item.name }}"
         state: latest
-        virtualenv: "{{ venv_dir }}"
+        virtualenv: "{{ venv_path }}"
         virtualenv_python: python3.7
         virtualenv_site_packages: no
       become_user: "{{ unix_user_name }}"

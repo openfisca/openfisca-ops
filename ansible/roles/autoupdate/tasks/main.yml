@@ -19,12 +19,12 @@
 
     - name: Define a directory for openfisca-ops
       ansible.builtin.set_fact:
-        openfisca_ops_clone_dir: "{{ unix_user.home }}/{{ openfisca_ops_clone_relative_dir }}"
+        openfisca_ops_clone_path: "{{ unix_user.home }}/{{ openfisca_ops_clone_dir }}"
 
     - name: Clone or update openfisca-ops
       ansible.builtin.git:
         repo: "{{ autoupdate_ops_repo_url }}"
-        dest: "{{ openfisca_ops_clone_dir }}"
+        dest: "{{ openfisca_ops_clone_path }}"
         version: "{{ autoupdate_ops_branch_name }}"
       become_user: "{{ unix_user_name }}"
 

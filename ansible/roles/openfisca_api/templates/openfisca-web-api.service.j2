@@ -3,7 +3,7 @@ Description=OpenFisca Web API - {{ country_package }}
 
 [Service]
 EnvironmentFile={{ env_file }}
-ExecStart={{ venv_dir }}/bin/openfisca serve \
+ExecStart={{ venv_path }}/bin/openfisca serve \
     --country-package {{ country_module }} \
     --bind "{{ app_host }}:{{ app_port }}" \
 {% if matomo_enabled %}
