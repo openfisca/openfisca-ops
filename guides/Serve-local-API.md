@@ -45,7 +45,7 @@ ansible [core 2.11.2]
 
 Once the command is done, you should have a virtual machine running the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template).
 
-The port 80 inside the virtual machine is forwarded to another port on your development machine. You can thus access that API on your local machine on [`http://localhost:8000/`](http://localhost:8000/).
+The port of the application inside the virtual machine is forwarded to the port 8000 on your development machine by default. You can thus access that API on your local machine on [`http://localhost:8000/`](http://localhost:8000/).
 
 > You can override that port with the `PORT` environment variable: `PORT=8080 vagrant up`.
 
