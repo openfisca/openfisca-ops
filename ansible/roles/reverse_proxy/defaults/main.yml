@@ -1,5 +1,4 @@
-# Optional: install Nginx to reverse-proxy the application
-# To enable this feature, set `host_name`
+# To install the Nginx reverse-proxy, set `host_name` to the host name it will serve:
 host_name: null
 
 base_path: /
