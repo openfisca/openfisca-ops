@@ -53,4 +53,4 @@ The port of the application inside the virtual machine is forwarded to the port 
 
 > On such a local virtual machine, the API is by default served over HTTP instead of HTTPS, as SSL certificates cannot be automatically provisioned by Let’s Encrypt.
 
-> The `base_path` variable won't have any effect when using this local virtual machine setup.
+> The `reverse_proxy_base_path` variable won't have any effect when using this local virtual machine setup.

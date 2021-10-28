@@ -1,7 +1,7 @@
 # To install the Nginx reverse-proxy, set `host_name` to the host name it will serve:
 host_name: null
 
-base_path: /
+reverse_proxy_base_path: /
 
 # Optional: SSL certificate
 # An SSL certificate is issued from Let's Encrypt if `letsencrypt_email` is defined.
