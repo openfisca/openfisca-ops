@@ -2,7 +2,7 @@
 
 By following this guide, you will be able to access the latest version of the OpenFisca Web API on your local machine at `http://localhost:8000/`, without worrying about dependency and stack management, thanks to [Vagrant](https://vagrantup.com) and [Ansible](https://www.ansible.com/).
 
-That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other availble [country package](https://openfisca.org/en/countries/), like for example [OpenFisca-France](https://github.com/openfisca/openfisca-france).
+That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other available [country package](https://openfisca.org/en/countries/), like for example [OpenFisca-France](https://github.com/openfisca/openfisca-france).
 
 > For information, this guide was written with Ansible 2.11.2 running on Python 3.9.4, Vagrant 2.2.16 and VirtualBox 6.1.22.
 
