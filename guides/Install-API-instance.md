@@ -60,6 +60,27 @@ You can change the country package by customizing the variables starting with `c
 
 To track the Web API usage with Matomo, define the Ansible variables `matomo_site_id` and `matomo_url` in `YOUR_INVENTORY.yml` and export the environment variable `MATOMO_TOKEN` before running the `ansible-playbook` command.
 
+### Optional: enable auto-updates
+
+To enable the auto-update feature, define the Ansible variable `autoupdate_inventory_file` in `YOUR_INVENTORY.yml`. The value has to be a file path, absolute or relative to the openfisca-ops repository.
+
+This will setup a background task that runs the Ansible playbook from the server on a daily basis by default.
+You can change the frequency through the inventory file, by changing the variable `autoupdate_frequency`. The value has to be a [Systemd calendar event expression](https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events).
+
+To read the logs of the auto-update process:
+
+```bash
+journalctl -u openfisca-web-api-autoupdate.service
+```
+
+To trigger an update manually from the server as `root`:
+
+```bash
+systemctl start openfisca-web-api-autoupdate.service
+```
+
+> If you changed the variable `autoupdate_systemd_service_file_name`, please use that name in the commands above.
+
 ## Updates
 
 Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest version of the OpenFisca Web API serving the latest version of the country package on the target machine defined in your inventory.
