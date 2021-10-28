@@ -14,9 +14,9 @@ all:
       matomo_url: https://stats.data.gouv.fr/piwik.php
       matomo_site_id: 4
 
-      env_file: /etc/openfisca/openfisca-web-api-{{ country_code }}.env
-      systemd_service_file_name: openfisca-web-api-{{ country_code }}.service
-      venv_relative_dir: virtualenvs/openfisca-web-api-{{ country_code }}
+      env_file: /etc/openfisca/openfisca-web-api-demo.env
+      systemd_service_file_name: openfisca-web-api-demo.service
+      venv_relative_dir: virtualenvs/openfisca-web-api-demo
 
       # reverse_proxy role
 
@@ -30,5 +30,5 @@ all:
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
 
-      autoupdate_systemd_service_file_name: openfisca-web-api-{{ country_code }}-autoupdate.service
-      autoupdate_systemd_timer_file_name: openfisca-web-api-{{ country_code }}-autoupdate.timer
+      autoupdate_systemd_service_file_name: openfisca-web-api-demo-autoupdate.service
+      autoupdate_systemd_timer_file_name: openfisca-web-api-demo-autoupdate.timer
