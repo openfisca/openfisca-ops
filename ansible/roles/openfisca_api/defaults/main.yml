@@ -1,23 +1,10 @@
-base_path: /
+host: 127.0.0.1
+port: 8000
 country_code: demo
 country_module: openfisca_country_template
 country_package: OpenFisca-Country-Template
-host_name: localhost
-host: 127.0.0.1
-port: 8000
 nb_workers: 2
 welcome_message: Welcome to the OpenFisca Web API. This instance runs the {{ country_package }} country package.
-
-# Optional: auto-update this playbook upon execution
-# To enable this feature, set `autoupdate_inventory_file` to a file path, absolute or relative to the clone directory of `autoupdate_ops_repo_url`.
-autoupdate_inventory_file: null
-autoupdate_ops_branch_name: master
-autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
-
-# Optional: SSL certificate
-# An SSL certificate is issued from Let's Encrypt if `letsencrypt_email` is defined.
-letsencrypt_email: null
-letsencrypt_environment: staging # switch to `production` after testing to avoid reaching your Let's Encrypt quota
 
 # Optional: Matomo tracker
 # See more on https://github.com/openfisca/openfisca-tracker
@@ -26,10 +13,9 @@ matomo_site_id: null
 matomo_token: "{{ lookup('env','MATOMO_TOKEN') }}"
 
 # Fully managed by Ansible, you should not need to edit this unless you have a naming collision
-env_file: /etc/openfisca/openfisca-web-api-{{ country_code }}.env
-openfisca_ops_clone_dir: "/home/{{ unix_user_name }}/openfisca-ops"
-systemd_service_file: /etc/systemd/system/openfisca-web-api-{{ country_code }}.service
-systemd_autoupdate_service_file: /etc/systemd/system/openfisca-web-api-{{ country_code }}-autoupdate.service
-systemd_autoupdate_timer_file: /etc/systemd/system/openfisca-web-api-{{ country_code }}-autoupdate.timer
+env_file: /etc/openfisca/openfisca-web-api.env
+systemd_service_file_name: openfisca-web-api.service
 unix_group_name: openfisca
 unix_user_name: openfisca-api
+# Those directories are relative to the home directory of the Unix user:
+venv_relative_dir: venv

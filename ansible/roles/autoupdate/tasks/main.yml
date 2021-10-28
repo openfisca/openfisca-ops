@@ -1,0 +1,46 @@
+- name: Set up auto-update
+  tags:
+    - auto-update
+  when: autoupdate_inventory_file
+  block:
+    - name: Add the "ansible" PPA
+      ansible.builtin.apt_repository:
+        repo: ppa:ansible/ansible
+        state: present
+
+    - name: Install Ubuntu packages required for auto-update
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - ansible
+          - git
+        state: present
+        update_cache: no
+
+    - name: Define a directory to clone the "openfisca-ops" Git repository
+      ansible.builtin.set_fact:
+        openfisca_ops_clone_dir: "{{ unix_user.home }}/{{ openfisca_ops_clone_relative_dir }}"
+
+    - name: Clone or update the "openfisca-ops" Git repository
+      ansible.builtin.git:
+        repo: "{{ autoupdate_ops_repo_url }}"
+        dest: "{{ openfisca_ops_clone_dir }}"
+        version: "{{ autoupdate_ops_branch_name }}"
+      become_user: "{{ unix_user_name }}"
+
+    - name: Copy the Systemd service that runs the Ansible playbook
+      ansible.builtin.template:
+        src: openfisca-web-api-autoupdate.service.j2
+        dest: "/etc/systemd/system/{{ autoupdate_systemd_service_file_name }}"
+
+    - name: Copy the Systemd timer calling the Systemd service
+      ansible.builtin.copy:
+        src: openfisca-web-api-autoupdate.timer
+        dest: "/etc/systemd/system/{{ autoupdate_systemd_timer_file_name }}"
+
+    - name: Enable the Systemd timer
+      ansible.builtin.systemd:
+        name: "{{ autoupdate_systemd_timer_file_name }}"
+        daemon_reload: yes
+        enabled: yes
+        state: started

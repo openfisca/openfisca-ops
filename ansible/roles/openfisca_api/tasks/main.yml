@@ -25,7 +25,6 @@
         name:
           - acl # Provides "setfacl" command, used by Ansible to become another Unix user
           - gcc
-          - nginx
           - python3.7
           - python3.7-dev
           - python3-virtualenv
@@ -50,7 +49,7 @@
   block:
     - name: Define a directory to store the virtualenv of OpenFisca Web API
       ansible.builtin.set_fact:
-        venv_dir: "{{ unix_user.home }}/virtualenvs/openfisca-api-{{ country_code }}"
+        venv_dir: "{{ unix_user.home }}/{{ venv_relative_dir }}"
 
     - name: Create the directory for the virtualenv
       ansible.builtin.file:
@@ -78,7 +77,6 @@
         virtualenv_python: python3.7
         virtualenv_site_packages: no
       become_user: "{{ unix_user_name }}"
-      notify: Reload nginx
 
 - name: Set up the systemd service
   block:
@@ -90,20 +88,20 @@
 
     - name: Copy the environment file referenced by the systemd service
       ansible.builtin.template:
-        src: systemd/openfisca-web-api.env.j2
+        src: openfisca-web-api.env.j2
         dest: "{{ env_file }}"
 
     - name: Copy the systemd service file
       ansible.builtin.template:
-        src: systemd/openfisca-web-api.service.j2
-        dest: "{{ systemd_service_file }}"
+        src: openfisca-web-api.service.j2
+        dest: "/etc/systemd/system/{{ systemd_service_file_name }}"
 
     - name: Enable and start the systemd service
       ansible.builtin.systemd:
         daemon_reload: yes
         enabled: yes
         state: restarted
-        name: "{{ systemd_service_file | basename }}"
+        name: "{{ systemd_service_file_name }}"
 
 - name: Check that OpenFisca Web API is actually started
   ansible.builtin.uri:
@@ -115,103 +113,3 @@
   until: this.status == 300
   retries: 5 # times
   delay: 5 # seconds
-
-- name: Copy the nginx vhost file to the sites-available directory of Nginx
-  ansible.builtin.template:
-    src: nginx/openfisca-web-api.conf.j2
-    dest: "/etc/nginx/sites-available/{{ host_name }}.conf"
-
-- name: Link the nginx vhost file to the sites-enabled directory of Nginx
-  ansible.builtin.file:
-    src: "/etc/nginx/sites-available/{{ host_name }}.conf"
-    dest: "/etc/nginx/sites-enabled/{{ host_name }}.conf"
-    state: link
-  notify: Reload nginx
-
-- name: Set SSL up
-  when: letsencrypt_email
-  block:
-    - name: Install Certbot and its Nginx plugin
-      ansible.builtin.apt:
-        install_recommends: no
-        name:
-          - certbot
-          - python3-certbot-nginx
-        state: present
-        update_cache: no
-
-    - name: Handle staging environment
-      when: letsencrypt_environment == "staging"
-      block:
-        - name: Display message when staging environment is used
-          ansible.builtin.debug:
-            msg: Let's Encrypt staging environment will be used
-
-        - name: Define certbot --staging option
-          ansible.builtin.set_fact:
-            certbot_staging_option: "--staging"
-
-    - name: Issue or renew an SSL certificate with Let's Encrypt
-      ansible.builtin.command: >
-        certbot
-        --non-interactive --email {{ letsencrypt_email }} --agree-tos
-        --nginx --redirect
-        --cert-name {{ host_name }}
-        --domain {{ host_name }}
-        --keep-until-expiring
-        {{ certbot_staging_option | default() }}
-      become_user: root
-      register: certbot_result
-
-    - name: Enable HTTP/2
-      ansible.builtin.lineinfile:
-        backrefs: yes
-        line: '\1\2 http2;\3'
-        path: "/etc/nginx/sites-available/{{ host_name }}.conf"
-        regexp: "^(.*)(listen 443 ssl);(.+)$"
-      notify: Reload nginx
-      tags:
-        - http2
-
-- name: Set up auto-update
-  tags:
-    - auto-update
-  when: autoupdate_inventory_file
-  block:
-    - name: Add the "ansible" PPA
-      ansible.builtin.apt_repository:
-        repo: ppa:ansible/ansible
-        state: present
-
-    - name: Install Ubuntu packages required for auto-update
-      ansible.builtin.apt:
-        install_recommends: no
-        name:
-          - ansible
-          - git
-        state: present
-        update_cache: no
-
-    - name: Clone or update the "openfisca-ops" Git repository
-      ansible.builtin.git:
-        repo: "{{ autoupdate_ops_repo_url }}"
-        dest: "{{ openfisca_ops_clone_dir }}"
-        version: "{{ autoupdate_ops_branch_name }}"
-      become_user: "{{ unix_user_name }}"
-
-    - name: Copy the Systemd service that runs the Ansible playbook
-      ansible.builtin.template:
-        src: systemd/openfisca-web-api-autoupdate.service.j2
-        dest: "{{ systemd_autoupdate_service_file }}"
-
-    - name: Copy the Systemd timer calling the Systemd service
-      ansible.builtin.copy:
-        src: systemd/openfisca-web-api-autoupdate.timer
-        dest: "{{ systemd_autoupdate_timer_file }}"
-
-    - name: Enable the Systemd timer
-      ansible.builtin.systemd:
-        name: "{{ systemd_autoupdate_timer_file | basename }}"
-        daemon_reload: yes
-        enabled: yes
-        state: started

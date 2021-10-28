@@ -1,0 +1,10 @@
+base_path: /
+host_name: localhost
+
+# Optional: SSL certificate
+# An SSL certificate is issued from Let's Encrypt if `letsencrypt_email` is defined.
+letsencrypt_email: null
+letsencrypt_environment: staging # switch to `production` after testing to avoid reaching your Let's Encrypt quota
+
+# Fully managed by Ansible, you should not need to edit this unless you have a naming collision
+nginx_conf_file_name: "{{ host_name }}.conf"
