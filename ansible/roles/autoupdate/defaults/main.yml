@@ -1,5 +1,6 @@
 # Optional: auto-update this playbook upon execution
-# To enable this feature, set `autoupdate_inventory_file` to a file path, absolute or relative to the clone directory of `autoupdate_ops_repo_url`.
+# To enable this feature, set `autoupdate_inventory_file` to the Ansible inventory file to be used to run the Ansible playbook.
+# The value must be a file path, absolute or relative to the clone directory of `autoupdate_ops_repo_url`.
 autoupdate_inventory_file: null
 autoupdate_ops_branch_name: master
 autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
