@@ -43,7 +43,7 @@ ansible [core 2.11.2]
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
 3. Type the following command: `vagrant up`. If you’re on an Apple Silicon machine or want to use Docker instead of VirtualBox, type `vagrant up --provider=docker`.
 
-Once the command is done, you should have a virtual machine running the OpenFisca Web API with the [country template](https://github.com/openfisca/country-template).
+Once the command is done, you should have a virtual machine running the OpenFisca Web API with the [Country Template](https://github.com/openfisca/country-template).
 
 The port of the application inside the virtual machine is forwarded to the port 8000 on your development machine by default. You can thus access that API on your local machine on [`http://localhost:8000/`](http://localhost:8000/).
 

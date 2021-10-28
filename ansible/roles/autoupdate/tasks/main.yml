@@ -38,7 +38,7 @@
         src: openfisca-web-api-autoupdate.timer
         dest: "/etc/systemd/system/{{ autoupdate_systemd_timer_file_name }}"
 
-    - name: Enable the Systemd timer
+    - name: Enable the systemd timer
       ansible.builtin.systemd:
         name: "{{ autoupdate_systemd_timer_file_name }}"
         daemon_reload: yes

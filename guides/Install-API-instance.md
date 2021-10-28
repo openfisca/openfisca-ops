@@ -2,7 +2,7 @@
 
 By following this guide, you will be able to serve the latest version of the OpenFisca Web API on any server, simply over SSH, thanks to the configuration management system [Ansible](https://www.ansible.com/).
 
-That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other availble [country package](https://openfisca.org/en/countries/), like for example [OpenFisca-France](https://github.com/openfisca/openfisca-france).
+That instance of the API will serve by default the [country template](https://github.com/openfisca/country-template). You can configure it to serve any other [country package](https://openfisca.org/en/countries/).
 
 > If you want to install on a local virtual machine, follow the [dedicated guide](./Serve-local-API.md).
 
@@ -62,4 +62,4 @@ To track the Web API usage with Matomo, define the Ansible variables `matomo_sit
 
 ## Updates
 
-Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest OpenFisca Web API serving the latest country package on the target machine defined in your inventory.
+Whenever you make adjustments to the configuration or want to update to the latest version, simply run again the commands given in the “Install and start the API” section. Ansible runs are idempotent, meaning that they can be run repeatedly and will yield the same result: anytime you run the “playbook”, you should end up with a working version of the latest version of the OpenFisca Web API serving the latest version of the country package on the target machine defined in your inventory.
