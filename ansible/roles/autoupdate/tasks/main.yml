@@ -25,7 +25,7 @@
       ansible.builtin.git:
         repo: "{{ autoupdate_ops_repo_url }}"
         dest: "{{ openfisca_ops_clone_path }}"
-        version: "{{ autoupdate_ops_branch_name }}"
+        version: "{{ autoupdate_ops_branch }}"
       become_user: "{{ unix_user_name }}"
 
     - name: Set up the systemd service
