@@ -3,7 +3,7 @@
 autoupdate_inventory_file: null
 # Use a systemd calendar event expression: https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events
 autoupdate_frequency: daily
-autoupdate_ops_branch_name: master
+autoupdate_ops_branch: master
 autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
 
 # Fully managed by Ansible, you should not need to edit this unless you have a naming collision
