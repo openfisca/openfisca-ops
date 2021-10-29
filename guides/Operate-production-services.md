@@ -43,7 +43,7 @@ Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gan
 
 ### `fr.openfisca.org`
 
-Source code: <https://github.com/openfisca/fr.openfisca.org>
+Source code available on <https://github.com/openfisca/fr.openfisca.org>.
 
 The website for France is a static web application hosted at [Netlify](https://www.netlify.com/).
 
@@ -55,7 +55,7 @@ The `_redirects` file, thanks to [Netlify redirects](https://docs.netlify.com/ro
 
 ### Documentation
 
-Source code: <https://github.com/openfisca/openfisca-doc/>
+Source code available on <https://github.com/openfisca/openfisca-doc/>
 
 It is deployed to <https://openfisca.org/doc/>.
 
@@ -65,7 +65,7 @@ It is hosted by [Netlify](https://www.netlify.com/).
 
 Public URL: <https://api.demo.openfisca.org/latest>.
 
-Source code: <https://github.com/openfisca/openfisca-core>.
+Source code available on <https://github.com/openfisca/openfisca-core>.
 
 This instance is configured to use the [Country Template](https://github.com/openfisca/country-template).
 
@@ -94,7 +94,7 @@ journalctl -u openfisca-web-api-demo.service
 
 Public URL: <https://api.fr.openfisca.org/latest>.
 
-Source code: <https://github.com/openfisca/openfisca-core>.
+Source code available on <https://github.com/openfisca/openfisca-core>.
 
 This instance is configured to use [OpenFisca-France](https://github.com/openfisca/openfisca-france).
 
@@ -123,7 +123,7 @@ journalctl -u openfisca-web-api-fr.service
 
 Public URL: <https://legislation.demo.openfisca.org/>.
 
-Source code: <https://github.com/openfisca/legislation-explorer>.
+Source code available on <https://github.com/openfisca/legislation-explorer>.
 
 This instance is configured to call the demo API.
 
@@ -151,7 +151,7 @@ journalctl -u legislation-explorer-demo.service
 
 Public URL: <https://legislation.fr.openfisca.org/>.
 
-Source code: <https://github.com/openfisca/legislation-explorer>.
+Source code available on <https://github.com/openfisca/legislation-explorer>.
 
 This instance is configured to call the API for OpenFisca-France.
 
