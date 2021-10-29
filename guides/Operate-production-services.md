@@ -12,16 +12,16 @@ No change should be done on the server without updating this repository.
 
 ## Servers
 
-The following servers are provided by [OVH](https://www.ovh.com/).
+### `vps223769.ovh.net`
 
-### `vps223769`
-
-Legacy server hosting API and Legislation Explorer instances for France and the Country Template.
+Provider: OVH.
+Usage: legacy server hosting API and Legislation Explorer instances for France and the Country Template.
 Replaced by `vps-60ea1664`.
 
-### `vps-60ea1664`
+### `vps-60ea1664.ovh.net`
 
-Server hosting API and Legislation Explorer instances for France and the Country Template.
+Provider: OVH.
+Usage: server hosting API and Legislation Explorer instances for France and the Country Template.
 
 Deployments are done using the Ansible playbooks of the API (available in `openfisca-ops`) and the [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
 
