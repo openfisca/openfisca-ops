@@ -61,21 +61,119 @@ It is deployed to <https://openfisca.org/doc/>.
 
 It is hosted at [Netlify](https://www.netlify.com/).
 
-### API
+### API - demo
 
-The API instances are hosted on the OVH server.
+Public URL: <https://api.demo.openfisca.org/latest>.
 
-Instances:
+Source code: <https://github.com/openfisca/openfisca-core>.
 
-- Demo (uses the [Country Template](https://github.com/openfisca/country-template)): <https://api.demo.openfisca.org/latest>
-- France (uses [OpenFisca-France](https://github.com/openfisca/openfisca-france)): <https://api.fr.openfisca.org/latest>
+This instance is configured to use the [Country Template](https://github.com/openfisca/country-template).
 
-### Legislation Explorer
+This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 
-Instances:
+This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
+To update the instance manually, run the Ansible playbook.
 
-- Demo: <https://legislation.demo.openfisca.org/>
-- France: <https://legislation.fr.openfisca.org/>
+The related Ansible inventory file is `openfisca-ops/ansible/api.demo.openfisca.org.yml`.
+
+This instance is hosted on the `vps-60ea1664.ovh.net` server.
+
+To restart the service, login as `root` to the server:
+
+```bash
+systemctl restart openfisca-web-api-demo.service
+```
+
+To read the logs, login as `root` to the server:
+
+```bash
+journalctl -u openfisca-web-api-demo.service
+```
+
+### API - France
+
+Public URL: <https://api.fr.openfisca.org/latest>.
+
+Source code: <https://github.com/openfisca/openfisca-core>.
+
+This instance is configured to use [OpenFisca-France](https://github.com/openfisca/openfisca-france).
+
+This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
+
+This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
+To update the instance manually, run the Ansible playbook.
+
+The related Ansible inventory file is `openfisca-ops/ansible/api.fr.openfisca.org.yml`.
+
+This instance is hosted on the `vps-60ea1664.ovh.net` server.
+
+To restart the service, login as `root` to the server:
+
+```bash
+systemctl restart openfisca-web-api-fr.service
+```
+
+To read the logs, login as `root` to the server:
+
+```bash
+journalctl -u openfisca-web-api-fr.service
+```
+
+### Legislation Explorer - demo
+
+Public URL: <https://legislation.demo.openfisca.org/>.
+
+Source code: <https://github.com/openfisca/legislation-explorer>.
+
+This instance is configured to call the demo API.
+
+This instance is deployed using the Ansible playbook defined in [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
+
+To update the instance manually, run the Ansible playbook.
+
+The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.org.yml`.
+
+This instance is hosted on the `vps-60ea1664.ovh.net` server.
+
+To restart the service, login as `root` to the server:
+
+```bash
+systemctl restart legislation-explorer-demo.service
+```
+
+To read the logs, login as `root` to the server:
+
+```bash
+journalctl -u legislation-explorer-demo.service
+```
+
+### Legislation Explorer - France
+
+Public URL: <https://legislation.fr.openfisca.org/>.
+
+Source code: <https://github.com/openfisca/legislation-explorer>.
+
+This instance is configured to call the API for OpenFisca-France.
+
+This instance is deployed using the Ansible playbook defined in [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
+
+To update the instance manually, run the Ansible playbook.
+
+The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.yml`.
+
+This instance is hosted on the `vps-60ea1664.ovh.net` server.
+
+To restart the service, login as `root` to the server:
+
+```bash
+systemctl restart legislation-explorer-fr.service
+```
+
+To read the logs, login as `root` to the server:
+
+```bash
+journalctl -u legislation-explorer-fr.service
+```
 
 ## SSL certificates
 
