@@ -2,7 +2,7 @@
 
 By following this guide, you will be able to access the latest version of the OpenFisca Web API on your local machine at `http://localhost:8000/`, without worrying about dependency and stack management, thanks to [Vagrant](https://vagrantup.com) and [Ansible](https://www.ansible.com/).
 
-That instance of the API will serve by default the [Country Template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other available [country package](https://openfisca.org/en/countries/), like for example [OpenFisca-France](https://github.com/openfisca/openfisca-france).
+That instance of the API will serve by default the [Country Template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other available [country package](https://openfisca.org/en/countries/).
 
 > For information, this guide was written with Ansible 2.11.2 running on Python 3.9.4, Vagrant 2.2.16 and VirtualBox 6.1.22.
 
@@ -53,4 +53,4 @@ The port of the application inside the virtual machine is forwarded to the port 
 
 > On such a local virtual machine, the API is by default served over HTTP instead of HTTPS, as SSL certificates cannot be automatically provisioned by Let’s Encrypt.
 
-> The `reverse_proxy_base_path` variable won't have any effect when using this local virtual machine setup.
+> The `reverse_proxy_base_path` variable won't have any effect when using this local virtual machine setup. When using Vagrant, by default the app is accessed directly, with no reverse proxy.
