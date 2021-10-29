@@ -65,7 +65,7 @@ To track the Web API usage with Matomo, define the Ansible variables `matomo_sit
 To enable the auto-update feature, define the Ansible variable `autoupdate_inventory_file` in `YOUR_INVENTORY.yml`. The value has to be a file path, absolute or relative to the openfisca-ops repository.
 
 This will setup a background task that runs the Ansible playbook from the server on a daily basis by default.
-You can change the frequency through the inventory file, by changing the variable `autoupdate_frequency`. The value has to be a [Systemd calendar event expression](https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events).
+You can change the frequency through the inventory file, by changing the variable `autoupdate_frequency`. The value has to be a [systemd calendar event expression](https://www.freedesktop.org/software/systemd/man/systemd.time.html#Calendar%20Events).
 
 To read the logs of the auto-update process:
 
