@@ -7,6 +7,12 @@ server {
     access_log /var/log/nginx/{{ reverse_proxy_host_name }}-access.log;
     error_log /var/log/nginx/{{ reverse_proxy_host_name }}-error.log;
 
+{% if reverse_proxy_base_path != "/" %}
+    location = / {
+        return 303 {{ reverse_proxy_base_path }};
+    }
+{% endif %}
+
     location {{ reverse_proxy_base_path }} {
         # Allow OpenFisca Web API to generate URLs taking the base URL path into account
         proxy_set_header Host $http_host{{ reverse_proxy_base_path }};
