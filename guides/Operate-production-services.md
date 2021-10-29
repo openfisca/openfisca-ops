@@ -27,7 +27,7 @@ Deployments are done using the Ansible playbooks of the API (available in `openf
 
 ## Domains
 
-OpenFisca domains (`openfisca.org`, `openfisca.fr` and `openfisca.com`) are managed by [Gandi](https://www.gandi.net/).
+OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [Gandi](https://www.gandi.net/).
 
 ### Redirections
 
@@ -59,7 +59,7 @@ Source code: <https://github.com/openfisca/openfisca-doc/>
 
 It is deployed to <https://openfisca.org/doc/>.
 
-It is hosted at [Netlify](https://www.netlify.com/).
+It is hosted by [Netlify](https://www.netlify.com/).
 
 ### API - demo
 
