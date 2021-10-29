@@ -1,0 +1,12 @@
+# To enable auto-updating this playbook upon execution, set `autoupdate_inventory_file` to the Ansible inventory file to be used to run the Ansible playbook.
+# The value must be a file path, absolute or relative to the clone directory of `autoupdate_ops_repo_url`.
+autoupdate_inventory_file: null
+autoupdate_ops_branch_name: master
+autoupdate_ops_repo_url: https://github.com/openfisca/openfisca-ops.git
+
+# Fully managed by Ansible, you should not need to edit this unless you have a naming collision
+autoupdate_systemd_service_file_name: openfisca-web-api-autoupdate.service
+autoupdate_systemd_timer_file_name: openfisca-web-api-autoupdate.timer
+unix_group_name: openfisca
+unix_user_name: openfisca-api
+openfisca_ops_clone_dir: openfisca-ops  # relative to the home directory

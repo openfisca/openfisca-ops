@@ -1,0 +1,115 @@
+- name: Update the cache of Ubuntu packages
+  ansible.builtin.apt:
+    update_cache: yes
+  tags:
+    - apt-update-cache
+
+- name: Install Ubuntu packages
+  block:
+    - name: Enable installing Personal Package Archives (PPA) with apt
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - gnupg
+        state: present
+        update_cache: no
+
+    - name: Enable installing arbitrary Python versions
+      ansible.builtin.apt_repository:
+        repo: ppa:deadsnakes/ppa # See more on https://tooling.bennuttall.com/deadsnakes/
+        state: present
+
+    - name: Install the OpenFisca-supported Python version # See https://github.com/openfisca/openfisca-core#environment
+      ansible.builtin.apt:
+        install_recommends: no
+        name:
+          - acl # Provides "setfacl" command, used by Ansible to become another Unix user
+          - gcc
+          - python3.7
+          - python3.7-dev
+          - python3-virtualenv
+        state: present
+        update_cache: no
+
+- name: Create a Unix group and user for the OpenFisca Web API
+  block:
+    - name: Create a Unix group for the OpenFisca Web API
+      ansible.builtin.group:
+        name: "{{ unix_group_name }}"
+        state: present
+
+    - name: Create a Unix user for the OpenFisca Web API
+      ansible.builtin.user:
+        name: "{{ unix_user_name }}"
+        group: "{{ unix_group_name }}"
+        shell: /bin/bash
+      register: unix_user
+
+- name: Install the latest version of OpenFisca Web API in the virtualenv with {{ country_package }}
+  block:
+    - name: Define a directory to store the virtualenv of OpenFisca Web API
+      ansible.builtin.set_fact:
+        venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
+
+    - name: Create the directory for the virtualenv
+      ansible.builtin.file:
+        path: "{{ venv_path }}"
+        state: directory
+        mode: "0755"
+      become_user: "{{ unix_user_name }}"
+
+    - name: Determine if Matomo is enabled according to role variables
+      ansible.builtin.set_fact:
+        matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+
+    - name: Install the Python packages
+      loop:
+        - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
+        - { name: "OpenFisca-Core[web-api]", enabled: yes }
+        - { name: "{{ country_package }}", enabled: yes }
+      when: item.enabled
+      ansible.builtin.pip:
+        # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
+        chdir: "{{ venv_path }}"
+        name: "{{ item.name }}"
+        state: latest
+        virtualenv: "{{ venv_path }}"
+        virtualenv_python: python3.7
+        virtualenv_site_packages: no
+      become_user: "{{ unix_user_name }}"
+
+- name: Set up the systemd service
+  block:
+    - name: Create the directory receiving the environment file
+      ansible.builtin.file:
+        path: "{{ env_file | dirname }}"
+        state: directory
+        mode: "0755"
+
+    - name: Copy the environment file referenced by the systemd service
+      ansible.builtin.template:
+        src: openfisca-web-api.env.j2
+        dest: "{{ env_file }}"
+
+    - name: Copy the systemd service file
+      ansible.builtin.template:
+        src: openfisca-web-api.service.j2
+        dest: "/etc/systemd/system/{{ systemd_service_file_name }}"
+
+    - name: Enable and start the systemd service
+      ansible.builtin.systemd:
+        daemon_reload: yes
+        enabled: yes
+        state: restarted
+        name: "{{ systemd_service_file_name }}"
+
+- name: Check that OpenFisca Web API is actually started
+  ansible.builtin.uri:
+    return_content: yes
+    status_code: 300
+    timeout: 120
+    url: "http://{{ app_host }}:{{ app_port }}"
+  register: this
+  until: this.status == 300
+  retries: 5 # times
+  delay: 5 # seconds

@@ -5,7 +5,7 @@ Vagrant.configure("2") do |config|
   config.vm.box = "ubuntu/focal64"
 
   # Used to refer to this VM from Ansible playbooks.
-  config.vm.define "openfisca_api_fr"
+  config.vm.define "openfisca_api"
 
   config.vm.network "forwarded_port", guest: guest_port, host: host_port
 
@@ -25,11 +25,13 @@ Vagrant.configure("2") do |config|
     ansible.compatibility_mode = "2.0"
     ansible.playbook = "ansible/site.yml"
 
-    # Uncomment to define Ansible variables specific to this VM.
+    # Define Ansible variables specific to this VM.
     ansible.host_vars = {
-      "openfisca_api_fr" => {
-        "host" => "0.0.0.0",
-        "port" => guest_port,
+      "openfisca_api" => {
+        "app_host" => "0.0.0.0",
+        "app_port" => guest_port,
+        # "country_module" => "openfisca_france",
+        # "country_package" => "OpenFisca-France",
       }
     }
   end

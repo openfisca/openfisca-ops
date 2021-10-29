@@ -3,12 +3,31 @@ all:
     vps-60ea1664.openfisca.org:
       ansible_user: root
 
-      base_path: /latest
-      host_name: api.fr.openfisca.org
+      # openfisca_api role
+
+      app_port: 8001
+
+      country_module: openfisca_france
+      country_package: OpenFisca-France
+
+      matomo_url: https://stats.data.gouv.fr/piwik.php
+      matomo_site_id: 4
+
+      env_file: /etc/openfisca/openfisca-web-api-fr.env
+      systemd_service_file_name: openfisca-web-api-fr.service
+      venv_relative_dir: virtualenvs/openfisca-web-api-fr
+
+      # reverse_proxy role
+
+      reverse_proxy_host_name: api.fr.openfisca.org
+      reverse_proxy_base_path: /latest
+
+      # autoupdate role
+
       autoupdate_inventory_file: ansible/inventories/api.fr.openfisca.org.yml
 
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
 
-      matomo_url: https://stats.data.gouv.fr/piwik.php
-      matomo_site_id: 4
+      autoupdate_systemd_service_file_name: openfisca-web-api-fr-autoupdate.service
+      autoupdate_systemd_timer_file_name: openfisca-web-api-fr-autoupdate.timer
