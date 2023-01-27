@@ -25,6 +25,7 @@ all:
       # autoupdate role
 
       autoupdate_inventory_file: ansible/inventories/api.demo.openfisca.org.yml
+      autoupdate_frequency: "*-*-* 00:00:00"
 
       letsencrypt_email: contact@openfisca.org
       letsencrypt_environment: production
