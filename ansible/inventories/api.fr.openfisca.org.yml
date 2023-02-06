@@ -15,7 +15,7 @@ all:
 
       env_file: /etc/openfisca/openfisca-web-api-fr.env
       systemd_service_file_name: openfisca-web-api-fr.service
-      venv_relative_dir: virtualenvs/openfisca-web-api-fr
+      venv_dir: virtualenvs/openfisca-web-api-fr
 
       # reverse_proxy role
 
