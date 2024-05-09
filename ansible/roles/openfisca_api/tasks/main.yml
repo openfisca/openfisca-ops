@@ -71,8 +71,6 @@
         - { name: "{{ country_package }}", enabled: yes }
       when: item.enabled
       ansible.builtin.pip:
-        # Using chdir to solve an error as explained by [this comment](https://github.com/ansible/ansible/issues/22967#issuecomment-500604054)
-        chdir: "{{ venv_path }}"
         name: "{{ item.name }}"
         state: latest
         virtualenv: "{{ venv_path }}"
