@@ -1,122 +1,17 @@
-- name: Update the cache of Ubuntu packages
-  ansible.builtin.apt:
-    update_cache: yes
-  tags:
-    - apt-update-cache
-
-- name: Install required Ubuntu packages
-  ansible.builtin.apt:
-    install_recommends: no
-    name:
-      - acl # Provides "setfacl" command, used by Ansible to become another Unix user
-      - gcc
-    state: present
-    update_cache: no
+- name: Update and install system packages
+  include_tasks: packages.yml
 
 - name: Install and configure Python environment
-  block:
-    - name: Enable installing Personal Package Archives (PPA) with apt
-      ansible.builtin.apt:
-        install_recommends: no
-        name:
-          - gnupg
-        state: present
-        update_cache: no
-
-    - name: Enable installing arbitrary Python versions
-      ansible.builtin.apt_repository:
-        repo: ppa:deadsnakes/ppa # See more on https://tooling.bennuttall.com/deadsnakes/
-        state: present
-
-    - name: Install the OpenFisca-supported Python version # See https://github.com/openfisca/openfisca-core#environment
-      ansible.builtin.apt:
-        install_recommends: no
-        name:
-          - python3.11-dev # `python3.11-dev` is needed to install OpenFisca because it includes the Python C API headers required for compilation, `python3.11` would not suffice as it lacks these development tools.
-          - python3.11-venv # Ensure both `ensurepip` and `venv` modules are available
-          - python3-apt
-        state: present
-        update_cache: no
-
-    - name: Install pip
-      ansible.builtin.command: /usr/bin/python3.11 -m ensurepip
+  include_tasks: python_setup.yml
 
 - name: Create Unix group and user for OpenFisca Web API
-  block:
-    - name: Create Unix group for OpenFisca Web API
-      ansible.builtin.group:
-        name: "{{ unix_group_name }}"
-        state: present
+  include_tasks: user_setup.yml
 
-    - name: Create Unix user for OpenFisca Web API
-      ansible.builtin.user:
-        name: "{{ unix_user_name }}"
-        group: "{{ unix_group_name }}"
-        shell: /bin/bash
-      register: unix_user
-
-- name: Install the latest version of OpenFisca Web API in the virtualenv with {{ country_package }}
-  block:
-    - name: Define the virtual environment directory for OpenFisca Web API
-      ansible.builtin.set_fact:
-        venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
-
-    - name: Create the virtual environment for OpenFisca Web API
-      ansible.builtin.command:
-        cmd: "python3.11 -m venv {{ venv_path }}"
-        creates: "{{ venv_path }}/bin/activate"
-      become_user: "{{ unix_user_name }}"
-
-    - name: Determine if Matomo is enabled according to role variables
-      ansible.builtin.set_fact:
-        matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
-
-    - name: Install the OpenFisca Python packages
-      loop:
-        - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
-        - { name: "OpenFisca-Core[web-api]", enabled: yes }
-        - { name: "{{ country_package }}", enabled: yes }
-      when: item.enabled
-      ansible.builtin.pip:
-        name: "{{ item.name }}"
-        state: latest
-        virtualenv: "{{ venv_path }}"
-        virtualenv_python: python3.11
-        virtualenv_site_packages: no
-      become_user: "{{ unix_user_name }}"
+- name: Setup and configure OpenFisca Web API
+  include_tasks: web_api_setup.yml
 
 - name: Deploy and manage systemd service for OpenFisca Web API
-  block:
-    - name: Create directory for environment configuration file
-      ansible.builtin.file:
-        path: "{{ env_file | dirname }}"
-        state: directory
-        mode: "0755"
-
-    - name: Copy the environment file referenced by the systemd service
-      ansible.builtin.template:
-        src: openfisca-web-api.env.j2
-        dest: "{{ env_file }}"
-
-    - name: Copy the systemd service file
-      ansible.builtin.template:
-        src: openfisca-web-api.service.j2
-        dest: "/etc/systemd/system/{{ systemd_service_file_name }}"
-
-    - name: Enable and start the systemd service
-      ansible.builtin.systemd:
-        daemon_reload: yes
-        enabled: yes
-        state: restarted
-        name: "{{ systemd_service_file_name }}"
+  include_tasks: systemd.yml
 
 - name: Check that OpenFisca Web API is actually started
-  ansible.builtin.uri:
-    return_content: yes
-    status_code: 300
-    timeout: 120
-    url: "http://{{ app_host }}:{{ app_port }}"
-  register: response
-  until: response.status == 300
-  retries: 5 # times
-  delay: 5 # seconds
+  include_tasks: health_check.yml

@@ -1,0 +1,27 @@
+- name: Define the virtual environment directory for OpenFisca Web API
+  ansible.builtin.set_fact:
+    venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
+
+- name: Create the virtual environment for OpenFisca Web API
+  ansible.builtin.command:
+    cmd: "python3.11 -m venv {{ venv_path }}"
+    creates: "{{ venv_path }}/bin/activate"
+  become_user: "{{ unix_user_name }}"
+
+- name: Determine if Matomo is enabled according to role variables
+  ansible.builtin.set_fact:
+    matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+
+- name: Install the OpenFisca Python packages
+  loop:
+    - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
+    - { name: "OpenFisca-Core[web-api]", enabled: yes }
+    - { name: "{{ country_package }}", enabled: yes }
+  when: item.enabled
+  ansible.builtin.pip:
+    name: "{{ item.name }}"
+    state: latest
+    virtualenv: "{{ venv_path }}"
+    virtualenv_python: python3.11
+    virtualenv_site_packages: no
+  become_user: "{{ unix_user_name }}"

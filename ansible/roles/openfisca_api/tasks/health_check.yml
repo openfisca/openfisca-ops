@@ -1,0 +1,10 @@
+- name: Check that OpenFisca Web API is actually started
+  ansible.builtin.uri:
+    return_content: yes
+    status_code: 300
+    timeout: 120
+    url: "http://{{ app_host }}:{{ app_port }}"
+  register: response
+  until: response.status == 300
+  retries: 5
+  delay: 5
