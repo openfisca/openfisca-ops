@@ -38,17 +38,17 @@
         state: present
         update_cache: no
 
-    - name: Install pip using ensurepip
+    - name: Install pip
       ansible.builtin.command: /usr/bin/python3.11 -m ensurepip
 
-- name: Create a Unix group and user for the OpenFisca Web API
+- name: Create Unix group and user for OpenFisca Web API
   block:
-    - name: Create a Unix group for the OpenFisca Web API
+    - name: Create Unix group for OpenFisca Web API
       ansible.builtin.group:
         name: "{{ unix_group_name }}"
         state: present
 
-    - name: Create a Unix user for the OpenFisca Web API
+    - name: Create Unix user for OpenFisca Web API
       ansible.builtin.user:
         name: "{{ unix_user_name }}"
         group: "{{ unix_group_name }}"
@@ -57,11 +57,11 @@
 
 - name: Install the latest version of OpenFisca Web API in the virtualenv with {{ country_package }}
   block:
-    - name: Define a directory to store the virtualenv of OpenFisca Web API
+    - name: Define the virtual environment directory for OpenFisca Web API
       ansible.builtin.set_fact:
         venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
 
-    - name: Create the virtual environment
+    - name: Create the virtual environment for OpenFisca Web API
       ansible.builtin.command:
         cmd: "python3.11 -m venv {{ venv_path }}"
         creates: "{{ venv_path }}/bin/activate"
@@ -71,7 +71,7 @@
       ansible.builtin.set_fact:
         matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
 
-    - name: Install the Python packages
+    - name: Install the OpenFisca Python packages
       loop:
         - { name: "OpenFisca-Core[tracker]", enabled: "{{ matomo_enabled }}" }
         - { name: "OpenFisca-Core[web-api]", enabled: yes }
@@ -85,9 +85,9 @@
         virtualenv_site_packages: no
       become_user: "{{ unix_user_name }}"
 
-- name: Set up the systemd service
+- name: Deploy and manage systemd service for OpenFisca Web API
   block:
-    - name: Create the directory receiving the environment file
+    - name: Create directory for environment configuration file
       ansible.builtin.file:
         path: "{{ env_file | dirname }}"
         state: directory
