@@ -4,7 +4,16 @@
   tags:
     - apt-update-cache
 
-- name: Install Ubuntu packages
+- name: Install required Ubuntu packages
+  ansible.builtin.apt:
+    install_recommends: no
+    name:
+      - acl # Provides "setfacl" command, used by Ansible to become another Unix user
+      - gcc
+    state: present
+    update_cache: no
+
+- name: Install and configure Python environment
   block:
     - name: Enable installing Personal Package Archives (PPA) with apt
       ansible.builtin.apt:
@@ -23,8 +32,6 @@
       ansible.builtin.apt:
         install_recommends: no
         name:
-          - acl # Provides "setfacl" command, used by Ansible to become another Unix user
-          - gcc
           - python3.11-dev # `python3.11-dev` is needed to install OpenFisca because it includes the Python C API headers required for compilation, `python3.11` would not suffice as it lacks these development tools.
           - python3.11-venv # Ensure both `ensurepip` and `venv` modules are available
           - python3-apt
