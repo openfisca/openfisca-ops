@@ -25,11 +25,15 @@
         name:
           - acl # Provides "setfacl" command, used by Ansible to become another Unix user
           - gcc
-          - python3.7
-          - python3.7-dev
-          - python3-virtualenv
+          - python3.11
+          - python3.11-dev # `python3.11-dev` is needed to install OpenFisca because it includes the Python C API headers required for compilation, `python3.11` would not suffice as it lacks these development tools.
+          - python3.11-venv # Ensure both `ensurepip` and `venv` modules are available
+          - python3-apt
         state: present
         update_cache: no
+
+    - name: Install pip using ensurepip
+      ansible.builtin.command: /usr/bin/python3.11 -m ensurepip
 
 - name: Create a Unix group and user for the OpenFisca Web API
   block:
@@ -51,11 +55,10 @@
       ansible.builtin.set_fact:
         venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
 
-    - name: Create the directory for the virtualenv
-      ansible.builtin.file:
-        path: "{{ venv_path }}"
-        state: directory
-        mode: "0755"
+    - name: Create the virtual environment
+      ansible.builtin.command:
+        cmd: "python3.11 -m venv {{ venv_path }}"
+        creates: "{{ venv_path }}/bin/activate"
       become_user: "{{ unix_user_name }}"
 
     - name: Determine if Matomo is enabled according to role variables
@@ -74,7 +77,7 @@
         name: "{{ item.name }}"
         state: latest
         virtualenv: "{{ venv_path }}"
-        virtualenv_python: python3.7
+        virtualenv_python: python3.11
         virtualenv_site_packages: no
       become_user: "{{ unix_user_name }}"
 
