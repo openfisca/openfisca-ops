@@ -25,7 +25,6 @@
         name:
           - acl # Provides "setfacl" command, used by Ansible to become another Unix user
           - gcc
-          - python3.11
           - python3.11-dev # `python3.11-dev` is needed to install OpenFisca because it includes the Python C API headers required for compilation, `python3.11` would not suffice as it lacks these development tools.
           - python3.11-venv # Ensure both `ensurepip` and `venv` modules are available
           - python3-apt
