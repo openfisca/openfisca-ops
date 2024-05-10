@@ -4,7 +4,7 @@
 
 - name: Create the virtual environment for OpenFisca Web API
   ansible.builtin.command:
-    cmd: "python3.11 -m venv {{ venv_path }}"
+    cmd: "python{{ python_version }} -m venv {{ venv_path }}"
     creates: "{{ venv_path }}/bin/activate"
   become_user: "{{ unix_user_name }}"
 
@@ -22,6 +22,6 @@
     name: "{{ item.name }}"
     state: latest
     virtualenv: "{{ venv_path }}"
-    virtualenv_python: python3.11
+    virtualenv_python: "python{{ python_version }}"
     virtualenv_site_packages: no
   become_user: "{{ unix_user_name }}"

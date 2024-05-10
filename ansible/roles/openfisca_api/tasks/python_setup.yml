@@ -11,15 +11,15 @@
     repo: ppa:deadsnakes/ppa
     state: present
 
-- name: Install Python 3.11 for OpenFisca
+- name: Install Python {{ python_version }} for OpenFisca
   ansible.builtin.apt:
     install_recommends: no
     name:
-      - python3.11-dev
-      - python3.11-venv
+      - python{{ python_version }}-dev
+      - python{{ python_version }}-venv
       - python3-apt
     state: present
     update_cache: no
 
 - name: Install pip
-  ansible.builtin.command: /usr/bin/python3.11 -m ensurepip
+  ansible.builtin.command: /usr/bin/python{{ python_version }} -m ensurepip

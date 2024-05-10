@@ -1,3 +1,5 @@
+python_version: "3.11" # must be string, not a number
+
 app_host: 127.0.0.1
 app_port: 8000
 country_module: openfisca_country_template
