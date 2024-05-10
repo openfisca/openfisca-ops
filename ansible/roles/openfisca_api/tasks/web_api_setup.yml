@@ -2,10 +2,26 @@
   ansible.builtin.set_fact:
     venv_path: "{{ unix_user.home }}/{{ venv_dir }}"
 
-- name: Create the virtual environment for OpenFisca Web API
+- name: Check current Python version in the virtual environment
+  ansible.builtin.command:
+    cmd: "{{ venv_path }}/bin/python --version"
+  register: python_version_check
+  ignore_errors: true # tells Ansible to continue if python is not yet installed and the command fails
+  changed_when: false # tells Ansible that this task does not make any changes
+  become_user: "{{ unix_user_name }}"
+
+- name: Remove existing virtual environment if Python version is different
+  ansible.builtin.file:
+    path: "{{ venv_path }}"
+    state: absent
+  when: python_version_check.stdout is not search(python_version)
+  become_user: "{{ unix_user_name }}"
+
+- name: Create the virtual environment with expected Python version if needed
   ansible.builtin.command:
     cmd: "python{{ python_version }} -m venv {{ venv_path }}"
-    creates: "{{ venv_path }}/bin/activate"
+    creates: "{{ venv_path }}/bin/activate" # tells Ansible to not run this task if the file already exists
+  when: python_version_check.stdout is not search(python_version)
   become_user: "{{ unix_user_name }}"
 
 - name: Determine if Matomo is enabled according to role variables
