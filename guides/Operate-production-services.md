@@ -82,13 +82,13 @@ To update the instance manually, run the Ansible playbook with `ansible-playbook
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart openfisca-web-api-demo.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u openfisca-web-api-demo.service
@@ -109,13 +109,13 @@ To update the instance manually, run the Ansible playbook with `ansible-playbook
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart openfisca-web-api-fr.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u openfisca-web-api-fr.service
@@ -137,13 +137,13 @@ The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.or
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart legislation-explorer-demo.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u legislation-explorer-demo.service
@@ -165,13 +165,13 @@ The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart legislation-explorer-fr.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u legislation-explorer-fr.service

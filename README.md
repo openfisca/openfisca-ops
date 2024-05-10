@@ -2,7 +2,7 @@
 
 This repository contains scripts and config files for deploying OpenFisca on a server.
 
-Nothing secret must be commited to this repository.
+No secret must be committed to this repository.
 
 ## Install the OpenFisca Web API on a virtual machine for development purposes
 
