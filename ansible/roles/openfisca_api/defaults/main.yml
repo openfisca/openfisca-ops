@@ -1,4 +1,4 @@
-python_version: "3.11" # must be string, not a number
+python_version: "3.11" # must be string, not a number; only tested with Python 3
 
 app_host: 127.0.0.1
 app_port: 8000
