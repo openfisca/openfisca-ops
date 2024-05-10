@@ -78,9 +78,7 @@ This instance is configured to use the [Country Template](https://github.com/ope
 This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
-To update the instance manually, run the Ansible playbook.
-
-The related Ansible inventory file is `openfisca-ops/ansible/api.demo.openfisca.org.yml`.
+To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.demo.openfisca.org.yml ansible/site.yml`.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
@@ -107,9 +105,7 @@ This instance is configured to use [OpenFisca-France](https://github.com/openfis
 This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
-To update the instance manually, run the Ansible playbook.
-
-The related Ansible inventory file is `openfisca-ops/ansible/api.fr.openfisca.org.yml`.
+To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.fr.openfisca.org.yml ansible/site.yml`.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
