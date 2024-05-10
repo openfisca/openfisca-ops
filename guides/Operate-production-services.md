@@ -41,18 +41,6 @@ Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gan
 
 ## Services
 
-### `fr.openfisca.org`
-
-Source code available on <https://github.com/openfisca/fr.openfisca.org>.
-
-The website for France is a static web application hosted at [Netlify](https://www.netlify.com/).
-
-The domain `fr.openfisca.org` is configured to point to Netlify.
-
-Each commit to `master` is deployed automatically by Netlify.
-
-The `_redirects` file, thanks to [Netlify redirects](https://docs.netlify.com/routing/redirects/), keeps backward compatibility with the legacy URLs <https://fr.openfisca.org/api/latest> and <https://fr.openfisca.org/legislation>.
-
 ### Documentation
 
 Source code available on <https://github.com/openfisca/openfisca-doc/>
@@ -188,3 +176,7 @@ Manual renewal should never have to be done, however to do so, connect to the se
 ```bash
 certbot renew
 ```
+
+### `fr.openfisca.org`
+
+This legacy subdomain redirects to `openfisca.org/fr` through an HTTP redirect handled by the registrar.
