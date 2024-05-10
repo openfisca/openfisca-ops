@@ -41,18 +41,6 @@ Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gan
 
 ## Services
 
-### `fr.openfisca.org`
-
-Source code available on <https://github.com/openfisca/fr.openfisca.org>.
-
-The website for France is a static web application hosted at [Netlify](https://www.netlify.com/).
-
-The domain `fr.openfisca.org` is configured to point to Netlify.
-
-Each commit to `master` is deployed automatically by Netlify.
-
-The `_redirects` file, thanks to [Netlify redirects](https://docs.netlify.com/routing/redirects/), keeps backward compatibility with the legacy URLs <https://fr.openfisca.org/api/latest> and <https://fr.openfisca.org/legislation>.
-
 ### Documentation
 
 Source code available on <https://github.com/openfisca/openfisca-doc/>
@@ -78,19 +66,17 @@ This instance is configured to use the [Country Template](https://github.com/ope
 This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
-To update the instance manually, run the Ansible playbook.
-
-The related Ansible inventory file is `openfisca-ops/ansible/api.demo.openfisca.org.yml`.
+To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.demo.openfisca.org.yml ansible/site.yml`.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart openfisca-web-api-demo.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u openfisca-web-api-demo.service
@@ -107,19 +93,17 @@ This instance is configured to use [OpenFisca-France](https://github.com/openfis
 This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
-To update the instance manually, run the Ansible playbook.
-
-The related Ansible inventory file is `openfisca-ops/ansible/api.fr.openfisca.org.yml`.
+To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.fr.openfisca.org.yml ansible/site.yml`.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart openfisca-web-api-fr.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u openfisca-web-api-fr.service
@@ -141,13 +125,13 @@ The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.or
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart legislation-explorer-demo.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u legislation-explorer-demo.service
@@ -169,13 +153,13 @@ The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.
 
 This instance is hosted on the `vps-60ea1664.ovh.net` server.
 
-To restart the service, login as `root` to the server:
+To restart the service, log in as `root` to the server:
 
 ```bash
 systemctl restart legislation-explorer-fr.service
 ```
 
-To read the logs, login as `root` to the server:
+To read the logs, log in as `root` to the server:
 
 ```bash
 journalctl -u legislation-explorer-fr.service
@@ -192,3 +176,7 @@ Manual renewal should never have to be done, however to do so, connect to the se
 ```bash
 certbot renew
 ```
+
+### `fr.openfisca.org`
+
+This legacy subdomain redirects to `openfisca.org/fr` through an HTTP redirect handled by the registrar.

@@ -2,7 +2,7 @@
 
 This repository contains scripts and config files for deploying OpenFisca on a server.
 
-Nothing secret must be commited to this repository.
+No secret must be committed to this repository.
 
 ## Install the OpenFisca Web API on a virtual machine for development purposes
 
@@ -18,7 +18,7 @@ See the [dedicated page](guides/Operate-production-France-API.md).
 
 ## Passwords
 
-Access to shared services (`OVH`, `Twitter`, etc.) must be done through individual accounts, to which the management is delegated.
+Access to shared services (OVH, PyPI, X…) must be done through individual accounts, to which management is delegated.
 
 However, some systems do not support delegation, or it can sometimes be helpful to get administrator access to master accounts.
 

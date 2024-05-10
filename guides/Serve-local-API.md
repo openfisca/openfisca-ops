@@ -16,7 +16,7 @@ If you don’t already have a [provider](https://www.vagrantup.com/docs/provider
 
 VirtualBox is not compatible with Apple Silicon (M1…) processors. You will thus need to use the Docker provider.
 
-To that end, install Docker Desktop through a [manual install](https://docs.docker.com/docker-for-mac/install/) or with `brew install homebrew/cask/docker`.
+To that end, install Docker Desktop through a [manual install](https://docs.docker.com/docker-for-mac/install/) or with `brew install --cask docker`.
 
 ## 2. Set up Vagrant
 
@@ -33,7 +33,7 @@ To install Ansible, follow [the documentation](https://docs.ansible.com/ansible/
 To check that Ansible is properly installed, run `ansible --version`. You should get something like:
 
 ```
-ansible [core 2.11.2]
+ansible [core 2.16.5]
    …
 ```
 
