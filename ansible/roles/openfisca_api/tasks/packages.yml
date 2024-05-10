@@ -10,5 +10,6 @@
     name:
       - acl
       - gcc
+      - python3-apt
     state: present
     update_cache: no

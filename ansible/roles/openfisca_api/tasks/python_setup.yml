@@ -17,7 +17,6 @@
     name:
       - python{{ python_version }}-dev
       - python{{ python_version }}-venv
-      - python3-apt
     state: present
     update_cache: no
 
