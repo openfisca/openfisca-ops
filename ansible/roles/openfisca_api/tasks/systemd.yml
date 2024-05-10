@@ -1,0 +1,22 @@
+- name: Create directory for environment configuration file
+  ansible.builtin.file:
+    path: "{{ env_file | dirname }}"
+    state: directory
+    mode: "0755"
+
+- name: Copy the environment file referenced by the systemd service
+  ansible.builtin.template:
+    src: openfisca-web-api.env.j2
+    dest: "{{ env_file }}"
+
+- name: Copy the systemd service file
+  ansible.builtin.template:
+    src: openfisca-web-api.service.j2
+    dest: "/etc/systemd/system/{{ systemd_service_file_name }}"
+
+- name: Enable and start the systemd service
+  ansible.builtin.systemd:
+    daemon_reload: yes
+    enabled: yes
+    state: restarted
+    name: "{{ systemd_service_file_name }}"

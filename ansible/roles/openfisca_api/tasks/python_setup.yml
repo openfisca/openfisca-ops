@@ -1,0 +1,24 @@
+- name: Enable installing Personal Package Archives (PPA) with apt
+  ansible.builtin.apt:
+    install_recommends: no
+    name:
+      - gnupg
+    state: present
+    update_cache: no
+
+- name: Enable installing arbitrary Python versions
+  ansible.builtin.apt_repository:
+    repo: ppa:deadsnakes/ppa
+    state: present
+
+- name: Install Python {{ python_version }} for OpenFisca
+  ansible.builtin.apt:
+    install_recommends: no
+    name:
+      - python{{ python_version }}-dev
+      - python{{ python_version }}-venv
+    state: present
+    update_cache: no
+
+- name: Install pip
+  ansible.builtin.command: /usr/bin/python{{ python_version }} -m ensurepip

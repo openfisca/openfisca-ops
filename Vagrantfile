@@ -18,7 +18,8 @@ Vagrant.configure("2") do |config|
     docker.remains_running = true
     docker.has_ssh = true
     docker.privileged = true
-    docker.volumes = ["/sys/fs/cgroup:/sys/fs/cgroup:ro"]
+    docker.volumes = ["/sys/fs/cgroup:/sys/fs/cgroup:rw"]
+    docker.create_args = ["--cgroupns=host"]
   end
 
   config.vm.provision :ansible, run: "always" do |ansible|

@@ -1,0 +1,15 @@
+- name: Update the cache of Ubuntu packages
+  ansible.builtin.apt:
+    update_cache: yes
+  tags:
+    - apt-update-cache
+
+- name: Install required Ubuntu packages
+  ansible.builtin.apt:
+    install_recommends: no
+    name:
+      - acl
+      - gcc
+      - python3-apt
+    state: present
+    update_cache: no
