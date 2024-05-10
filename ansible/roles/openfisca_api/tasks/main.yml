@@ -7,10 +7,10 @@
 - name: Create Unix group and user for OpenFisca Web API
   include_tasks: user_setup.yml
 
-- name: Setup and configure OpenFisca Web API
+- name: Set up OpenFisca Web API
   include_tasks: web_api_setup.yml
 
-- name: Deploy and manage systemd service for OpenFisca Web API
+- name: Set up systemd service for OpenFisca Web API
   include_tasks: systemd.yml
 
 - name: Check that OpenFisca Web API is actually started
