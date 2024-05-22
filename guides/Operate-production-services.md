@@ -36,6 +36,7 @@ Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gan
 - `http(s)://www.openfisca.org` -> `https://openfisca.org`
 - `http(s)://doc.openfisca.fr` -> `https://openfisca.org/doc/`
 - `http(s)://www.openfisca.fr` -> `https://fr.openfisca.org`
+- `http(s)://fr.openfisca.org` -> `https://openfisca.org/fr`
 
 > `http(s)://` means that both `http://` and `https://` URLs are redirected.
 
