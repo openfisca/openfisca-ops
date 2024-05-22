@@ -18,7 +18,7 @@ Provider: OVH.
 Usage: legacy server hosting API and Legislation Explorer instances for France and the Country Template.
 Replaced by `vps-60ea1664`.
 
-### `vps-60ea1664.ovh.net`
+### `vps-60ea1664.openfisca.org`
 
 Provider: OVH.
 Usage: server hosting API and Legislation Explorer instances for France and the Country Template.
@@ -68,7 +68,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.demo.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -95,7 +95,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.fr.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -123,7 +123,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -151,7 +151,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
