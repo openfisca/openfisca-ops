@@ -26,7 +26,7 @@ Therefore, a database containing all the necessary passwords is accessible.
 
 ### Accessing the passwords database
 
-- Install [KeePassX](https://www.keepassx.org/downloads)
+- Install [KeePassXC](https://keepassxc.org/download/#macos)
 - Download the [database](openfisca.kdbx)
 - Request key and password on the [#of-ops](https://openfisca.slack.com) channel, or by [email](mailto:contact@openfisca.org)
 
