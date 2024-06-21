@@ -19,3 +19,6 @@ systemd_service_file_name: openfisca-web-api.service
 unix_group_name: openfisca
 unix_user_name: openfisca-api
 venv_dir: venv  # relative to the home directory
+
+systemd_timer_file_name: "{{ systemd_service_file_name | replace('.service', '.timer') }}"
+autorestart_frequency: daily
