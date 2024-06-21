@@ -32,3 +32,7 @@ all:
 
       autoupdate_systemd_service_file_name: openfisca-web-api-demo-autoupdate.service
       autoupdate_systemd_timer_file_name: openfisca-web-api-demo-autoupdate.timer
+
+      # autorestart
+
+      autorestart_frequency: "*-*-* 00:05:00"
