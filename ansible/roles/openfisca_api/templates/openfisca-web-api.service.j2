@@ -15,6 +15,7 @@ ExecStart={{ venv_path }}/bin/openfisca serve \
     --workers {{ nb_workers }}
 User={{ unix_user_name }}
 Group={{ unix_group_name }}
+Restart=always
 
 [Install]
 WantedBy=multi-user.target
