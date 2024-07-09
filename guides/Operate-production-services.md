@@ -18,14 +18,14 @@ Provider: OVH.
 Usage: legacy server hosting API and Legislation Explorer instances for France and the Country Template.
 Replaced by `vps-60ea1664`.
 
-### `vps-60ea1664.ovh.net`
+### `vps-60ea1664.openfisca.org`
 
 Provider: OVH.
 Usage: server hosting API and Legislation Explorer instances for France and the Country Template.
 
 Deployments are done using the Ansible playbooks of the API (available in `openfisca-ops`) and the [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
 
-## Domains
+## Registrar
 
 OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [Gandi](https://www.gandi.net/).
 
@@ -36,10 +36,21 @@ Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gan
 - `http(s)://www.openfisca.org` -> `https://openfisca.org`
 - `http(s)://doc.openfisca.fr` -> `https://openfisca.org/doc/`
 - `http(s)://www.openfisca.fr` -> `https://fr.openfisca.org`
+- `http(s)://fr.openfisca.org` -> `https://openfisca.org/fr`
 
 > `http(s)://` means that both `http://` and `https://` URLs are redirected.
 
 ## Services
+
+### Website
+
+Source code available on <https://github.com/openfisca/openfisca.org/>
+
+It is deployed to <https://openfisca.org/> by continuous deployment provided by CircleCI.
+
+It is hosted by GitHub Pages.
+
+The [settings](https://github.com/openfisca/openfisca.org/settings/pages) of the GitHub repository defines a custom domain name (`openfisca.org`), and the [registrar](#registrar) has been set up to point the `A` and `AAAA` DNS records to GitHub Pages' servers.
 
 ### Documentation
 
@@ -47,13 +58,7 @@ Source code available on <https://github.com/openfisca/openfisca-doc/>
 
 It is deployed to <https://openfisca.org/doc/>.
 
-It is hosted by [Netlify](https://www.netlify.com/).
-
-The CI on this repository generates the HTML from the documentation and pushes it to the `doc-html` branch through [`.circleci/config.yml`](https://github.com/openfisca/openfisca-doc/blob/master/.circleci/config.yml) and [`publish.sh`](https://github.com/openfisca/openfisca-doc/blob/master/publish.sh).
-
-Then the CI of [openfisca.org](https://github.com/openfisca/openfisca.org) fetches that branch and includes its contents in the build, then updates the published version on GitHub Pages through [`publish-doc.sh`](https://github.com/openfisca/openfisca.org/blob/master/publish-doc.sh).
-
-The [settings](https://github.com/openfisca/openfisca.org/settings/pages) of this GitHub Pages instance defines a custom domain name (`openfisca.org`), and the `/doc` base path targets a directory in the static build.
+The CD on this repository generates the HTML from the documentation and adds the built content to the `doc` directory of the [openfisca.org `gh-pages` branch](https://github.com/openfisca/openfisca.org/tree/gh-pages) through the `deploy` GitHub Actions workflow.
 
 ### API - demo
 
@@ -68,7 +73,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.demo.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -95,7 +100,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.fr.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -123,7 +128,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
@@ -151,7 +156,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.ovh.net` server.
+This instance is hosted on the `vps-60ea1664.openfisca.org` server.
 
 To restart the service, log in as `root` to the server:
 
