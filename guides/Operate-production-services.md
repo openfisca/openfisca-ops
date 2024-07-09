@@ -25,7 +25,7 @@ Usage: server hosting API and Legislation Explorer instances for France and the 
 
 Deployments are done using the Ansible playbooks of the API (available in `openfisca-ops`) and the [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
 
-## Domains
+## Registrar
 
 OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [Gandi](https://www.gandi.net/).
 
@@ -50,7 +50,7 @@ It is deployed to <https://openfisca.org/> by continuous deployment provided by 
 
 It is hosted by GitHub Pages.
 
-The [settings](https://github.com/openfisca/openfisca.org/settings/pages) of the GitHub repository defines a custom domain name (`openfisca.org`), and the registrar has been set up to point the `A` and `AAAA` DNS records to GitHub Pages' servers.
+The [settings](https://github.com/openfisca/openfisca.org/settings/pages) of the GitHub repository defines a custom domain name (`openfisca.org`), and the [registrar](#registrar) has been set up to point the `A` and `AAAA` DNS records to GitHub Pages' servers.
 
 ### Documentation
 
