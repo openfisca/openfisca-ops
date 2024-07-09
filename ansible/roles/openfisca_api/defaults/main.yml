@@ -6,6 +6,7 @@ country_module: openfisca_country_template
 country_package: OpenFisca-Country-Template
 nb_workers: 2
 welcome_message: Welcome to an instance of the OpenFisca Web API for the {{ country_package }} country package.
+autorestart_frequency: daily  # the syntax is systemd's Calendar Events <https://man.archlinux.org/man/systemd.time.7#CALENDAR_EVENTS>
 
 # Optional: Matomo tracker
 # See more on https://github.com/openfisca/openfisca-tracker
@@ -16,9 +17,8 @@ matomo_token: "{{ lookup('env','MATOMO_TOKEN') }}"
 # Fully managed by Ansible, you should not need to edit this unless you have a naming collision
 env_file: /etc/openfisca/openfisca-web-api.env
 systemd_service_file_name: openfisca-web-api.service
+systemd_timer_file_name: "{{ systemd_service_file_name | replace('.service', '.timer') }}"
 unix_group_name: openfisca
 unix_user_name: openfisca-api
 venv_dir: venv  # relative to the home directory
 
-systemd_timer_file_name: "{{ systemd_service_file_name | replace('.service', '.timer') }}"
-autorestart_frequency: daily
