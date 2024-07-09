@@ -58,7 +58,7 @@ Source code available on <https://github.com/openfisca/openfisca-doc/>
 
 It is deployed to <https://openfisca.org/doc/>.
 
-The CD on this repository generates the HTML from the documentation and adds the built content to the `doc` directory of the `gh-pages` branch through the `deploy` GitHub Actions workflow.
+The CD on this repository generates the HTML from the documentation and adds the built content to the `doc` directory of the [openfisca.org `gh-pages` branch](https://github.com/openfisca/openfisca.org/tree/gh-pages) through the `deploy` GitHub Actions workflow.
 
 ### API - demo
 
