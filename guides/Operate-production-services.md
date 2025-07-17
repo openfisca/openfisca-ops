@@ -27,11 +27,11 @@ Deployments are done using the Ansible playbooks of the API (available in `openf
 
 ## Registrar
 
-OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [Gandi](https://www.gandi.net/).
+OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [OVH](https://www.ovhcloud.com/).
 
 ### Redirections
 
-Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gandi admin UI for each domain:
+Some redirections are done at the DNS level. See the "Web Forwarding" tab of admin UI for each domain:
 
 - `http(s)://www.openfisca.org` -> `https://openfisca.org`
 - `http(s)://doc.openfisca.fr` -> `https://openfisca.org/doc/`
