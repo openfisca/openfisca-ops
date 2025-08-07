@@ -24,7 +24,7 @@ However, some systems do not support delegation, or it can sometimes be helpful 
 
 A database containing all passwords for OpenFisca services is maintained by the Association. It is accessible to members of the Board, who can delegate access to third parties for a specific mission. Every access delegation is listed in the minutes of the Board decisions.
 
-The underlying intention is to reduce the risk of loss of control over password-protected components and to provide, in the long-term, a standard access to OpenFisca’s services and accounts. That in order to improve delivery, fail safety and resilience.
+The underlying intention is to reduce the risk of loss of control over password-protected components and to provide, in the long-term, a standard access to OpenFisca’s services and accounts. This is in order to improve delivery, fail safety and resilience.
 
 ### Accessing the passwords database
 
@@ -42,7 +42,7 @@ Do not transmit key and password through the same channel. Password must be comm
 
 ### Historical access ledger
 
-A passwords database used to be provided in this repository. This legacy system is still reachable thanks to Git history and, while passwords are not updated there, some older services might still be reachable through the credentials listed there. Access to that legacy passwords database was granted to:
+Historically a password database was provided in this repository, but this is now deprecated. This legacy system is still reachable thanks to Git history and, while passwords are not updated there, some older services might still be reachable through the credentials listed there. Access to that legacy passwords database was granted to:
 
 - [@Anna-Livia](https://github.com/Anna-Livia)
 - [@cbenz](https://github.com/cbenz)

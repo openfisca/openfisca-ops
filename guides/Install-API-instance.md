@@ -12,7 +12,7 @@ That instance of the API will serve by default the [Country Template](https://gi
 
 Rent a server from any commercial provider, choosing a machine that:
 
-- Has `Ubuntu 20.04`, `Ubuntu 22.04` or `Ubuntu 24.04` as operating system. `24.10` is not supported at the time of writing (because of the [deadsnakes](https://github.com/deadsnakes/) PPA).
+- Runs `Ubuntu 20.04`, `Ubuntu 22.04` or `Ubuntu 24.04` as operating system. (Note: `24.10` is not supported at the time of writing because of the [deadsnakes](https://github.com/deadsnakes/) PPA).
 - Allows logging in as superuser (administrator) over SSH.
 - Can download packages over the internet.
 
@@ -33,7 +33,7 @@ ansible [core 2.11.2]
 
 ## 3. Give proper rights to the deploy user
 
-The user that Ansible will connect as must have passwordless acess to `sudo` to set everything up properly.
+The user that Ansible will connect as must have password-less access to `sudo`.
 
 If that is not already the case on the newly provisioned server, this can be done by editing the sudoers file with `sudo visudo` and adding `<username> ALL=(ALL) NOPASSWD:ALL` at the end.
 
