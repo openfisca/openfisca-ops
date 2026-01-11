@@ -10,28 +10,41 @@ Configuration changes should be tested locally using Vagrant (cf the [dedicated 
 
 No change should be done on the server without updating this repository.
 
-## Servers
+## Main server
+
+### `vps-7d4f7fd9.vps.ovh.net`
+
+Provider: OVH.
+Usage: hosting API and Legislation Explorer instances for France and the Country Template.
+IPv4: `51.254.33.240`
+IPv6: `2001:41d0:401:3000::4956`
+Gateway: `2001:41d0:401:3000::1`
+
+Deployments are done using the Ansible playbooks of the API (available in `openfisca-ops`) and the [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
+
+## Legacy servers
 
 ### `vps223769.ovh.net`
 
 Provider: OVH.
-Usage: legacy server hosting API and Legislation Explorer instances for France and the Country Template.
+Usage: hosting API and Legislation Explorer instances for France and the Country Template.
 Replaced by `vps-60ea1664`.
+Decommissioned in June 2025.
 
-### `vps-60ea1664.openfisca.org`
+### `vps-60ea1664.vps.ovh.net`
 
 Provider: OVH.
-Usage: server hosting API and Legislation Explorer instances for France and the Country Template.
-
-Deployments are done using the Ansible playbooks of the API (available in `openfisca-ops`) and the [Legislation Explorer](https://github.com/openfisca/legislation-explorer).
+Usage: hosting API and Legislation Explorer instances for France and the Country Template.
+Replaced by `vps-7d4f7fd9`.
+Decommissioned in July 2025.
 
 ## Registrar
 
-OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [Gandi](https://www.gandi.net/).
+OpenFisca domains `openfisca.org`, `openfisca.fr` and `openfisca.com` are managed by [OVH](https://www.ovhcloud.com/).
 
 ### Redirections
 
-Some redirections are done at the DNS level. See the "Web Forwarding" tab of Gandi admin UI for each domain:
+Some redirections are done at the DNS level. See the "Web Forwarding" tab of admin UI for each domain:
 
 - `http(s)://www.openfisca.org` -> `https://openfisca.org`
 - `http(s)://doc.openfisca.fr` -> `https://openfisca.org/doc/`
@@ -73,7 +86,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.demo.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.openfisca.org` server.
+This instance is hosted on the main server.
 
 To restart the service, log in as `root` to the server:
 
@@ -100,7 +113,7 @@ This instance is deployed using the Ansible playbook defined in `openfisca-ops`.
 This playbook offers an auto-update feature that installs the latest API version and the latest country package on a regular basis.
 To update the instance manually, run the Ansible playbook with `ansible-playbook --inventory ansible/inventories/api.fr.openfisca.org.yml ansible/site.yml`.
 
-This instance is hosted on the `vps-60ea1664.openfisca.org` server.
+This instance is hosted on the main server.
 
 To restart the service, log in as `root` to the server:
 
@@ -128,7 +141,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.demo.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.openfisca.org` server.
+This instance is hosted on the main server.
 
 To restart the service, log in as `root` to the server:
 
@@ -156,7 +169,7 @@ To update the instance manually, run the Ansible playbook.
 
 The related Ansible inventory file is `ops/ansible/legislation.fr.openfisca.org.yml`.
 
-This instance is hosted on the `vps-60ea1664.openfisca.org` server.
+This instance is hosted on the main server.
 
 To restart the service, log in as `root` to the server:
 

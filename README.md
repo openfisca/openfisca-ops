@@ -18,20 +18,28 @@ See the [dedicated page](guides/Operate-production-France-API.md).
 
 ## Passwords
 
-Access to shared services (OVH, PyPI, X…) must be done through individual accounts, to which management is delegated.
+Access to shared services (OVH, PyPI, Mastodon…) must be done through individual accounts, to which management is delegated.
 
 However, some systems do not support delegation, or it can sometimes be helpful to get administrator access to master accounts.
 
-Therefore, a database containing all the necessary passwords is accessible.
+A database containing all passwords for OpenFisca services is maintained by the Association. It is accessible to members of the Board, who can delegate access to third parties for a specific mission. Every access delegation is listed in the minutes of the Board decisions.
+
+The underlying intention is to reduce the risk of loss of control over password-protected components and to provide, in the long-term, a standard access to OpenFisca’s services and accounts. This is in order to improve delivery, fail safety and resilience.
 
 ### Accessing the passwords database
 
-- Install [KeePassXC](https://keepassxc.org/download)
-- Download the [database](openfisca.kdbx)
-- Request key and password on the [#of-ops](https://openfisca.slack.com) channel, or by [email](mailto:contact@openfisca.org)
+If you believe you need administrator access to an OpenFisca service to fulfil a mission, open a pull request on this repository to add yourself in the access ledger below. Explain in the description which services you need access to, and why you need it. The admin team will review your request and get back to you.
 
-The underlying intention is to reduce the risk of loss of control over password-protected components and to provide, in the long-term, a standard access to OpenFisca’s services and accounts. That in order to improve delivery, fail safety and resilience.
+If you have been granted permission to access the passwords database:
+
+1. Download the passwords database on [`cloud.openfisca.org`](https://cloud.openfisca.org).
+2. Install [KeePassXC](https://keepassxc.org/download).
+3. Obtain the password and key from the Board.
+
+### Providing access to the passwords database
 
 Do not transmit key and password through the same channel. Password must be communicated orally, and key should be transmitted either by physical transfer (USB key, etc.) or electronically, in which case you’ll have to encrypt it before sending.
 
-Currently, access to both key and password are granted to [@Anna-Livia](https://github.com/Anna-Livia), [@cbenz](https://github.com/cbenz), [@MattiSG](https://github.com/MattiSG), [@maukoquiroga](https://github.com/maukoquiroga), [@Morendil](https://github.com/morendil), [@sandcha](https://github.com/sandcha) and [@clementbiron](https://github.com/clementbiron/). This is expected to change as the community sees the need.
+### Historical access ledger
+
+Historically a password database was provided in this repository, but this is now deprecated. This legacy system is still reachable thanks to Git history, but all systems it gives access to have been disabled or retired.
