@@ -42,12 +42,4 @@ Do not transmit key and password through the same channel. Password must be comm
 
 ### Historical access ledger
 
-Historically a password database was provided in this repository, but this is now deprecated. This legacy system is still reachable thanks to Git history and, while passwords are not updated there, some older services might still be reachable through the credentials listed there. Access to that legacy passwords database was granted to:
-
-- [@Anna-Livia](https://github.com/Anna-Livia)
-- [@cbenz](https://github.com/cbenz)
-- [@MattiSG](https://github.com/MattiSG)
-- [@maukoquiroga](https://github.com/maukoquiroga)
-- [@Morendil](https://github.com/morendil)
-- [@sandcha](https://github.com/sandcha)
-- [@clementbiron](https://github.com/clementbiron/)
+Historically a password database was provided in this repository, but this is now deprecated. This legacy system is still reachable thanks to Git history, but all systems it gives access to have been disabled or retired.
