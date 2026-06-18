@@ -26,7 +26,7 @@
 
 - name: Determine if Matomo is enabled according to role variables
   ansible.builtin.set_fact:
-    matomo_enabled: "{{ matomo_site_id and matomo_token and matomo_url }}"
+    matomo_enabled: "{{ matomo_site_id is string and matomo_token is string and matomo_url is string }}"
 
 - name: Install the OpenFisca Python packages
   loop:

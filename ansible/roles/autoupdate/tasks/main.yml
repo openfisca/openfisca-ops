@@ -1,7 +1,7 @@
 - name: Set up auto-update
   tags:
     - auto-update
-  when: autoupdate_inventory_file
+  when: autoupdate_inventory_file is string
   block:
     - name: Add the "ansible" PPA
       ansible.builtin.apt_repository:

@@ -4,7 +4,7 @@ By following this guide, you will be able to access the latest version of the Op
 
 That instance of the API will serve by default the [Country Template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other available [country package](https://openfisca.org/en/countries/).
 
-> For information, this guide was written with Ansible 2.11.2 running on Python 3.9.4, Vagrant 2.2.16 and VirtualBox 6.1.22.
+> For information, this guide was written with Ansible 2.20.6 running on Python 3.14.5, Vagrant 2.4.9 and UTM 4.7.5.
 
 ## 1. Install a virtual machine provider
 
@@ -33,7 +33,7 @@ To install Ansible, follow [the documentation](https://docs.ansible.com/ansible/
 To check that Ansible is properly installed, run `ansible --version`. You should get something like:
 
 ```
-ansible [core 2.16.5]
+ansible [core 2.20.6]
    …
 ```
 
