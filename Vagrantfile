@@ -11,17 +11,6 @@ Vagrant.configure("2") do |config|
 
   config.vm.provider :virtualbox
 
-  # Provider for Docker, necessary for Apple Silicon
-  config.vm.provider :docker do |docker, override|
-    override.vm.box = nil
-    docker.image = "rofrano/vagrant-provider:ubuntu"
-    docker.remains_running = true
-    docker.has_ssh = true
-    docker.privileged = true
-    docker.volumes = ["/sys/fs/cgroup:/sys/fs/cgroup:rw"]
-    docker.create_args = ["--cgroupns=host"]
-  end
-
   config.vm.provision :ansible, run: "always" do |ansible|
     ansible.compatibility_mode = "2.0"
     ansible.playbook = "ansible/site.yml"
