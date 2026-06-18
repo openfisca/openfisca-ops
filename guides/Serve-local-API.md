@@ -4,19 +4,22 @@ By following this guide, you will be able to access the latest version of the Op
 
 That instance of the API will serve by default the [Country Template](https://github.com/openfisca/country-template), but you will be able to configure it to serve any other available [country package](https://openfisca.org/en/countries/).
 
-> For information, this guide was written with Ansible 2.11.2 running on Python 3.9.4, Vagrant 2.2.16 and VirtualBox 6.1.22.
+> For information, this guide was written with Ansible 2.20.6 running on Python 3.14.5, Vagrant 2.4.9 and UTM 4.7.5.
 
 ## 1. Install a virtual machine provider
 
 In order to isolate the OpenFisca Web API environment from your environment, we will set it up in a [virtual machine](https://en.wikipedia.org/wiki/Virtual_machine).
 
-If you don’t already have a [provider](https://www.vagrantup.com/docs/providers) installed (VirtualBox, Docker, VMWare, Hyper-V…), [install VirtualBox](https://www.virtualbox.org/manual/ch02.html).
+If you don’t already have a [provider](https://www.vagrantup.com/docs/providers) installed (VirtualBox, Docker, VMWare, Hyper-V…) and are not using recent macOS hardware, [install VirtualBox](https://www.virtualbox.org/manual/ch02.html).
 
 ### On a Mac with an Apple Silicon processor
 
-VirtualBox is not compatible with Apple Silicon (M1…) processors. You will thus need to use the Docker provider.
+VirtualBox is not compatible with Apple Silicon (M1, M2…) processors. You will thus need to use the [UTM](https://mac.getutm.app) provider.
 
-To that end, install Docker Desktop through a [manual install](https://docs.docker.com/docker-for-mac/install/) or with `brew install --cask docker`.
+To that end:
+
+1. Install UTM through a [manual install](https://mac.getutm.app) or with `brew install utm`.
+2. Install the [UTM Vagrant provider](https://naveenrajm7.github.io/vagrant_utm/).
 
 ## 2. Set up Vagrant
 
@@ -33,7 +36,7 @@ To install Ansible, follow [the documentation](https://docs.ansible.com/ansible/
 To check that Ansible is properly installed, run `ansible --version`. You should get something like:
 
 ```
-ansible [core 2.16.5]
+ansible [core 2.20.6]
    …
 ```
 
@@ -41,9 +44,9 @@ ansible [core 2.16.5]
 
 1. Clone (or download) the `openfisca-ops` repository: `https://github.com/openfisca/openfisca-ops.git`.
 2. Navigate to the freshly downloaded folder: `cd openfisca-ops`.
-3. Type the following command: `vagrant up`. If you’re on an Apple Silicon machine or want to use Docker instead of VirtualBox, type `vagrant up --provider=docker`.
+3. Type the following command: `vagrant up`. If you’re on an Apple Silicon machine, use `vagrant up --provider=utm`.
 
-Once the command is done, you should have a virtual machine running the OpenFisca Web API with the [Country Template](https://github.com/openfisca/country-template).
+Once the command is executed, you should have a virtual machine running the OpenFisca Web API with the [Country Template](https://github.com/openfisca/country-template).
 
 The port of the application inside the virtual machine is forwarded to the port 8000 on your development machine by default. You can thus access that API on your local machine on [`http://localhost:8000/`](http://localhost:8000/).
 

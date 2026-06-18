@@ -12,7 +12,7 @@ That instance of the API will serve by default the [Country Template](https://gi
 
 Rent a server from any commercial provider, choosing a machine that:
 
-- Runs `Ubuntu 20.04`, `Ubuntu 22.04` or `Ubuntu 24.04` as operating system. (Note: `24.10` is not supported at the time of writing because of the [deadsnakes](https://github.com/deadsnakes/) PPA).
+- Runs `Ubuntu 22.04` or `Ubuntu 24.04` as operating system (`<21` is not supported because Python 3.9+ is needed; `24.10` is not supported at the time of writing because of the [deadsnakes](https://github.com/deadsnakes/) PPA).
 - Allows logging in as superuser (administrator) over SSH.
 - Can download packages over the internet.
 

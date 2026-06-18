@@ -1,5 +1,5 @@
 - name: Install the reverse-proxy
-  when: reverse_proxy_host_name
+  when: reverse_proxy_host_name is string
   block:
     - name: Install the Nginx Ubuntu package
       ansible.builtin.apt:
@@ -22,7 +22,7 @@
       notify: Reload nginx
 
     - name: Set SSL up
-      when: letsencrypt_email
+      when: letsencrypt_email is string
       block:
         - name: Install Certbot and its Nginx plugin
           ansible.builtin.apt:
